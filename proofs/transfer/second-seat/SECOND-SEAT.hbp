@@ -1,0 +1,72 @@
+HAAR_WEYL|M_0_to_13=1,0,1,0,2,0,5,0,14,0,42,0,132,0|equals_catalan=1|json=0
+GROUP2|name=Z6|order=6|field=Q(sqrt3)|t_moment=1|t_dgs=1|agree=1|M_t1=2|haar_t1=1|iota=1|M4=6|M6=22|logZ_per_plaq=1:8|plaq_coeff=1:4|json=0
+GROUP2|name=Q8|order=8|field=Q(sqrt3)|t_moment=3|t_dgs=3|agree=1|M_t1=4|haar_t1=2|iota=2|M4=4|M6=16|logZ_per_plaq=1:192|plaq_coeff=1:48|json=0
+GROUP2|name=Dic3|order=12|field=Q(sqrt3)|t_moment=3|t_dgs=3|agree=1|M_t1=3|haar_t1=2|iota=1|M4=3|M6=11|logZ_per_plaq=1:384|plaq_coeff=1:96|json=0
+GROUP2|name=Dic4|order=16|field=Q(sqrt2)|t_moment=3|t_dgs=3|agree=1|M_t1=3|haar_t1=2|iota=1|M4=3|M6=10|logZ_per_plaq=1:384|plaq_coeff=1:96|json=0
+GROUP2|name=2T|order=24|field=Q(sqrt3)|t_moment=5|t_dgs=5|agree=1|M_t1=6|haar_t1=5|iota=1|M4=2|M6=6|logZ_per_plaq=1:46080|plaq_coeff=1:7680|json=0
+GROUP2|name=2O|order=48|field=Q(sqrt2)|t_moment=7|t_dgs=7|agree=1|M_t1=15|haar_t1=14|iota=1|M4=2|M6=5|logZ_per_plaq=1:10321920|plaq_coeff=1:1290240|json=0
+GROUP2|name=2I|order=120|field=Q(sqrt5)|t_moment=11|t_dgs=11|agree=1|M_t1=133|haar_t1=132|iota=1|M4=2|M6=5|logZ_per_plaq=1:1961990553600|plaq_coeff=1:163499212800|json=0
+PAIR_RECOMPUTE|lattice=cube_6_faces_free|G1=Dic3|G2=2T|t=3|beta_power=4|frozen=1:64|recomputed=1:64|frozen_pm=1:96|recomputed_pm=1:96|match=1|json=0
+PAIR_RECOMPUTE|lattice=cube_6_faces_free|G1=2O|G2=SU2|t=7|beta_power=8|frozen=1:1720320|recomputed=1:1720320|frozen_pm=1:1290240|recomputed_pm=1:1290240|match=1|json=0
+PAIR_RECOMPUTE|lattice=cube_6_faces_free|G1=2I|G2=SU2|t=11|beta_power=12|frozen=1:326998425600|recomputed=1:326998425600|frozen_pm=1:163499212800|recomputed_pm=1:163499212800|match=1|json=0
+PAIR_RECOMPUTE|lattice=torus_3x3_periodic|G1=Q8|G2=2T|t=3|beta_power=4|frozen=3:64|recomputed=3:64|frozen_pm=1:48|recomputed_pm=1:48|match=1|json=0
+PAIR_RECOMPUTE_SUMMARY|rows=45|mismatches=0|json=0
+LAT2|name=single_plaquette_open|links=4|plaqs=1|H1=1|H2=1|H2p=1|json=0
+ENUM2|lat=single_plaquette_open|group=Dic3|gauge_fixed=1|free_links=1|configs=12|hist_sha256=2da2e2790ca555f71489da22ca36d158c1e4bf9c5d4848a455609c510a4a2cf9|json=0
+ENUM2|lat=single_plaquette_open|group=Dic3|gauge_fixed=0|free_links=4|configs=20736|hist_sha256=cc37b75bb2428bda57b4da5a53b0ad585c6ff4cd5a7a0279247a6ffab303d9f8|equals_gauge_fixed_times=1728|equal=1|json=0
+ENUM2|lat=single_plaquette_open|group=2T|gauge_fixed=1|free_links=1|configs=24|hist_sha256=46a45268a18912a8fc0bb53bbabe507a257ef8d0128e9ec05c260d330d8584f6|json=0
+ENUM2|lat=single_plaquette_open|group=2T|gauge_fixed=0|free_links=4|configs=331776|hist_sha256=c56d7b7e2d1e17cf723528200a003a54632b39cd0bc7c929f4fac4abf0f5bebf|equals_gauge_fixed_times=13824|equal=1|json=0
+HAAR_SERIES|lat=single_plaquette_open|logZ_1_to_8=0,1:8,0,-1:384,0,1:9216,0,-1:184320|json=0
+VS_HAAR|lat=single_plaquette_open|group=Dic3|t=3|H1=1|H2p=1|dlogZ_1_to_8=0,0,0,1:384,0,-1:5120,0,53:5160960|dplaq_0_to_7=0,0,0,1:96,0,-3:2560,0,53:645120|predB=1:384|predCprime=1:96|A=1|B=1|Cprime=1|theorem_applies=1|json=0
+VS_HAAR|lat=single_plaquette_open|group=2T|t=5|H1=1|H2p=1|dlogZ_1_to_8=0,0,0,0,0,1:46080,0,-1:516096|dplaq_0_to_7=0,0,0,0,0,1:7680,0,-1:64512|predB=1:46080|predCprime=1:7680|A=1|B=1|Cprime=1|theorem_applies=1|json=0
+DIC3_VS_2T|lat=single_plaquette_open|dlogZ_1_to_8=0,0,0,1:384,0,-1:4608,0,1:81920|dplaq_0_to_7=0,0,0,1:96,0,-1:768,0,1:10240|predD=1:384|predDp=1:96|D=1|Dp=1|theorem_applies=1|json=0
+ES4_DIC3_MINUS_HAAR|lat=single_plaquette_open|measured=1:16|constant_sequences_only=1:16|equal=1|json=0
+LAT2|name=pillow|links=4|plaqs=2|H1=1|H2=0|H2p=0|json=0
+ENUM2|lat=pillow|group=Dic3|gauge_fixed=1|free_links=1|configs=12|hist_sha256=cf4caa7cda2848db19342c87ca7c8bbf97ba198f01c0b4a94c4ab3c2a996bb5d|json=0
+MIXED|lat=pillow|group=Dic3|p0=0|p1=1|shared_links=4|moment=E[f_p0^2 f_p1^2]|enum=3:16|peeling_value=1:16|equal=0|json=0
+MIXED|lat=pillow|group=Dic3|p0=0|p1=1|shared_links=4|moment=E[f_p0^3 f_p1^1]|enum=3:16|peeling_value=0|equal=0|json=0
+MIXED|lat=pillow|group=Dic3|p0=0|p1=1|shared_links=4|moment=E[f_p0^1 f_p1^3]|enum=3:16|peeling_value=0|equal=0|json=0
+ENUM2|lat=pillow|group=2T|gauge_fixed=1|free_links=1|configs=24|hist_sha256=0c965dd8b143f1642c0a84f12813e56b278d06268e0bcd18671de8b3654189bb|json=0
+MIXED|lat=pillow|group=2T|p0=0|p1=1|shared_links=4|moment=E[f_p0^2 f_p1^2]|enum=1:8|peeling_value=1:16|equal=0|json=0
+MIXED|lat=pillow|group=2T|p0=0|p1=1|shared_links=4|moment=E[f_p0^3 f_p1^1]|enum=1:8|peeling_value=0|equal=0|json=0
+MIXED|lat=pillow|group=2T|p0=0|p1=1|shared_links=4|moment=E[f_p0^1 f_p1^3]|enum=1:8|peeling_value=0|equal=0|json=0
+HAAR_SERIES|lat=pillow|logZ_1_to_8=0,1:2,0,-1:24,0,1:144,0,-1:720|json=0
+VS_HAAR|lat=pillow|group=Dic3|t=3|H1=1|H2p=0|dlogZ_1_to_8=0,0,0,1:24,0,-1:80,0,53:20160|dplaq_0_to_7=0,0,0,1:12,0,-3:80,0,53:5040|predB=1:192|predCprime=1:96|A=1|B=0|Cprime=0|theorem_applies=0|json=0
+VS_HAAR|lat=pillow|group=2T|t=5|H1=1|H2p=0|dlogZ_1_to_8=0,0,0,0,0,1:720,0,-1:2016|dplaq_0_to_7=0,0,0,0,0,1:240,0,-1:504|predB=1:23040|predCprime=1:7680|A=1|B=0|Cprime=0|theorem_applies=0|json=0
+DIC3_VS_2T|lat=pillow|dlogZ_1_to_8=0,0,0,1:24,0,-1:72,0,1:320|dplaq_0_to_7=0,0,0,1:12,0,-1:24,0,1:80|predD=1:192|predDp=1:96|D=0|Dp=0|theorem_applies=0|json=0
+ES4_DIC3_MINUS_HAAR|lat=pillow|measured=1|constant_sequences_only=1:8|equal=0|json=0
+LAT2|name=cube_surface|links=12|plaqs=6|H1=1|H2=1|H2p=1|json=0
+ENUM2|lat=cube_surface|group=Dic3|gauge_fixed=1|free_links=5|configs=248832|hist_sha256=755bec1b24c01ef91c2e7be5361cd681d8c4a8565e153bdf0bba728fc9e69b9f|json=0
+MIXED|lat=cube_surface|group=Dic3|p0=0|p1=2|shared_links=1|moment=E[f_p0^2 f_p1^2]|enum=1:16|peeling_value=1:16|equal=1|json=0
+MIXED|lat=cube_surface|group=Dic3|p0=0|p1=2|shared_links=1|moment=E[f_p0^3 f_p1^1]|enum=0|peeling_value=0|equal=1|json=0
+MIXED|lat=cube_surface|group=Dic3|p0=0|p1=2|shared_links=1|moment=E[f_p0^1 f_p1^3]|enum=0|peeling_value=0|equal=1|json=0
+ENUM2|lat=cube_surface|group=2T|gauge_fixed=1|free_links=5|configs=7962624|hist_sha256=c34dedb5c75941e3d9495c7197810f526d0d010a8e71e436f37565b9a81b6261|json=0
+MIXED|lat=cube_surface|group=2T|p0=0|p1=2|shared_links=1|moment=E[f_p0^2 f_p1^2]|enum=1:16|peeling_value=1:16|equal=1|json=0
+MIXED|lat=cube_surface|group=2T|p0=0|p1=2|shared_links=1|moment=E[f_p0^3 f_p1^1]|enum=0|peeling_value=0|equal=1|json=0
+MIXED|lat=cube_surface|group=2T|p0=0|p1=2|shared_links=1|moment=E[f_p0^1 f_p1^3]|enum=0|peeling_value=0|equal=1|json=0
+HAAR_SERIES|lat=cube_surface|logZ_1_to_8=0,3:4,0,-1:64,0,5:3072,0,-17:61440|json=0
+VS_HAAR|lat=cube_surface|group=Dic3|t=3|H1=1|H2p=1|dlogZ_1_to_8=0,0,0,1:64,0,-3:2560,0,263:860160|dplaq_0_to_7=0,0,0,1:96,0,-3:2560,0,263:645120|predB=1:64|predCprime=1:96|A=1|B=1|Cprime=1|theorem_applies=1|json=0
+VS_HAAR|lat=cube_surface|group=2T|t=5|H1=1|H2p=1|dlogZ_1_to_8=0,0,0,0,0,1:7680,0,-1:86016|dplaq_0_to_7=0,0,0,0,0,1:7680,0,-1:64512|predB=1:7680|predCprime=1:7680|A=1|B=1|Cprime=1|theorem_applies=1|json=0
+DIC3_VS_2T|lat=cube_surface|dlogZ_1_to_8=0,0,0,1:64,0,-1:768,0,13:40960|dplaq_0_to_7=0,0,0,1:96,0,-1:768,0,13:30720|predD=1:64|predDp=1:96|D=1|Dp=1|theorem_applies=1|json=0
+ES4_DIC3_MINUS_HAAR|lat=cube_surface|measured=3:8|constant_sequences_only=3:8|equal=1|json=0
+LAT2|name=torus_2x2|links=8|plaqs=4|H1=1|H2=0|H2p=1|json=0
+ENUM2|lat=torus_2x2|group=Dic3|gauge_fixed=1|free_links=5|configs=248832|hist_sha256=317041f05cd43899a5baecccaf85761516e71c3875e8356ef880ec586a217ed4|json=0
+MIXED|lat=torus_2x2|group=Dic3|p0=0|p1=1|shared_links=2|moment=E[f_p0^2 f_p1^2]|enum=1:16|peeling_value=1:16|equal=1|json=0
+MIXED|lat=torus_2x2|group=Dic3|p0=0|p1=1|shared_links=2|moment=E[f_p0^3 f_p1^1]|enum=0|peeling_value=0|equal=1|json=0
+MIXED|lat=torus_2x2|group=Dic3|p0=0|p1=1|shared_links=2|moment=E[f_p0^1 f_p1^3]|enum=0|peeling_value=0|equal=1|json=0
+ENUM2|lat=torus_2x2|group=2T|gauge_fixed=1|free_links=5|configs=7962624|hist_sha256=68a6925fe0db392668a751e200c431fefacda608982d3cbe108215821aa9c112|json=0
+MIXED|lat=torus_2x2|group=2T|p0=0|p1=1|shared_links=2|moment=E[f_p0^2 f_p1^2]|enum=1:16|peeling_value=1:16|equal=1|json=0
+MIXED|lat=torus_2x2|group=2T|p0=0|p1=1|shared_links=2|moment=E[f_p0^3 f_p1^1]|enum=0|peeling_value=0|equal=1|json=0
+MIXED|lat=torus_2x2|group=2T|p0=0|p1=1|shared_links=2|moment=E[f_p0^1 f_p1^3]|enum=0|peeling_value=0|equal=1|json=0
+HAAR_SERIES|lat=torus_2x2|logZ_1_to_8=0,1:2,0,-5:768,0,-1:4608,0,2923:53084160|json=0
+VS_HAAR|lat=torus_2x2|group=Dic3|t=3|H1=1|H2p=1|dlogZ_1_to_8=0,0,0,1:96,0,-1:7680,0,34099:185794560|dplaq_0_to_7=0,0,0,1:96,0,-1:5120,0,34099:92897280|predB=1:96|predCprime=1:96|A=1|B=1|Cprime=1|theorem_applies=1|json=0
+VS_HAAR|lat=torus_2x2|group=2T|t=5|H1=1|H2p=1|dlogZ_1_to_8=0,0,0,0,0,1:11520,0,1:2580480|dplaq_0_to_7=0,0,0,0,0,1:7680,0,1:1290240|predB=1:11520|predCprime=1:7680|A=1|B=1|Cprime=1|theorem_applies=1|json=0
+DIC3_VS_2T|lat=torus_2x2|dlogZ_1_to_8=0,0,0,1:96,0,-1:4608,0,4861:26542080|dplaq_0_to_7=0,0,0,1:96,0,-1:3072,0,4861:13271040|predD=1:96|predDp=1:96|D=1|Dp=1|theorem_applies=1|json=0
+ES4_DIC3_MINUS_HAAR|lat=torus_2x2|measured=1:4|constant_sequences_only=1:4|equal=1|json=0
+ENUM2_OBS|lat=cube_surface|group=Dic3|configs=248832|hist_sha256=8cdadca5d2749fede24bf84b9d54ce48d6c589471fb105aeb35baa7479200563|Z_series_matches_first_run=1|json=0
+ENUM2_OBS|lat=cube_surface|group=2T|configs=7962624|hist_sha256=ffdce34091cff63c6fdab0337899e791d64e2564096fef7d0358d71dc5944600|Z_series_matches_first_run=1|json=0
+C_DEGREE|lat=cube_surface|g1=Dic3|g2=2T|t=3|observable=f_p0_squared|d=2|predicted_agree_through=1|first_differing_order=2|diff_0_to_6=0,0,1:32,0,-1:768,0,31:184320|C_holds=1|json=0
+C_DEGREE|lat=cube_surface|g1=Dic3|g2=2T|t=3|observable=petrie_hexagon_W_over_2|d=1|predicted_agree_through=2|first_differing_order=5|diff_0_to_6=0,0,0,0,0,1:256,0|C_holds=1|json=0
+HYP_WORDING|lat=torus_2x1|H1=0|H2=0|H2p_as_written_sec1_2=1|H2p_with_single_occurrence=0|json=0
+HYP_WORDING|lat=torus_1x1|H1=0|H2=1|H2p_as_written_sec1_2=1|H2p_with_single_occurrence=0|json=0
+CHARFORMULA_VALIDATE|lat=pillow|haar_char_formula_equals_direct=1|json=0
