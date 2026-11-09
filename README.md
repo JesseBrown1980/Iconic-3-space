@@ -1,0 +1,62 @@
+# Iconic 3-space
+
+> I'm trying to prove the illusion of continuous arises from the finite world.
+>
+> — Jesse Daniel Brown, November 9, 2026
+
+This repository tests that statement with exact finite mathematics. Its question: how far can a finite set of symmetries stand in for a continuous one before an observer can tell them apart?
+
+The name comes from the owner's phrase of the same day about "the 24-dimensional world", read here as the Leech lattice built as 3-space over the icosians. His full words are in [`OBJECTIVE-QUOTES.md`](OBJECTIVE-QUOTES.md).
+
+## The test
+
+A finite set X of points on a sphere, or of elements of a group such as SU(2), **looks exactly continuous up to degree t** when averaging any polynomial of degree at most t over X gives the same number as averaging it over the whole sphere or group. Such a set is called a t-design. Past degree t, some observable sees the difference. That observable, and its exact value, mark the first place the finite world shows through.
+
+The work runs in three steps, each with its own commit and receipt:
+
+1. **Frozen predictions.** For each finite set, the predicted t and the exact deviation at the first break, computed from closed formulas alone, before any point set is built. These are committed first, so their timestamps come before any measurement.
+2. **Measurement past the limit.** Exact integer scripts build each finite set and compute every moment through, and well beyond, the predicted break.
+3. **Independent refutation.** A second seat reruns every script, checks that each receipt reproduces byte for byte, and attacks each claim.
+
+## What is being tested
+
+- **The SU(2) ladder.** The cyclic groups, the binary dihedral groups (Q8 among them), and the three exceptional groups 2T, 2O and 2I, which the McKay correspondence pairs with E6, E7 and E8.
+  - Each group's design degree and first break.
+  - The full invariant series out to degree 120.
+  - The strong-coupling free energy of 2D lattice gauge theory with that group, compared order by order with SU(2).
+- **The exceptional point sets.**
+  - The 600-cell, whose 120 vertices are the unit icosians (2I).
+  - The 240 roots of E8.
+  - The 196,560 shortest vectors of the Leech lattice.
+- **The octonion side.**
+  - G2 = Aut(O) acting on S⁶ = G2/SU(3), and the almost complex structure the octonions give it.
+  - The 16 octonion units, a Moufang loop.
+  - The finite frame symmetry inside G2.
+- **The quantum side.** 2O is the single-qubit Clifford group. Its predicted break at degree 8 is the statement that it reproduces random single-qubit statistics through the third moment and first differs at the fourth.
+
+## Rules
+
+- **Integer only.** Every tracked file is scanned by [`tools/no_float_gate.py`](tools/no_float_gate.py), the same gate the companion Yang–Mills repositories use, copied verbatim. Rationals are reduced integer pairs, and algebraic numbers are integer vectors over their rings.
+- **Hot path first.** Results are `.hbp` rows (`TAG|k=v|...|json=0`) with a `.sha256` sidecar.
+- **Every claim carries a tag:**
+  - MEASURED: a script here computed it.
+  - NAMED: standard literature, with the citation.
+  - CONJECTURE: derived but not yet run.
+- **Corrections travel beside a claim, never over it.**
+- **Predictions are frozen before measurement.**
+
+## Status, November 9, 2026
+
+| Step | Status |
+|---|---|
+| Frozen predictions: the SU(2) ladder and the exceptional point sets | next commit |
+| Measurements past each break | after the freeze |
+| Independent refutation | after the measurements |
+
+## Companions
+
+- [Finite-universe Yang–Mills with HEB-C](https://github.com/JesseBrown1980/Finite-universe-Yang-mills-existence-and-mass-gap-using-HEB-C): finite S₃ lattice gauge theory, spectral certificates and the first-gap proofs.
+- [Finite-Universe-SU-N-solved](https://github.com/JesseBrown1980/Finite-Universe-SU-N-solved): the SU(2) finite-subgroup ladder Q8, 2T, 2O and 2I in lattice gauge theory.
+- [yang-mills-4-dimensional-continum-proof](https://github.com/JesseBrown1980/yang-mills-4-dimensional-continum-proof): the four-dimensional continuum programme.
+
+The design facts tested here are classical. This repository contributes exact, reproducible certificates of them, frozen predictions that the measurements can fail, and the link to the finite-universe programme above.
