@@ -12,7 +12,7 @@ The name comes from the owner's phrase of the same day about "the 24-dimensional
 
 ## Literature-priority review: Transfer 1 and the finite-to-continuous boundary (November 9, 2026)
 
-**Priority assessment, not a declaration of mathematical novelty.** A second-reviewer search compared [Transfer 1, Iconic PR #7](https://github.com/JesseBrown1980/Iconic-3-space/pull/7) at audited head \`fb9990e5\` with older finite-subgroup lattice gauge theory, character expansions, quantum-simulation digitization, and the spherical-design literature. Search cutoff: **2026-11-09**. A frozen local scope and an independent search were reported, but this README does not claim to have verified the separate local scope lock. **PRIORITY UNVERIFIED** remains the publication-level tag; "APPARENTLY NEW" below means *no equivalent theorem located in the examined sources*, not proved worldwide priority.
+**Priority assessment, not a declaration of mathematical novelty.** A second-reviewer search compared [Transfer 1, Iconic PR #7](https://github.com/JesseBrown1980/Iconic-3-space/pull/7) at audited head `fb9990e5` with older finite-subgroup lattice gauge theory, character expansions, quantum-simulation digitization, and the spherical-design literature. Search cutoff: **2026-11-09**. A frozen local scope and an independent search were reported, but this README does not claim to have verified the separate local scope lock. **PRIORITY UNVERIFIED** remains the publication-level tag; "APPARENTLY NEW" below means *no equivalent theorem located in the examined sources*, not proved worldwide priority.
 
 | Candidate | Provisional priority | Comparison with earlier mathematics |
 |---|---|---|
@@ -21,14 +21,14 @@ The name comes from the owner's phrase of the same day about "the 24-dimensional
 | **B3: H1, H2′ and failure controls** | **APPARENTLY NEW as this exact formulation and collection of counterexamples; broader combinatorial mechanism PRIOR; optimality UNRESOLVED.** | Classical expansions already depend on link-sharing and saturation. Transfer 1 specifies four-distinct-link **H1**, a sufficient private-link **H2′**, the pillow failure, the L=1 counterexample, and the 2×2 torus that satisfies H2′ but not stronger H2. No claim that H2′ is necessary or optimal. |
 | **Binary-polyhedral design ladder: Dicₙ strength 3, 2T strength 5, 2O strength 7, 2I strength 11** | **PRIOR.** | These design strengths and the exceptional unit-quaternion groups belong to established invariant/design theory; they are controls for the measurement, not new group theory. |
 
-For the exact [Transfer 1 hypotheses and corrections](proofs/transfer/TRANSFER-THEOREM.md), H1 gives coefficient agreement through order \`β^t\`; H1 plus H2′ gives the proposed first discrepancy
+For the exact [Transfer 1 hypotheses and corrections](proofs/transfer/TRANSFER-THEOREM.md), H1 gives coefficient agreement through order `β^t`; H1 plus H2′ gives the proposed first discrepancy
 
-\`\`\`text
+```text
 log Z_G(β) − log Z_SU(2)(β)
   = N_p · ι_G · β^(t+1) / (2^(t+1) · (t+1)!) + O(β^(t+2)).
-\`\`\`
+```
 
-Here \`ι_G\` is the first moment mismatch; for Dic₃, \`t=3\` and \`ι_G=1\`, yielding \`N_p/384\`, or **1/64 for six plaquettes**. The exact-enumeration check of that example confirms the internal arithmetic **but cannot establish historical originality**. The theorem is about a fixed finite lattice's **strong-coupling Taylor coefficients**, not a uniform weak-coupling/continuum approximation, confinement theorem, or Clay mass-gap proof. The separate [second-review CI verdict](https://github.com/JesseBrown1980/Iconic-3-space/pull/7#pullrequestreview-5829822712) concerns the replay/evidence gates, not literature priority.
+Here `ι_G` is the first moment mismatch; for Dic₃, `t=3` and `ι_G=1`, yielding `N_p/384`, or **1/64 for six plaquettes**. The exact-enumeration check of that example confirms the internal arithmetic **but cannot establish historical originality**. The theorem is about a fixed finite lattice's **strong-coupling Taylor coefficients**, not a uniform weak-coupling/continuum approximation, confinement theorem, or Clay mass-gap proof. The separate [second-review CI verdict](https://github.com/JesseBrown1980/Iconic-3-space/pull/7#pullrequestreview-5829822712) concerns the replay/evidence gates, not literature priority.
 
 **Closest primary sources and boundaries:**
 
