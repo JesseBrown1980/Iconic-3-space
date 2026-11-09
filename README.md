@@ -1,7 +1,7 @@
 # Iconic 3-space
 
 > I'm trying to prove the illusion of continuous arises from the finite world.
->
+>Iconic and whereby Ionic 3 space, the 24-dimensional world, which is laden with exceptions and these groups, but because the entire subject presumes defining representations. You know, when you have, say, SU3, you imagine complex 3 space as the raison d'etre of that group's existence. The problem here is that these are the tiny number of groups for which this paradigm, that is, deprojectivized linear representations, fails. And so by virtue of the pedagogy, you are led into thinking that somehow you're looking at the platypus and the echidna and saying, well, these are just, you know, sort of exception mammals, when in fact they're the most important mammals of all because they predate the marsupial branching on the phylogenetic tree.
 > — Jesse Daniel Brown, November 9, 2026
 
 This repository tests that statement with exact finite mathematics. Its question: how far can a finite set of symmetries stand in for a continuous one before an observer can tell them apart?
