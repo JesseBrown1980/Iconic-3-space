@@ -58,6 +58,7 @@ The work runs in three steps, each with its own commit and receipt:
 | Frozen prediction: the SU(2) ladder, 61 groups | **frozen**, [`predictions/su2-ladder/`](predictions/su2-ladder/), `PREDICTION.hbp` sha256 `c2601cf0…`, receipt [`FREEZE.hbp`](predictions/su2-ladder/FREEZE.hbp) |
 | Frozen prediction: the 600-cell, E8 roots and Leech minimal vectors | **frozen**, [`predictions/exceptional/`](predictions/exceptional/), `PREDICTION-EXCEPTIONAL.hbp` sha256 `e8403cd4…`, receipt [`FREEZE.hbp`](predictions/exceptional/FREEZE.hbp) |
 | Frozen prediction: hash-phase quantum states (global, local and quadratic hashes) against continuous random states, 1 to 8 qubits | **frozen**, [`predictions/hash-quantum/`](predictions/hash-quantum/), `PREDICTION-HASH.hbp` sha256 `338df23a…` |
+| Frozen prediction: the 1,344-element frame group inside G₂ against continuous G₂ (7 and 14), the 14-unit orbit on S⁶, the non-split extension | **frozen**, [`predictions/g2-frame/`](predictions/g2-frame/), `PREDICTION-G2-FRAME.hbp` sha256 `cb9d45a5…` |
 | Measurements past each break | after the freezes |
 | Independent refutation | after the measurements |
 | Proofs: quaternions give SU(2), Q8, the 16 octonion units, the frame group inside G₂, the ladder's ceiling | **measured and refuted**, [`proofs/quaternion-octonion/`](proofs/quaternion-octonion/): S1, S2, S3 and S6 proven, S4 an analogy made exact, S5 corrected |
