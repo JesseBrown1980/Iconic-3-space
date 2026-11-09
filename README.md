@@ -8,6 +8,10 @@ This repository tests that statement with exact finite mathematics. Its question
 
 The name comes from the owner's phrase of the same day about "the 24-dimensional world", read here as the Leech lattice built as 3-space over the icosians. His full words are in [`OBJECTIVE-QUOTES.md`](OBJECTIVE-QUOTES.md).
 
+## The frame
+
+The owner's frame (OPERATOR-CANON): "we're in a matrix, so the hashes matter too. Like quantum entanglement as a hash." Here that frame is part of the method. A result lives in a receipt pinned by its hash, and a receipt counts only when its script reproduces that hash byte for byte. Every prediction is frozen by its hash before anything is measured, so the record of what was expected can be checked against what was found. The quantum lane will test entanglement as a hash directly. A random enough set of operations, a 2-design, scrambles a system so that each small piece looks completely random on its own, while the information stays whole in the correlations between the pieces: the decoupling theorem. Its prediction will be frozen before it is run.
+
 ## The test
 
 A finite set X of points on a sphere, or of elements of a group such as SU(2), **looks exactly continuous up to degree t** when averaging any polynomial of degree at most t over X gives the same number as averaging it over the whole sphere or group. Such a set is called a t-design. Past degree t, some observable sees the difference. That observable, and its exact value, mark the first place the finite world shows through.
@@ -53,6 +57,7 @@ The work runs in three steps, each with its own commit and receipt:
 | Frozen prediction: the 600-cell, E8 roots and Leech minimal vectors | **frozen**, [`predictions/exceptional/`](predictions/exceptional/), `PREDICTION-EXCEPTIONAL.hbp` sha256 `e8403cd4…`, receipt [`FREEZE.hbp`](predictions/exceptional/FREEZE.hbp) |
 | Measurements past each break | after the freezes |
 | Independent refutation | after the measurements |
+| Proofs: quaternions give SU(2), Q8, the 16 octonion units, the frame group inside G₂, the ladder's ceiling | **measured and refuted**, [`proofs/quaternion-octonion/`](proofs/quaternion-octonion/): S1, S2, S3 and S6 proven, S4 an analogy made exact, S5 corrected |
 
 ### The frozen SU(2) ladder prediction
 
