@@ -60,6 +60,7 @@ The work runs in three steps, each with its own commit and receipt:
 | Measurements past each break | after the freezes |
 | Independent refutation | after the measurements |
 | Proofs: quaternions give SU(2), Q8, the 16 octonion units, the frame group inside G₂, the ladder's ceiling | **measured and refuted**, [`proofs/quaternion-octonion/`](proofs/quaternion-octonion/): S1, S2, S3 and S6 proven, S4 an analogy made exact, S5 corrected |
+| Proofs: G₂/SU(3) = S⁶, its octonion almost complex structure (not integrable), W(G₂), the G₂ Higgs spectrum, G₂-instantons, the finite-subgroup limit | **measured and refuted**, [`proofs/g2-s6/`](proofs/g2-s6/): C1 to C7 supported, C8 to C10 restated |
 
 ### The frozen SU(2) ladder prediction
 

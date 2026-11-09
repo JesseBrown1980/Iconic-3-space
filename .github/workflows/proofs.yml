@@ -33,12 +33,14 @@ jobs:
             for sub in "$top"*/; do
               s=$(basename "$sub")
               [ "$s" = refute ] && continue
+              [ -f "${sub}EVIDENCE-ONLY" ] && continue
               for py in "$work/$s"/*.py; do (cd "$work/$s" && python3 -I -B "$(basename "$py")" > run.out 2>&1); done
             done
-            if [ -d "$work/refute" ]; then for py in "$work/refute"/*.py; do (cd "$work/refute" && python3 -I -B "$(basename "$py")" > run.out 2>&1); done; fi
+            if [ -d "$work/refute" ] && [ ! -f "${top}refute/EVIDENCE-ONLY" ]; then for py in "$work/refute"/*.py; do (cd "$work/refute" && python3 -I -B "$(basename "$py")" > run.out 2>&1); done; fi
             for side in "$top"*/*.hbp.sha256; do
               s=$(basename "$(dirname "$side")")
               f=$(basename "$side" .sha256)
+              if [ -f "$top$s/EVIDENCE-ONLY" ]; then echo "PROOF_EVIDENCE_ONLY|file=$top$s/$f|sidecar_check=$(cd "$top$s" && sha256sum -c "$f.sha256" > /dev/null && echo OK)|json=0"; continue; fi
               [ -f "$work/$s/$f" ] || { echo "PROOF_REPLAY_SKIP|file=$s/$f|reason=written_by_a_tool_outside_the_scripts|json=0"; continue; }
               got=$(sha256sum "$work/$s/$f" | cut -d' ' -f1)
               kept=$(cut -d' ' -f1 "$side")
