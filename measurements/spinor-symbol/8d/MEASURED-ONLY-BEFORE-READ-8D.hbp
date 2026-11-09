@@ -1,0 +1,67 @@
+HEAD|seat=opus55-acer|case=8D Spin(7)|script=measure_8d.py|script_sha256=c50948278e8ba0c5a23b322f965eccb45bcf7f48f50db2167fba09f933e80021|python=3.12.3|integer_only=1|float_used=0|read_before_measuring=CONV and FORMAT rows of PREDICTION-SPINOR-SYMBOL.hbp only|method=integer polynomial identities over the full monomial basis; sampled xi only in controls|json=0
+M8|id=M8.A1|name=fano_lines_from_rule|rule=e_i*e_(i+1)=e_(i+3) mod 7 on 1..7|lines=(1,2,4) (2,3,5) (3,4,6) (4,5,7) (5,6,1) (6,7,2) (7,1,3)|rule_equals_frozen_lines=1|each_imaginary_pair_once=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.A2|name=composition_nsq(xi_a)=nsq(xi)nsq(a)|coeffs_checked=1296|coeffs_failed=0|coeffs_outside_basis=0|vars=16|bidegree=2,2|status=PASS|claim=MEASURED|json=0
+M8|id=M8.B0|name=gamma_structure|size=16x16|block=[[0,L_xi],[-L_conj(xi),0]]|S_plus=rows 0..7|S_minus=rows 8..15|entries_nonzero=128|entries_single_signed_variable=1|gamma_equals_sum_xi_t_gamma_t=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.B1|name=gamma(xi)^2+nsq(xi)I16=0|coeffs_checked=9216|coeffs_failed=0|coeffs_outside_basis=0|entries=256|monomials_per_entry=36|nonzero_coeffs_of_gamma_squared=128|status=PASS|claim=MEASURED|json=0
+M8|id=M8.B2|name=L_xi*L_conj(xi)=nsq(xi)I8|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.B3|name=L_conj(xi)*L_xi=nsq(xi)I8|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.B4|name=L_conj(xi)=L_xi^T|coeffs_checked=512|coeffs_failed=0|coeffs_outside_basis=0|consequence=gamma(xi)^T=-gamma(xi)|status=PASS|claim=MEASURED|json=0
+M8|id=M8.B5|name=clifford_relations_gamma_i_gamma_j+gamma_j_gamma_i=-2delta_ij|ordered_pairs=64|failed=0|sign=Cl(R^8,-nsq)|status=PASS|claim=MEASURED|json=0
+M8|id=M8.C1|name=generated_algebra_dimension|ordered_words=256|all_signed_permutations=1|gram_trace_form=16*I256|gram_failures=0|closure_products_word_times_generator=2048|closure_expected=2048|dimension=256|ambient=M_16(R) dim 256|algebra_equals_M16R=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.C2|name=commutant_of_gamma_e0..e7|unknowns=256|equations=2048|rank_mod_p=255|p=2^61-1|identity_in_commutant=1|dimension=1|argument=rank over Q >= rank mod p and I16 lies in the kernel|status=PASS|claim=MEASURED|json=0
+M8|id=M8.E1|name=volume_element_gamma0..gamma7|value=diag(-1*I8,1*I8)|square=I16|anticommutes_with_each_gamma=1|S_plus_eigenvalue=-1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.E2|name=commutant_of_even_part_gamma_i_gamma_j|equations=7168|rank_mod_p=254|dimension=2|volume_element_in_it=1|reading=S_plus and S_minus are inequivalent real irreducibles of the even part|status=PASS|claim=MEASURED|json=0
+M8|id=M8.F1|name=phi_ijk=<e_i e_j,e_k>|terms=7|phi=e124+e137+e156+e235+e267+e346+e457|totally_antisymmetric=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.F2|name=orientation_7D_by_T7_split|T7=*7(phi wedge .) on Lambda2(R7)|std_orientation=e1..e7 gives -2 on 7 and +1 on 14; reversed, vol7=-e1234567|sigma7=-1|rank_T7+I_std=21|rank_T7-2I_std=21|rank_T7-I_std=7|rank_T7+2I_std=14|status=PASS|claim=MEASURED|json=0
+M8|id=M8.F3|name=psi=*7phi|psi=-e1236+e1257+e1345+-e1467+-e2347+e2456+e3567|vol7_sign=-1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.F4|name=star8(e0 wedge alpha)=star7(alpha)|alphas=35|vol8=e0 wedge vol7|status=PASS|claim=MEASURED|json=0
+M8|id=M8.F5p|name=cayley_form_Phi_s=e0^phi+s*psi_s=1|terms=14|Phi=e0124+e0137+e0156+e0235+e0267+e0346+e0457+-e1236+e1257+e1345+-e1467+-e2347+e2456+e3567|star8_Phi=s_Phi=1|(T-3I)(T+I)=0=1|rank_T+I=7|rank_T-3I=21|eigen=3 on 7, -1 on 21|status=PASS|claim=MEASURED|json=0
+M8|id=M8.F5m|name=cayley_form_Phi_s=e0^phi+s*psi_s=-1|terms=14|Phi=e0124+e0137+e0156+e0235+e0267+e0346+e0457+e1236+-e1257+-e1345+e1467+e2347+-e2456+-e3567|star8_Phi=s_Phi=1|(T-3I)(T+I)=0=1|rank_T+I=7|rank_T-3I=21|eigen=3 on 7, -1 on 21|status=PASS|claim=MEASURED|json=0
+M8|id=M8.G1|name=Psi(omega)=c(omega)eta_eta=1_in_S+|shape=7x28 into Im O of S+|real_and_S-_components=0|Psi_PsiT=4*I7|nonzero_entries=28|status=PASS|claim=MEASURED|json=0
+M8|id=M8.G2|name=Psi'(omega)=c(omega)eta'_eta'=1_in_S-|Psi'_Psi'T=4*I7|status=PASS|claim=MEASURED|json=0
+M8|id=M8.G3|name=Psi_on_e0j_and_on_so7|Psi(e0j)=e_j=1|Psi_on_so7=contraction_with_phi=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.G4|name=T_s+I=Psi^T_Psi|T_+1+I=PsiT_Psi=1|T_-1+I=PsiT_Psi=0|T_+1+I=Psi'T_Psi'=0|T_-1+I=Psi'T_Psi'=1|Psi_matches_s=1|Psi'_matches_s=-1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.G5|name=ker_Psi_dimension_and_stabilizer_of_Phi|rank_Psi=7|dim_ker_Psi=21|dim_stab_Phi_+1=21|dim_stab_Phi_-1=21|dim_kerPsi_cap_stab_Phi_+1=21|dim_kerPsi_cap_stab_Phi_-1=14|dim_kerPsi'_cap_stab_Phi_+1=14|dim_kerPsi'_cap_stab_Phi_-1=21|ker_Psi_equals_stab_Phi_s=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.G6|name=ker_Psi_closed_under_commutator|basis=21|pairs=210|failed=0|bracket=[R_a,R_b] of C0.5 rotations|derivation_on_2forms_equals_commutator=1|pairs_checked_for_that=784|status=PASS|claim=MEASURED|json=0
+M8|id=M8.G7|name=ker_Psi_cap_ker_Psi'=g2|dim_ker_Psi_cap_ker_Psi'=14|dim_stab_so8_phi=14|dim_ker_Psi7_in_so7=14|dim_of_all_three_intersected=14|lies_in_so7=1|commutator_pairs=91|closure_failed=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.H1|name=matrix_entry_sum_X_ab_gamma_a_gamma_b=-2c(omega)|forms=28|failed=0|X=R_omega of C0.5, X_ab its row a column b entry|so=(1/4)sum X_ab gamma_a gamma_b=-(1/2)c(omega); (1/4)sum omega_ab gamma_a gamma_b=+(1/2)c(omega) with omega_ab the form coefficients|status=PASS|claim=MEASURED|json=0
+M8|id=M8.H2|name=C0.5_[c(omega),gamma(xi)]=2gamma(R_omega xi)_all_28_basis_forms|coeffs_checked=57344|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.H3|name=spin7_equivariance_[rho(X),gamma(xi)]=gamma(X xi)_integer_form_[c(omega_X),gamma(xi)]=2gamma(X xi)|coeffs_checked=43008|coeffs_failed=0|coeffs_outside_basis=0|basis=21|rho=rho(X)=(1/2)c(omega_X)=(1/4)sum omega_ab gamma_a gamma_b|status=PASS|claim=MEASURED|json=0
+M8|id=M8.H4|name=spin7_annihilates_eta|basis=21|failed=0|rank_of_spin7_on_eta'=7|status=PASS|claim=MEASURED|json=0
+M8|id=M8.H5|name=Psi_intertwines_c(omega_X)Psi(omega)=2Psi(X.omega)|pairs=588|failed=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.I1|name=spin7_symbol_sequence|sequence=Lambda0 -> Lambda1 -> Lambda2_7|dims=1,8,7|euler=0|ranks=1,7|sigma1=xi wedge .|sigma2=P(xi)=Psi(xi wedge .)|status=PASS|claim=MEASURED|json=0
+M8|id=M8.I2|name=P(xi)xi=0_composition|coeffs_checked=252|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.I3|name=P(xi)P(xi)^T=nsq(xi)I7_rank7|coeffs_checked=1764|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.I4|name=P(xi)^T_P(xi)=nsq(xi)I8-xi_xi^T_exact_at_Lambda1|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.I5|name=xi^T_xi=nsq(xi)_rank1|coeffs_checked=36|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.I6|name=(T+I)(xi wedge a)=Psi^T_P(xi)a|coeffs_checked=1792|coeffs_failed=0|coeffs_outside_basis=0|s=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.J1|name=N(xi)=(-iota_xi,P(xi))_N^T_N=nsq(xi)I8|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|rows=0: -xi^T, 1..7: P(xi)|status=PASS|claim=MEASURED|json=0
+M8|id=M8.J2|name=N(xi)N(xi)^T=nsq(xi)I8|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.J3|name=N(xi)a_as_octonion_expression|candidates_tested=16|holding=-xi*conj(a)|coeffs_per_candidate=512|coordinates=component 0 = Lambda0, components 1..7 = Psi coordinates of Lambda2_7 on e1..e7|status=PASS|claim=MEASURED|json=0
+M8|id=M8.J4|name=addendum_R2_form_N(xi)a=conj(xi)a|coeffs_checked=512|coeffs_failed=50|coeffs_outside_basis=0|minus_form_N(xi)a=-conj(xi)a_holds=0|N_used=Psi from eta in S+, row 0 = -iota_xi (C0.2)|status=FAIL|claim=MEASURED|json=0
+M8|id=M8.J5|name=N_variants_octonion_expression|variants=Psi_row0=-iota:-xi*conj(a) ; Psi_row0=+iota:a*conj(xi) ; Psi'_row0=-iota:-conj(xi)*a ; Psi'_row0=+iota:conj(a)*xi|status=PASS|claim=MEASURED|json=0
+M8|id=M8.K1|name=C0.9_nsq(xi^a)=nsq(xi)nsq(a)-<xi,a>^2|coeffs_checked=1296|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.K2|name=R1_c=1/4_<xi^a,(T+I)(xi^a)>=nsq(xi^a)|coeffs_checked=1296|coeffs_failed=0|coeffs_outside_basis=0|reading=nsq(pi7(xi^a))=(1/4)nsq(xi^a), pi7=(T+I)(1/4)|c=1/4|status=PASS|claim=MEASURED|json=0
+M8|id=M8.K3|name=R1_nsq((T+I)(xi^a))=4nsq(xi^a)|coeffs_checked=1296|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.K4|name=R1_nsq(Psi(xi^a))=nsq(xi^a)|coeffs_checked=1296|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+CTRL|id=K8.01|name=R1_with_c=1/2_<w,(T+I)w>=2nsq(w)|coeffs_checked=1296|coeffs_failed=84|coeffs_outside_basis=0|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.02|name=R1_with_c=1/3_3<w,(T+I)w>=4nsq(w)|coeffs_checked=1296|coeffs_failed=84|coeffs_outside_basis=0|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.03|name=R1_on_a_general_2form_<omega,(T+I)omega>=nsq(omega)|coeffs_checked=406|coeffs_failed=42|coeffs_outside_basis=0|vars=28|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+M8|id=M8.L1|name=R3_conj(xi)(xi x)=nsq(xi)x|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|x=variables 8..15|status=PASS|claim=MEASURED|json=0
+M8|id=M8.L2|name=xi(conj(xi)x)=nsq(xi)x|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+M8|id=M8.L3|name=(x xi)conj(xi)=nsq(xi)x_and_(x conj(xi))xi=nsq(xi)x|first_failed=0|second_failed=0|coeffs_checked=4608|status=PASS|claim=MEASURED|json=0
+M8|id=M8.L4|name=left_alternative_xi(xi x)=(xi xi)x|coeffs_checked=2304|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+CTRL|id=K8.04|name=R3_with_xi_for_conj(xi)_xi(xi x)=-nsq(xi)x_on_all_of_O|coeffs_checked=2304|coeffs_failed=64|coeffs_outside_basis=0|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+M8|id=M8.L5|name=xi(xi x)=-nsq(xi)x_for_imaginary_xi|coeffs_checked=1792|coeffs_failed=0|coeffs_outside_basis=0|xi0=0|status=PASS|claim=MEASURED|json=0
+CTRL|id=K8.05|name=associativity_on_(e1,e2,e3)|(e1e2)e3-e1(e2e3)=-2e6|triples_with_nonzero_associator=28|triples_associative=7|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+M8|id=M8.M1|name=spin7_symbol_equivariance_2P(Xxi)+2P(xi)X=c7(X)P(xi)|coeffs_checked=9408|coeffs_failed=0|coeffs_outside_basis=0|basis=21|c(omega_X)_preserves_ImO_in_S+=1|status=PASS|claim=MEASURED|json=0
+M8|id=M8.M2|name=spin7_rolled_symbol_equivariance_2N(Xxi)+2N(xi)X=diag(0,c7(X))N(xi)|coeffs_checked=10752|coeffs_failed=0|coeffs_outside_basis=0|status=PASS|claim=MEASURED|json=0
+CTRL|id=K8.06|name=wrong_sign_gamma=[[0,L_xi],[+L_conj(xi),0]]_squares_to_-nsq|coeffs_checked=9216|coeffs_failed=128|coeffs_outside_basis=0|squares_to_+nsq_instead=1|symmetric=1|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.07|name=one_fano_line_reversed_(2,1,4)_L_xi_L_conj(xi)=nsq_I8|coeffs_checked=2304|coeffs_failed=48|coeffs_outside_basis=0|composition_failed_coeffs=24|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.08|name=sampled_covector_xi=(1..8)_gamma^2=-204I_(control_only)|nsq=204|gamma^2_diag=-204|all_entries_match=1|expect=PASS|observed=PASS|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.09|name=planted_identity_gamma^2=-(nsq+xi0^2-xi0)I_passes_the_sample_fails_as_polynomial|coeffs_checked=9216|coeffs_failed=16|coeffs_outside_basis=16|passes_at_sample=1|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.10|name=X=e01_outside_spin7_annihilates_eta_and_intertwines_Psi|c(e01)eta_nonzero=1|intertwining_failures_of_28=28|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.11|name=T_(-s)+I=Psi^T_Psi_for_the_other_Cayley_form|s_tested=-1|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CTRL|id=K8.12|name=the_other_15_octonion_candidates_for_N(xi)a|failing_candidates=15|expected_failing=15|expect=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEASURED_BLOCK_END|rows=64|measured_pass=51|measured_fail=1|controls_ok=12|controls_bad=0|block_sha256=bbd58c4256bc8e88de15a351e3461b2190f209086eeabe5a58e770489735d8f7|block=rows between HEAD and this row|json=0
+END|rows=67|json=0

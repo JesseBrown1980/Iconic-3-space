@@ -1,0 +1,4 @@
+GATE|seat=opus55-acer|case=8D|gate=tools/no_float_gate.py|gate_sha256=935bd77b893026a88085850484d6899778e73cb2a6b5188615c36101f4469193|evidence=tools/FLOAT-EVIDENCE.txt|evidence_sha256=4d4a85ce827344d1104e1913958b391eb3cd7cfcaa4d73747266c25fc7b93bfc|repo=temp git repo in the scratchpad, blobs equal to branch freeze-spinor-symbol-20261109|tracked=tools/no_float_gate.py tools/FLOAT-EVIDENCE.txt proofs/g2-s6/refute/ measure/8d/measure_8d.py|run=python3 -I -X utf8 tools/no_float_gate.py .|code_files=4|listed_findings=104|failed=0|claim=MEASURED|json=0
+GATE_PIN|path=measure/8d/measure_8d.py|findings=0|sha256=97e95b258a5f8700984fc7bcc36c6f0252b6fd929576e97c517e036face5e4cd|claim=MEASURED|json=0
+GATE_CONTROL|plant=copy of measure_8d.py with PLANT = 7 / 2 appended|observed=true division at line 1746|failed=1|expect=FAIL|control_ok=1|claim=MEASURED|json=0
+GATE_RECEIPT_FOR|file=MEASURE-8D.hbp|sha256=08b5936e32378daed2db668eab202740eaffc3cc4f2a553004dfcd7ab8de48f5|json=0

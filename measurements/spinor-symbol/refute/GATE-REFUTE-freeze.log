@@ -1,0 +1,18 @@
+LIST freeze
+935bd77b893026a88085850484d6899778e73cb2a6b5188615c36101f4469193  tools/no_float_gate.py
+4d4a85ce827344d1104e1913958b391eb3cd7cfcaa4d73747266c25fc7b93bfc  tools/FLOAT-EVIDENCE.txt
+SELFTEST_EXIT 0
+NO_FLOAT_SELFTEST_DONE|must_flag=124|must_name_its_rule=158|must_pass=91|file_rows=59|list_rows=14|failed=0|json=0
+SCAN_EXIT 0
+NO_FLOAT_DONE|code_files=11|listed_files=1|listed_folders=1|listed_findings=104|failed=0|json=0
+measure/4d/measure_4d.py | findings=0 | sha256=d8ae2bfbf35df0b7299beb2292a96169809d4a791b20f3487e22cf0b6ccb7dcf | 
+measure/4d/measure_4d.before-compare.py | findings=0 | sha256=763fef99c27b43c7fa3cf56bc88941d4eae6058367f6ac4ef14efe8f814fc813 | 
+measure/7d/measure_7d.py | findings=0 | sha256=bb6566124ed1cedcdbc8cae6b214b01c867811464efaac5d23c196851f597af1 | 
+measure/7d/measure_7d.precompare.py | findings=0 | sha256=e55c5904362fd56d8b3c3b8c3854557340392df30ed77d3538f493cd5e02e3c3 | 
+measure/8d/measure_8d.py | findings=0 | sha256=97e95b258a5f8700984fc7bcc36c6f0252b6fd929576e97c517e036face5e4cd | 
+measure/8d/measure_8d.before-read.py.txt | findings=0 | sha256=c50948278e8ba0c5a23b322f965eccb45bcf7f48f50db2167fba09f933e80021 | 
+measure/refute/refute_spinor.py | findings=0 | sha256=688f224abde2a0b7f1677ae7c511ee0599e3e55a71d2a7471ed7709bcf98dff5 | 
+measure/refute/refute_spinor.before-compare.py | findings=0 | sha256=edfe8df4295c41cd2091d2ce85671c53522c5e5913f3d7b953b91a9c3b62194f | 
+PLANT_SCAN_EXIT 1
+NO_FLOAT|file=plant.py|first=float literal at line 1|count=2|json=0
+UNPLANT_SCAN_EXIT 0

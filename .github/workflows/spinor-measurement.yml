@@ -1,0 +1,47 @@
+# The spinor symbol measurement (4D, 7D, 8D) must reproduce byte for byte against the frozen prediction and addendum in
+# predictions/spinor-symbol/. Each script runs alone in a fresh directory; the receipts carry no paths. Integer only,
+# json=0. The refutation folder is evidence (refute/EVIDENCE-ONLY); its sidecars are checked.
+name: Spinor measurement replay
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Replay 4D, 7D and 8D in fresh directories and compare with the committed receipts
+        run: |
+          set -euo pipefail
+          P="$GITHUB_WORKSPACE/predictions/spinor-symbol"
+          M="$GITHUB_WORKSPACE/measurements/spinor-symbol"
+          T=$(mktemp -d)
+          mkdir -p "$T/4d/frozen" "$T/7d" "$T/8d"
+          cp "$M/4d/measure_4d.py" "$T/4d/"
+          cp "$P/PREDICTION-SPINOR-SYMBOL.hbp" "$P/ADDENDUM-SPINOR-SYMBOL.hbp" "$T/4d/frozen/"
+          cp "$M/7d/measure_7d.py" "$T/7d/"
+          cp "$M/8d/measure_8d.py" "$T/8d/"
+          (cd "$T/4d" && python3 -I -B measure_4d.py > run.out 2>&1) || { echo "SPINOR_REPLAY_FAIL|case=4d|stage=run|json=0"; tail -20 "$T/4d/run.out"; exit 1; }
+          (cd "$T/7d" && python3 -I -B measure_7d.py out "$P/PREDICTION-SPINOR-SYMBOL.hbp" "$P/ADDENDUM-SPINOR-SYMBOL.hbp" > run.out 2>&1) || { echo "SPINOR_REPLAY_FAIL|case=7d|stage=run|json=0"; tail -20 "$T/7d/run.out"; exit 1; }
+          (cd "$T/8d" && python3 -I -B measure_8d.py out "$P/PREDICTION-SPINOR-SYMBOL.hbp" "$P/ADDENDUM-SPINOR-SYMBOL.hbp" > run.out 2>&1) || { echo "SPINOR_REPLAY_FAIL|case=8d|stage=run|json=0"; tail -20 "$T/8d/run.out"; exit 1; }
+          n=0
+          for pair in "4d:$T/4d/MEASURE-4D.hbp" "7d:$T/7d/out/MEASURE-7D.hbp" "8d:$T/8d/out/MEASURE-8D.hbp"; do
+            d=${pair%%:*}; f=${pair#*:}; b=$(basename "$f")
+            got=$(sha256sum "$f" | cut -d' ' -f1)
+            kept=$(cut -d' ' -f1 "$M/$d/$b.sha256")
+            echo "SPINOR_REPLAY|file=measurements/spinor-symbol/$d/$b|replayed=$got|sidecar=$kept|json=0"
+            [ "$got" = "$kept" ] || { echo "SPINOR_REPLAY_FAIL|case=$d|stage=compare|json=0"; exit 1; }
+            cmp "$f" "$M/$d/$b"
+            n=$((n+1))
+          done
+          for d in 4d 7d 8d refute; do (cd "$M/$d" && for s in *.sha256; do sha256sum -c "$s"; done); done
+          echo "SPINOR_REPLAY_DONE|replayed=$n|json=0"

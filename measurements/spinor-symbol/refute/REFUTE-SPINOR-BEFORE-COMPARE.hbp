@@ -1,0 +1,80 @@
+HEAD|schema=refute-spinor-symbol-v1|date=2026-11-09|seat=second seat refuter for ACER-CLAUDE-FABLE5, pid 8467a937cba309f7, Opus 5.5|kind=INDEPENDENT_RECOMPUTE_then_COMPARE|frozen_branch=freeze-spinor-symbol-20261109|prediction_sha256=c6e86dd46662ede6a0bb82a8a8dda133a6fc0c20de54a6d947575e37169b2d3e|addendum_sha256=ad9ae33ef3e4ac1befb3528ebfa6faeaa10274cb044a838afdece4859ccc08c0|read_before_measuring=HEAD FORMAT CONV rows of the prediction only; no PRED ADD DIMS value; no other agent script; no GPT-6 receipt|float_used=0|division_operator_used=0|power_operator_used=0|sampling_for_identities=0|json=0
+MEAS|id=R4D.01|name=quaternion_table_hamilton_and_composition_nsq(xy)=nsq(x)nsq(y)|hamilton_ij_k_jk_i_ki_j=1|composition_slots=16|composition_unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R4D.02|name=gamma(xi)^2=-nsq(xi)I8_with_gamma=[[0,L_xi],[-L_conj(xi),0]]|entries=64|support_slots=32|unequal=0|full_basis_slots=640|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K4D.01|name=gamma_with_+L_conj(xi)_squares_to_-nsq|unequal=32|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R4D.03|name=f1_f2_f3_self_dual_for_e1234_gram|self_dual=1|gram=2,0,0;0,2,0;0,0,2|status=PASS|claim=MEASURED|json=0
+MEAS|id=R4D.04|name=M^T_M=nsq(xi)I4_and_M_M^T=nsq(xi)I4|MtM_entries=16|MtM_support_slots=16|MtM_unequal=0|MMt_unequal=0|full_basis_slots_each=160|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K4D.02|name=M_with_wrong_f2=e13+e24_M^T_M=nsq_I4|unequal=8|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R4D.05|name=(I+*)(xi^a)=c1f1+c2f2+c3f3_with_c_k=<xi^a,f_k>|components=6|unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R4D.R1|name=R1_c=1:2_nsq((T+I)(xi^a))=2nsq(xi^a)_and_<xi^a,(T+I)(xi^a)>=nsq(xi^a)|k=2|c=1:2|slots_norm=18|unequal_norm=0|slots_inner=18|unequal_inner=0|C0.9_unequal=0|reading=pi_small=(T+I) times 1:2 so nsq(pi_small(xi^a))=(1:2) nsq(xi^a)|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K4D.R1c1|name=R1_with_c=1:1_nsq((T+I)(xi^a))=1nsq(xi^a)|unequal=18|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K4D.R1c3|name=R1_with_c=1:3_nsq((T+I)(xi^a))=3nsq(xi^a)|unequal=18|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K4D.R1c4|name=R1_with_c=1:4_nsq((T+I)(xi^a))=4nsq(xi^a)|unequal=18|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K4D.R1gen|name=R1_inner_identity_on_a_general_2form|vars=6|unequal=3|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R4D.06|name=M(xi)a_as_quaternion_expression_of_16_candidates|holding=-xi*conj(a)|non_holding=15|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R4D.07|name=literal_square_M(xi)M(xi)|equals_+nsq_I4=0|equals_-nsq_I4=0|unequal_vs_plus=18|unequal_vs_minus=22|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R4D.08|name=doubled_D=[[0,M^T],[M,0]]_D^2=+nsq(xi)I8|unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R4D.09|name=sp1+sp1_equivariance_[diag(L_u,0),gamma(xi)]=gamma(u xi)_and_[diag(0,L_v),gamma(xi)]=gamma(-xi v)|generators=6|basis_covectors=4|failures=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K4D.03|name=swapped_spinor_action_S+_by_q_S-_by_p|failures=12|of=24|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R4D.10|name=Q8xQ8_gamma(p xi conj(q))=g gamma(xi) g^T_g=diag(L_p,L_q)|pairs=64|checks=256|failures=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K4D.04|name=swapped_g=diag(L_q,L_p)|failures=96|of=256|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R7D.01|name=octonion_lines_from_rule_e_i*e_(i+1)=e_(i+3)_mod_7|lines=(1,2,4) (2,3,5) (3,4,6) (4,5,7) (5,6,1) (6,7,2) (7,1,3)|equal_frozen_list=1|status=PASS|claim=MEASURED|json=0
+MEAS|id=R7D.02|name=octonion_composition_nsq(xy)=nsq(x)nsq(y)|support_slots=64|unequal=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K7D.01|name=line_(1,2,4)_reversed_table_composition|unequal=24|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R7D.03|name=L_xi^2=-nsq(xi)I8_for_xi_in_Im_O|entries=64|support_slots=56|unequal=0|full_basis_slots=1792|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K7D.02|name=L_xi^2=-nsq_with_line_(1,2,4)_reversed|unequal=48|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R7D.04|name=cross_X(xi)v=Im(xi v)_X^2=-nsq(xi)I7+xi_xi^T_X_xi=0_X^T=-X|entries=49|support_slots=84|unequal=0|X_xi_unequal=0|skew_unequal=0|full_basis_slots=1372|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K7D.03|name=X(xi)^2=-nsq(xi)I7_without_xi_xi^T|unequal=49|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R7D.05|name=associator_(e1,e2,e3)|e1e2=+e4|e2e3=+e5|(e1e2)e3=-e6|e1(e2e3)=+e6|associator=-2e6|ordered_distinct_triples=210|associative_triples=42|nonassociative_triples=168|nonzero_associator_shapes=2|status=VALUE|claim=MEASURED|json=0
+CONTROL|id=K7D.04|name=associativity_(e1e2)e3=e1(e2e3)|associator=-2e6|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R7D.06|name=phi_ijk=<e_i e_j,e_k>|totally_antisymmetric=1|terms=7|phi=+e124+e137+e156+e235+e267+e346+e457|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R7D.07|name=orientation_by_7D.C3_and_(T7-2I)(T7+I)=0|vol_e1..e7_ranks=rank(T-2I)=21;rank(T+I)=21;rank(T+2I)=14;rank(T-I)=7|sigma_chosen=-1|eigen_+2_dim=7|eigen_-1_dim=14|symmetric=1|trace=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R7D.08|name=Psi7(omega)=c(omega)eta_rank_and_kernel|real_part_zero=1|rank=7|dim_kernel=14|Psi7_equals_contraction_with_phi=1|Psi7_PsiT=3I|status=PASS|claim=MEASURED|json=0
+MEAS|id=R7D.08b|name=T7+I=Psi7^T_Psi7_and_Psi7_Psi7^T=3I7|T7+I_eq_PsiT_Psi=1|status=PASS|claim=MEASURED|json=0
+MEAS|id=R7D.R1|name=R1_c=1:3_nsq((T+I)(xi^a))=3nsq(xi^a)_and_<xi^a,(T+I)(xi^a)>=nsq(xi^a)|k=3|c=1:3|slots_norm=63|unequal_norm=0|slots_inner=63|unequal_inner=0|C0.9_unequal=0|reading=pi_small=(T+I) times 1:3 so nsq(pi_small(xi^a))=(1:3) nsq(xi^a)|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K7D.R1c1|name=R1_with_c=1:1_nsq((T+I)(xi^a))=1nsq(xi^a)|unequal=63|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K7D.R1c2|name=R1_with_c=1:2_nsq((T+I)(xi^a))=2nsq(xi^a)|unequal=63|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K7D.R1c4|name=R1_with_c=1:4_nsq((T+I)(xi^a))=4nsq(xi^a)|unequal=63|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K7D.R1gen|name=R1_inner_identity_on_a_general_2form|vars=21|unequal=21|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R7D.09|name=(T7+I)(xi^v)=iota_(xi_x_v)phi_so_pi7(xi^v)=(1:3)iota_(xi_x_v)phi|components=21|support_slots=126|unequal=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K7D.05|name=(T7+I)(xi^v)=3iota_(xi_x_v)phi|unequal=126|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R7D.10|name=R(xi)(f,v)=(-<xi,v>,f xi+xi_x_v)_equals_L_xi|unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R7D.11|name=literal_square_R(xi)R(xi)_and_gram_R^T_R|RR_equals_-nsq_I8=1|RR_equals_+nsq_I8=0|RtR_equals_+nsq_I8=1|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R7D.12|name=doubled_[[0,R^T],[R,0]]^2=+nsq(xi)I16|unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R7D.13|name=ker_Psi7_acts_by_derivations_[D,L_xi]=L_(D xi)|dim_ker_Psi7=14|basis_rank=14|derivation_failures=0|commutator_failures=0|closed_under_bracket=1|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K7D.06|name=rotation_R_12_outside_ker_Psi7_is_a_derivation|Psi7_e12=0,0,0,1,0,0,0|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R8D.01|name=gamma(xi)^2=-nsq(xi)I16_with_gamma=[[0,L_xi],[-L_conj(xi),0]]|entries=256|support_slots=128|unequal=0|full_basis_slots=9216|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.02|name=Psi(omega)=c(omega)eta_eta=1_in_S+_rank_and_dim_ker|real_and_S-_parts_zero=1|rank_Psi=7|dim_ker_Psi=21|nullspace_basis=21|Psi_PsiT_is_4I7=1|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.03p|name=Cayley_Phi_s=e0^phi+s_psi_s=1|star8_Phi_over_Phi=1|T-3I_times_T+I_is_zero=1|rank_T+I=7|T+I_equals_PsiT_Psi=1|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.03m|name=Cayley_Phi_s=e0^phi+s_psi_s=-1|star8_Phi_over_Phi=-1|T-3I_times_T+I_is_zero=1|rank_T+I=7|T+I_equals_PsiT_Psi=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.04|name=N(xi)=(-iota_xi,P(xi))_N^T_N=nsq(xi)I8_and_N_N^T=nsq(xi)I8|NtN_entries=64|NtN_support_slots=64|NtN_unequal=0|NNt_unequal=0|full_basis_slots_each=2304|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.05|name=P(xi)xi=0_and_P_P^T=nsq(xi)I7|Pxi_unequal=0|PPt_unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.06|name=N(xi)a_as_octonion_expression_of_16_candidates|holding=-xi*conj(a)|non_holding=15|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R8D.06p|name=N(xi)a=+conj(xi)*a|holds=0|entries=64|support_slots=64|unequal=50|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R8D.06m|name=N(xi)a=-conj(xi)*a|holds=0|entries=64|support_slots=64|unequal=14|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R8D.07|name=N_with_Lambda0_row_+iota_xi_as_octonion_expression|holding=+a*conj(xi)|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R8D.08|name=literal_square_N(xi)N(xi)|equals_+nsq_I8=0|equals_-nsq_I8=0|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R8D.R1|name=R1_c=1:4_nsq((T+I)(xi^a))=4nsq(xi^a)_and_<xi^a,(T+I)(xi^a)>=nsq(xi^a)|k=4|c=1:4|slots_norm=84|unequal_norm=0|slots_inner=84|unequal_inner=0|C0.9_unequal=0|reading=pi_small=(T+I) times 1:4 so nsq(pi_small(xi^a))=(1:4) nsq(xi^a)|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K8D.R1c1|name=R1_with_c=1:1_nsq((T+I)(xi^a))=1nsq(xi^a)|unequal=84|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K8D.R1c2|name=R1_with_c=1:2_nsq((T+I)(xi^a))=2nsq(xi^a)|unequal=84|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K8D.R1c3|name=R1_with_c=1:3_nsq((T+I)(xi^a))=3nsq(xi^a)|unequal=84|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K8D.R1gen|name=R1_inner_identity_on_a_general_2form|vars=28|unequal=42|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R8D.09|name=conj(xi)(xi x)=nsq(xi)x_L_conj(xi)L_xi=nsq(xi)I8|entries=64|support_slots=64|unequal=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K8D.01|name=xi(xi x)=-nsq(xi)x_for_general_xi_in_O|unequal=64|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R8D.10|name=xi(xi x)=-nsq(xi)x_for_imaginary_xi|unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.11|name=left_alternative_xi(xi x)=(xi xi)x|unequal=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.12|name=block_[[0,L_conj(xi)],[L_xi,0]]_square|equals_+nsq_I16=1|equals_-nsq_I16=0|status=VALUE|claim=MEASURED|json=0
+MEAS|id=R8D.13|name=[c(omega),gamma(v)]=2gamma(R_omega v)_all_28_basis_forms|checks=224|failures=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.14|name=sum_X_ab_gamma_a_gamma_b_commutator=-4gamma(Xv)_so_(1:4)sum_X_ab_gamma_a_gamma_b=-(1:2)c(omega)|checks=224|failures=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K8D.02|name=[(1:4)sum_X_ab_gamma_a_gamma_b,gamma(v)]=+gamma(Xv)|failures=56|of=224|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=R8D.15|name=rho=(1:2)c_is_a_Lie_hom_[c(X),c(Y)]=2c([X,Y])_so_lambda=1:2_unique|ordered_pairs=784|failures=0|status=PASS|claim=MEASURED|json=0
+MEAS|id=R8D.16|name=spin7=ker_Psi_equivariance_c(omega)P(xi)=2P(R_omega xi)+2P(xi)R_omega|generators=21|basis_covectors=8|failures=0|eta_leak=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K8D.03|name=equivariance_for_X=e01_outside_ker_Psi|failures=8|of=8|eta_leak=1|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+CONTROL|id=K8D.04|name=equivariance_for_X=e12_outside_ker_Psi|failures=8|of=8|eta_leak=1|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=ROB.01|name=F12=[i_sigma1,i_sigma2]=-2i_sigma3|F12=[[0:-2, 0:0],[0:0, 0:2]]|status=PASS|claim=MEASURED|json=0
+MEAS|id=ROB.02|name=d_A_d_A_f=[F_A,f]_for_A1=i_sigma1_A2=i_sigma2_f_of_degree_le_2|basis_f=45|support_slots=30|unequal=0|nonzero_only_on=12|status=PASS|claim=MEASURED|json=0
+MEAS|id=ROB.03|name=abelian_A1=A2=i_sigma3_gives_d_A_d_A_f=0|basis_f=45|nonzero_cases=0|status=PASS|claim=MEASURED|json=0
+CONTROL|id=K-OB.01|name=d_A_d_A(i_sigma1)=0_for_the_nonabelian_A|d_A_d_A_i_sigma1_dx12_in_tau_basis=0,4,0|expected=FAIL|observed=FAIL|control_ok=1|claim=MEASURED|json=0
+MEAS|id=ROB.04|name=self_dual_parts_in_tau_basis_tau_a=i_sigma_a|F_tau=e12:0,0,-2|2F+_tau=e12:0,0,-2;e34:0,0,-2|d_A_d_A_i_sigma1_tau=e12:0,4,0|2d_A+d_A_i_sigma1_tau=e12:0,4,0;e34:0,4,0|structure_[tau1,tau2]=0,0,-2|status=VALUE|claim=MEASURED|json=0
+MEASURED_END|meas_rows=38|meas_pass=38|value_rows=12|controls=27|controls_ok=27|sigma7=-1|cayley_sign_matching_PsiT_Psi=1|json=0
+MEASURED_BLOCK|rows=79|sha256=093a62e07a1f02f8063bdf207050479d7e68e8a058d01048ab602ba81ffa93f9|json=0

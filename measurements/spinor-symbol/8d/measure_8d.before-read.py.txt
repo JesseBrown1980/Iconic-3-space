@@ -1,0 +1,1266 @@
+#!/usr/bin/env python3
+"""
+measure_8d.py -- the 8D Spin(7) case of the frozen spinor-symbol prediction, measured from definitions.
+
+Seat: opus55 on acer. Integer only: no float, no division operator, no format strings, math.gcd only.
+Every identity in xi is an identity of integer polynomials (dict monomial -> int, a monomial being the sorted
+tuple of its variable indices), checked coefficient by coefficient over the full monomial basis of its
+multidegree; a coefficient outside that basis counts as a failure too. Sampled covectors appear only as controls.
+
+Read before the measured block was written: the CONV and FORMAT rows of PREDICTION-SPINOR-SYMBOL.hbp, nothing else
+of the frozen files, no other seat's script or receipt.
+
+Variables: xi_t is variable t (t = 0..7), a_t and x_t are variable 8 + t.
+Octonions: e0 = 1, imaginary units e1..e7, e_i e_(i+1) = e_(i+3) on labels 1..7 mod 7, e_i^2 = -1.
+
+Usage: python3 -I -B measure_8d.py OUTDIR                     measured block only
+       python3 -I -B measure_8d.py OUTDIR PRED.hbp ADD.hbp    measured block, then COMPARE against the frozen rows
+"""
+import sys
+import os
+import hashlib
+import itertools
+from math import gcd
+
+OUT_NAME = "MEASURE-8D.hbp"
+ROWS = []
+TALLY = {"pass": 0, "fail": 0, "ctrl_ok": 0, "ctrl_bad": 0}
+
+
+def clean(s):
+    return s.replace("|", ":").replace("\n", " ")
+
+
+def row(tag, pairs):
+    parts = [tag]
+    for k, v in pairs:
+        parts.append(str(k) + "=" + clean(str(v)))
+    parts.append("json=0")
+    ROWS.append("|".join(parts))
+
+
+def meas(rid, name, ok, pairs):
+    TALLY["pass" if ok else "fail"] += 1
+    row("M8", [("id", rid), ("name", name)] + pairs + [("status", "PASS" if ok else "FAIL"), ("claim", "MEASURED")])
+
+
+def ctrl(rid, name, expect_fail, observed_fail, pairs):
+    good = (expect_fail == observed_fail)
+    TALLY["ctrl_ok" if good else "ctrl_bad"] += 1
+    row("CTRL", [("id", rid), ("name", name)] + pairs +
+        [("expect", "FAIL" if expect_fail else "PASS"), ("observed", "FAIL" if observed_fail else "PASS"),
+         ("control_ok", 1 if good else 0), ("claim", "MEASURED")])
+
+
+# ---------------------------------------------------------------- integer polynomials
+def p_add_into(r, q, k=1):
+    for m, c in q.items():
+        v = r.get(m, 0) + c * k
+        if v:
+            r[m] = v
+        elif m in r:
+            del r[m]
+    return r
+
+
+def p_add(p, q):
+    return p_add_into(dict(p), q, 1)
+
+
+def p_sub(p, q):
+    return p_add_into(dict(p), q, -1)
+
+
+def p_scale(p, k):
+    if k == 0:
+        return {}
+    return {m: c * k for m, c in p.items()}
+
+
+def p_mul(p, q):
+    r = {}
+    for m1, c1 in p.items():
+        for m2, c2 in q.items():
+            m = tuple(sorted(m1 + m2))
+            v = r.get(m, 0) + c1 * c2
+            if v:
+                r[m] = v
+            elif m in r:
+                del r[m]
+    return r
+
+
+def p_var(i):
+    return {(i,): 1}
+
+
+def p_const(c):
+    return {(): c} if c else {}
+
+
+def p_eval(p, point):
+    tot = 0
+    for m, c in p.items():
+        t = c
+        for v in m:
+            t = t * point[v]
+        tot += t
+    return tot
+
+
+def basis(groups):
+    parts = [list(itertools.combinations_with_replacement(vs, d)) for vs, d in groups]
+    out = []
+    for combo in itertools.product(*parts):
+        m = ()
+        for c in combo:
+            m = m + c
+        out.append(tuple(sorted(m)))
+    return out
+
+
+def zero_check(entries, monos):
+    bset = set(monos)
+    checked = 0
+    failed = 0
+    outside = 0
+    for e in entries:
+        for m in monos:
+            checked += 1
+            if e.get(m, 0):
+                failed += 1
+        for m in e:
+            if m not in bset:
+                outside += 1
+    return checked, failed, outside
+
+
+def holds(res):
+    return res[1] == 0 and res[2] == 0
+
+
+def cpairs(res):
+    return [("coeffs_checked", res[0]), ("coeffs_failed", res[1]), ("coeffs_outside_basis", res[2])]
+
+
+# ---------------------------------------------------------------- polynomial matrices
+def pm_zero(n, m):
+    return [[{} for _ in range(m)] for _ in range(n)]
+
+
+def pm_mul(a, b):
+    n = len(a)
+    k = len(b)
+    m = len(b[0])
+    c = pm_zero(n, m)
+    for i in range(n):
+        for t in range(k):
+            x = a[i][t]
+            if not x:
+                continue
+            for j in range(m):
+                y = b[t][j]
+                if y:
+                    p_add_into(c[i][j], p_mul(x, y))
+    return c
+
+
+def pm_lin(a, b, ka, kb):
+    return [[p_add_into(p_scale(a[i][j], ka), b[i][j], kb) for j in range(len(a[0]))] for i in range(len(a))]
+
+
+def pm_T(a):
+    return [[dict(a[i][j]) for i in range(len(a))] for j in range(len(a[0]))]
+
+
+def pm_diag(p, n):
+    out = pm_zero(n, n)
+    for i in range(n):
+        out[i][i] = dict(p)
+    return out
+
+
+def pm_from_int(m):
+    return [[p_const(x) for x in r] for r in m]
+
+
+def flat(a):
+    return [e for r in a for e in r]
+
+
+# ---------------------------------------------------------------- integer matrices
+def im_zero(n, m):
+    return [[0] * m for _ in range(n)]
+
+
+def im_ident(n):
+    out = im_zero(n, n)
+    for i in range(n):
+        out[i][i] = 1
+    return out
+
+
+def im_mul(a, b):
+    n = len(a)
+    k = len(b)
+    m = len(b[0])
+    c = im_zero(n, m)
+    for i in range(n):
+        ai = a[i]
+        ci = c[i]
+        for t in range(k):
+            x = ai[t]
+            if x:
+                bt = b[t]
+                for j in range(m):
+                    y = bt[j]
+                    if y:
+                        ci[j] += x * y
+    return c
+
+
+def im_lin(a, b, ka, kb):
+    return [[ka * a[i][j] + kb * b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
+
+
+def im_T(a):
+    return [[a[i][j] for i in range(len(a))] for j in range(len(a[0]))]
+
+
+def im_is_zero(a):
+    return all(x == 0 for r in a for x in r)
+
+
+def im_vec(a, v):
+    return [sum(a[i][j] * v[j] for j in range(len(v))) for i in range(len(a))]
+
+
+def content_normalize(r):
+    g = 0
+    for x in r:
+        if x:
+            g = gcd(g, x)
+    if g > 1:
+        r = [divmod(x, g)[0] for x in r]
+    return r
+
+
+def rref_int(rows, ncols):
+    a = [list(r) for r in rows]
+    piv = []
+    r = 0
+    n = len(a)
+    for c in range(ncols):
+        if r == n:
+            break
+        pr = -1
+        for i in range(r, n):
+            if a[i][c]:
+                pr = i
+                break
+        if pr < 0:
+            continue
+        a[r], a[pr] = a[pr], a[r]
+        prow = a[r]
+        pv = prow[c]
+        for i in range(n):
+            if i != r and a[i][c]:
+                f = a[i][c]
+                a[i] = content_normalize([pv * x - f * y for x, y in zip(a[i], prow)])
+        piv.append(c)
+        r += 1
+    return a[:r], piv
+
+
+def rank_int(rows, ncols):
+    if not rows:
+        return 0
+    return len(rref_int(rows, ncols)[1])
+
+
+def kernel_int(rows, ncols):
+    if not rows:
+        return [[1 if t == f else 0 for t in range(ncols)] for f in range(ncols)]
+    red, piv = rref_int(rows, ncols)
+    free = [c for c in range(ncols) if c not in piv]
+    lcm = 1
+    for i, c in enumerate(piv):
+        p = abs(red[i][c])
+        lcm = divmod(lcm * p, gcd(lcm, p))[0]
+    out = []
+    for f in free:
+        v = [0] * ncols
+        v[f] = lcm
+        for i, c in enumerate(piv):
+            v[c] = -red[i][f] * divmod(lcm, red[i][c])[0]
+        out.append(content_normalize(v))
+    for v in out:
+        if any(x for x in im_vec(rows, v)):
+            raise SystemExit("kernel_int self-check failed")
+    return out
+
+
+MOD_P = 2305843009213693951
+
+
+def rank_mod_p(rows):
+    pivots = {}
+    rank = 0
+    for r0 in rows:
+        r = {k: v % MOD_P for k, v in r0.items() if v % MOD_P}
+        while r:
+            c = min(r)
+            if c in pivots:
+                pr = pivots[c]
+                f = r[c]
+                pv = pr[c]
+                new = {k: (v * pv) % MOD_P for k, v in r.items()}
+                for k, v in pr.items():
+                    new[k] = (new.get(k, 0) - f * v) % MOD_P
+                r = {k: v for k, v in new.items() if v}
+            else:
+                pivots[c] = r
+                rank += 1
+                break
+    return rank
+
+
+# ---------------------------------------------------------------- octonions
+LINES_FROZEN = [(1, 2, 4), (2, 3, 5), (3, 4, 6), (4, 5, 7), (5, 6, 1), (6, 7, 2), (7, 1, 3)]
+
+
+def lines_from_rule():
+    return [(i, (i % 7) + 1, ((i + 2) % 7) + 1) for i in range(1, 8)]
+
+
+def build_table(lines):
+    t = [[None] * 8 for _ in range(8)]
+    for i in range(8):
+        t[0][i] = (1, i)
+        t[i][0] = (1, i)
+    for i in range(1, 8):
+        t[i][i] = (-1, 0)
+    for (a, b, c) in lines:
+        for (x, y, z) in ((a, b, c), (b, c, a), (c, a, b)):
+            if t[x][y] is not None or t[y][x] is not None:
+                return None
+            t[x][y] = (1, z)
+            t[y][x] = (-1, z)
+    for i in range(8):
+        for j in range(8):
+            if t[i][j] is None:
+                return None
+    return t
+
+
+def ovars(off):
+    return [p_var(off + t) for t in range(8)]
+
+
+def obasis(j):
+    return [p_const(1) if t == j else {} for t in range(8)]
+
+
+def o_mul(tab, x, y):
+    z = [{} for _ in range(8)]
+    for i in range(8):
+        if not x[i]:
+            continue
+        for j in range(8):
+            if not y[j]:
+                continue
+            s, k = tab[i][j]
+            p_add_into(z[k], p_mul(x[i], y[j]), s)
+    return z
+
+
+def o_conj(x):
+    return [dict(x[0])] + [p_scale(c, -1) for c in x[1:]]
+
+
+def o_lin(x, y, kx, ky):
+    return [p_add_into(p_scale(x[t], kx), y[t], ky) for t in range(8)]
+
+
+def o_scalar(p, x):
+    return [p_mul(p, c) for c in x]
+
+
+def o_nsq(x):
+    r = {}
+    for c in x:
+        p_add_into(r, p_mul(c, c))
+    return r
+
+
+def o_dot(x, y):
+    r = {}
+    for t in range(8):
+        p_add_into(r, p_mul(x[t], y[t]))
+    return r
+
+
+def o_text(v):
+    terms = []
+    for t in range(8):
+        if v[t]:
+            terms.append(str(v[t]) + "e" + str(t))
+    return "+".join(terms) if terms else "0"
+
+
+def L_matrix(tab, x):
+    cols = [o_mul(tab, x, obasis(j)) for j in range(8)]
+    return [[cols[j][k] for j in range(8)] for k in range(8)]
+
+
+def gamma_poly(tab, x, lower=-1):
+    lm = L_matrix(tab, x)
+    lc = L_matrix(tab, o_conj(x))
+    g = pm_zero(16, 16)
+    for r in range(8):
+        for c in range(8):
+            g[r][8 + c] = dict(lm[r][c])
+            g[8 + r][c] = p_scale(lc[r][c], lower)
+    return g
+
+
+def coeff_int(g, var):
+    return [[e.get((var,), 0) for e in r] for r in g]
+
+
+# ---------------------------------------------------------------- exterior forms (dict sorted index tuple -> int)
+def sort_sign(seq):
+    n = len(seq)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if seq[i] == seq[j]:
+                return 0, None
+    s = 1
+    for i in range(n):
+        for j in range(i + 1, n):
+            if seq[i] > seq[j]:
+                s = -s
+    return s, tuple(sorted(seq))
+
+
+def f_add_term(f, k, v):
+    if not v:
+        return
+    w = f.get(k, 0) + v
+    if w:
+        f[k] = w
+    elif k in f:
+        del f[k]
+
+
+def f_lin(f, g, kf, kg):
+    out = {}
+    for k, v in f.items():
+        f_add_term(out, k, kf * v)
+    for k, v in g.items():
+        f_add_term(out, k, kg * v)
+    return out
+
+
+def f_wedge(f, g):
+    out = {}
+    for i, a in f.items():
+        for j, b in g.items():
+            s, k = sort_sign(i + j)
+            if s:
+                f_add_term(out, k, s * a * b)
+    return out
+
+
+def f_star(f, universe, sigma):
+    out = {}
+    for i, a in f.items():
+        j = tuple(x for x in universe if x not in i)
+        s, _ = sort_sign(i + j)
+        f_add_term(out, j, sigma * s * a)
+    return out
+
+
+def f_deriv(rm, f, n):
+    out = {}
+    for i, a in f.items():
+        for m in range(len(i)):
+            b = i[m]
+            for t in range(n):
+                r = rm[t][b]
+                if r:
+                    s, k = sort_sign(i[:m] + (t,) + i[m + 1:])
+                    if s:
+                        f_add_term(out, k, s * a * r)
+    return out
+
+
+def f_vec(f, blist):
+    idx = {b: n for n, b in enumerate(blist)}
+    v = [0] * len(blist)
+    for k, c in f.items():
+        if k not in idx:
+            raise SystemExit("form outside basis")
+        v[idx[k]] = c
+    return v
+
+
+def op_matrix(func, in_basis, out_basis):
+    cols = [f_vec(func({b: 1}), out_basis) for b in in_basis]
+    return [[cols[j][i] for j in range(len(in_basis))] for i in range(len(out_basis))]
+
+
+PAIRS8 = list(itertools.combinations(range(8), 2))
+PAIRS7 = list(itertools.combinations(range(1, 8), 2))
+TRIPLES8 = list(itertools.combinations(range(8), 3))
+TRIPLES7 = list(itertools.combinations(range(1, 8), 3))
+QUADS8 = list(itertools.combinations(range(8), 4))
+U7 = tuple(range(1, 8))
+U8 = tuple(range(8))
+
+
+def R_of(w):
+    rm = im_zero(8, 8)
+    for p, (i, j) in enumerate(PAIRS8):
+        if w[p]:
+            rm[j][i] += w[p]
+            rm[i][j] -= w[p]
+    return rm
+
+
+def w_of(rm):
+    return [rm[j][i] for (i, j) in PAIRS8]
+
+
+def is_skew(rm):
+    return all(rm[i][j] == -rm[j][i] for i in range(8) for j in range(8))
+
+
+def unit(n, k):
+    return [1 if t == k else 0 for t in range(n)]
+
+
+def rot_vec(rm, x):
+    return [_rot_entry(rm, x, t) for t in range(8)]
+
+
+def _rot_entry(rm, x, t):
+    acc = {}
+    for b in range(8):
+        if rm[t][b]:
+            p_add_into(acc, x[b], rm[t][b])
+    return acc
+
+
+def poly_text(p):
+    if not p:
+        return "0"
+    out = []
+    for m in sorted(p):
+        mono = "*".join(("xi" + str(v)) if v < 8 else ("a" + str(v - 8)) for v in m)
+        out.append(str(p[m]) + ("*" + mono if mono else ""))
+    return "+".join(out)
+
+
+# ================================================================= measurement
+def measure():
+    xi = ovars(0)
+    av = ovars(8)
+    XI = list(range(8))
+    AV = list(range(8, 16))
+    B_XI1 = basis([(XI, 1)])
+    B_XI2 = basis([(XI, 2)])
+    B_11 = basis([(XI, 1), (AV, 1)])
+    B_21 = basis([(XI, 2), (AV, 1)])
+    B_22 = basis([(XI, 2), (AV, 2)])
+    nsq = o_nsq(xi)
+
+    # ---------------- A: the octonion table
+    rule = lines_from_rule()
+    tab = build_table(LINES_FROZEN)
+    meas("M8.A1", "fano_lines_from_rule", rule == LINES_FROZEN and tab is not None,
+         [("rule", "e_i*e_(i+1)=e_(i+3) mod 7 on 1..7"), ("lines", " ".join("(" + ",".join(str(v) for v in ln) + ")" for ln in rule)),
+          ("rule_equals_frozen_lines", 1 if rule == LINES_FROZEN else 0), ("each_imaginary_pair_once", 1 if tab is not None else 0)])
+    prod = o_mul(tab, xi, av)
+    res = zero_check([p_sub(o_nsq(prod), p_mul(nsq, o_nsq(av)))], B_22)
+    meas("M8.A2", "composition_nsq(xi_a)=nsq(xi)nsq(a)", holds(res), cpairs(res) + [("vars", 16), ("bidegree", "2,2")])
+
+    # ---------------- B: gamma(xi) on O + O
+    g = gamma_poly(tab, xi, -1)
+    lin_ok = all(len(m) == 1 and m[0] < 8 for e in flat(g) for m in e)
+    nz = sum(1 for e in flat(g) if e)
+    gam = [coeff_int(g, t) for t in range(8)]
+    recon_ok = True
+    for r in range(16):
+        for c in range(16):
+            want = {}
+            for t in range(8):
+                if gam[t][r][c]:
+                    want[(t,)] = gam[t][r][c]
+            if want != g[r][c]:
+                recon_ok = False
+    meas("M8.B0", "gamma_structure", lin_ok and recon_ok and nz == 128,
+         [("size", "16x16"), ("block", "[[0,L_xi],[-L_conj(xi),0]]"), ("S_plus", "rows 0..7"), ("S_minus", "rows 8..15"),
+          ("entries_nonzero", nz), ("entries_single_signed_variable", 1 if lin_ok else 0), ("gamma_equals_sum_xi_t_gamma_t", 1 if recon_ok else 0)])
+    g2 = pm_mul(g, g)
+    nz2 = sum(len(e) for e in flat(g2))
+    e2 = pm_lin(g2, pm_diag(nsq, 16), 1, 1)
+    res = zero_check(flat(e2), B_XI2)
+    meas("M8.B1", "gamma(xi)^2+nsq(xi)I16=0", holds(res),
+         cpairs(res) + [("entries", 256), ("monomials_per_entry", len(B_XI2)), ("nonzero_coeffs_of_gamma_squared", nz2)])
+    lm = L_matrix(tab, xi)
+    lc = L_matrix(tab, o_conj(xi))
+    res1 = zero_check(flat(pm_lin(pm_mul(lm, lc), pm_diag(nsq, 8), 1, -1)), B_XI2)
+    res2 = zero_check(flat(pm_lin(pm_mul(lc, lm), pm_diag(nsq, 8), 1, -1)), B_XI2)
+    meas("M8.B2", "L_xi*L_conj(xi)=nsq(xi)I8", holds(res1), cpairs(res1))
+    meas("M8.B3", "L_conj(xi)*L_xi=nsq(xi)I8", holds(res2), cpairs(res2))
+    res = zero_check(flat(pm_lin(lc, pm_T(lm), 1, -1)), B_XI1)
+    meas("M8.B4", "L_conj(xi)=L_xi^T", holds(res), cpairs(res) + [("consequence", "gamma(xi)^T=-gamma(xi)")])
+    bad = 0
+    for i in range(8):
+        for j in range(8):
+            s = im_lin(im_mul(gam[i], gam[j]), im_mul(gam[j], gam[i]), 1, 1)
+            want = im_lin(im_ident(16), im_ident(16), -2 if i == j else 0, 0)
+            if s != want:
+                bad += 1
+    meas("M8.B5", "clifford_relations_gamma_i_gamma_j+gamma_j_gamma_i=-2delta_ij", bad == 0,
+         [("ordered_pairs", 64), ("failed", bad), ("sign", "Cl(R^8,-nsq)")])
+
+    # ---------------- C: the algebra generated by gamma(e0..e7)
+    def sperm(m):
+        rep = []
+        for r in range(16):
+            nzc = [(c, m[r][c]) for c in range(16) if m[r][c]]
+            if len(nzc) != 1 or abs(nzc[0][1]) != 1:
+                return None
+            rep.append(nzc[0])
+        return tuple(rep)
+
+    words = []
+    for mask in range(256):
+        m = im_ident(16)
+        for t in range(8):
+            if (mask >> t) & 1:
+                m = im_mul(m, gam[t])
+        words.append(m)
+    reps = [sperm(m) for m in words]
+    all_sp = all(r is not None for r in reps)
+    gram_bad = 0
+    for i in range(256):
+        for j in range(i, 256):
+            ip = sum(reps[i][r][1] * reps[j][r][1] for r in range(16) if reps[i][r][0] == reps[j][r][0])
+            if ip != (16 if i == j else 0):
+                gram_bad += 1
+    lookup = {}
+    for n, r in enumerate(reps):
+        lookup[r] = n
+    closed = 0
+    for n in range(256):
+        for t in range(8):
+            r = sperm(im_mul(words[n], gam[t]))
+            neg = tuple((c, -v) for (c, v) in r) if r is not None else None
+            if r is not None and (r in lookup or neg in lookup):
+                closed += 1
+    dim_alg = 256 if (all_sp and gram_bad == 0 and closed == 2048) else -1
+    meas("M8.C1", "generated_algebra_dimension", dim_alg == 256,
+         [("ordered_words", 256), ("all_signed_permutations", 1 if all_sp else 0), ("gram_trace_form", "16*I256"),
+          ("gram_failures", gram_bad), ("closure_products_word_times_generator", closed), ("closure_expected", 2048),
+          ("dimension", dim_alg), ("ambient", "M_16(R) dim 256"), ("algebra_equals_M16R", 1 if dim_alg == 256 else 0)])
+    eqs = []
+    for t in range(8):
+        gm = gam[t]
+        for a in range(16):
+            for b in range(16):
+                e = {}
+                for c in range(16):
+                    if gm[c][b]:
+                        e[a * 16 + c] = e.get(a * 16 + c, 0) + gm[c][b]
+                    if gm[a][c]:
+                        e[c * 16 + b] = e.get(c * 16 + b, 0) - gm[a][c]
+                e = {k: v for k, v in e.items() if v}
+                if e:
+                    eqs.append(e)
+    rk = rank_mod_p(eqs)
+    ident_in = all(sum(v * (1 if (k % 17) == 0 else 0) for k, v in e.items()) == 0 for e in eqs)
+    dim_comm = 256 - rk
+    meas("M8.C2", "commutant_of_gamma_e0..e7", dim_comm == 1 and ident_in,
+         [("unknowns", 256), ("equations", len(eqs)), ("rank_mod_p", rk), ("p", "2^61-1"), ("identity_in_commutant", 1 if ident_in else 0),
+          ("dimension", dim_comm), ("argument", "rank over Q >= rank mod p and I16 lies in the kernel")])
+    eqs = []
+    evens = [im_mul(gam[i], gam[j]) for (i, j) in PAIRS8]
+    for gm in evens:
+        for a in range(16):
+            for b in range(16):
+                e = {}
+                for c in range(16):
+                    if gm[c][b]:
+                        e[a * 16 + c] = e.get(a * 16 + c, 0) + gm[c][b]
+                    if gm[a][c]:
+                        e[c * 16 + b] = e.get(c * 16 + b, 0) - gm[a][c]
+                e = {k: v for k, v in e.items() if v}
+                if e:
+                    eqs.append(e)
+    rk_even = rank_mod_p(eqs)
+
+    # ---------------- E: the volume element gamma0...gamma7
+    om = im_ident(16)
+    for t in range(8):
+        om = im_mul(om, gam[t])
+    eps = om[0][0]
+    diag_form = all(om[r][c] == 0 for r in range(16) for c in range(16) if r != c) and \
+        all(om[r][r] == eps for r in range(8)) and all(om[r][r] == -eps for r in range(8, 16))
+    anti = all(im_is_zero(im_lin(im_mul(om, gam[t]), im_mul(gam[t], om), 1, 1)) for t in range(8))
+    meas("M8.E1", "volume_element_gamma0..gamma7", diag_form and anti and im_mul(om, om) == im_ident(16),
+         [("value", "diag(" + str(eps) + "*I8," + str(-eps) + "*I8)" if diag_form else "not block scalar"),
+          ("square", "I16" if im_mul(om, om) == im_ident(16) else "other"), ("anticommutes_with_each_gamma", 1 if anti else 0),
+          ("S_plus_eigenvalue", eps)])
+    # the even subalgebra's commutant: R I + R Omega
+    om_in = True
+    for e in eqs:
+        if sum(v * om[divmod(k, 16)[0]][divmod(k, 16)[1]] for k, v in e.items()) != 0:
+            om_in = False
+    meas("M8.E2", "commutant_of_even_part_gamma_i_gamma_j", 256 - rk_even == 2 and om_in,
+         [("equations", len(eqs)), ("rank_mod_p", rk_even), ("dimension", 256 - rk_even), ("volume_element_in_it", 1 if om_in else 0),
+          ("reading", "S_plus and S_minus are inequivalent real irreducibles of the even part")])
+
+    # ---------------- F: phi, psi, orientation, the Cayley forms
+    phi = {}
+    for (i, j, k) in TRIPLES7:
+        s, kk = tab[i][j]
+        if kk == k:
+            phi[(i, j, k)] = s
+    anti_ok = True
+    for i in range(1, 8):
+        for j in range(1, 8):
+            for k in range(1, 8):
+                s, kk = tab[i][j]
+                direct = s if kk == k else 0
+                ss, key = sort_sign((i, j, k))
+                via = ss * phi.get(key, 0) if ss else 0
+                if direct != via:
+                    anti_ok = False
+    phi_text = "+".join(("" if v > 0 else "-") + "e" + "".join(str(x) for x in k) for k, v in sorted(phi.items()))
+    meas("M8.F1", "phi_ijk=<e_i e_j,e_k>", anti_ok and len(phi) == 7,
+         [("terms", len(phi)), ("phi", phi_text), ("totally_antisymmetric", 1 if anti_ok else 0)])
+
+    def t7_matrix(sigma):
+        def fn(f):
+            return f_star(f_wedge(phi, f), U7, sigma)
+        return op_matrix(fn, PAIRS7, PAIRS7)
+
+    a7 = t7_matrix(1)
+    i21 = im_ident(21)
+    q_plus = im_is_zero(im_mul(im_lin(a7, i21, 1, -2), im_lin(a7, i21, 1, 1)))
+    q_minus = im_is_zero(im_mul(im_lin(a7, i21, 1, 2), im_lin(a7, i21, 1, -1)))
+    r_p1 = rank_int(im_lin(a7, i21, 1, 1), 21)
+    r_m2 = rank_int(im_lin(a7, i21, 1, -2), 21)
+    r_m1 = rank_int(im_lin(a7, i21, 1, -1), 21)
+    r_p2 = rank_int(im_lin(a7, i21, 1, 2), 21)
+    if q_plus and r_p1 == 7 and r_m2 == 14:
+        sigma7 = 1
+        std = "e1..e7 gives +2 on 7 and -1 on 14; kept"
+    elif q_minus and r_m1 == 7 and r_p2 == 14:
+        sigma7 = -1
+        std = "e1..e7 gives -2 on 7 and +1 on 14; reversed, vol7=-e1234567"
+    else:
+        sigma7 = 0
+        std = "neither split"
+    meas("M8.F2", "orientation_7D_by_T7_split", sigma7 != 0,
+         [("T7", "*7(phi wedge .) on Lambda2(R7)"), ("std_orientation", std), ("sigma7", sigma7),
+          ("rank_T7+I_std", r_p1), ("rank_T7-2I_std", r_m2), ("rank_T7-I_std", r_m1), ("rank_T7+2I_std", r_p2)])
+    a7s = t7_matrix(sigma7)
+    psi = f_star(phi, U7, sigma7)
+    psi_text = "+".join(("" if v > 0 else "-") + "e" + "".join(str(x) for x in k) for k, v in sorted(psi.items()))
+    meas("M8.F3", "psi=*7phi", len(psi) == 7, [("psi", psi_text), ("vol7_sign", sigma7)])
+    sigma8 = sigma7
+    star_ok = True
+    for tri in TRIPLES7:
+        if f_star(f_wedge({(0,): 1}, {tri: 1}), U8, sigma8) != f_star({tri: 1}, U7, sigma7):
+            star_ok = False
+    meas("M8.F4", "star8(e0 wedge alpha)=star7(alpha)", star_ok, [("alphas", len(TRIPLES7)), ("vol8", "e0 wedge vol7")])
+    e0phi = f_wedge({(0,): 1}, phi)
+    PHI = {}
+    T8 = {}
+    i28 = im_ident(28)
+    for s in (1, -1):
+        PHI[s] = f_lin(e0phi, psi, 1, s)
+
+        def fn(f, s=s):
+            return f_star(f_wedge(PHI[s], f), U8, sigma8)
+        T8[s] = op_matrix(fn, PAIRS8, PAIRS8)
+        sd = f_star(PHI[s], U8, sigma8) == f_lin(PHI[s], {}, s, 0)
+        qq = im_is_zero(im_mul(im_lin(T8[s], i28, 1, -3), im_lin(T8[s], i28, 1, 1)))
+        rp = rank_int(im_lin(T8[s], i28, 1, 1), 28)
+        rm3 = rank_int(im_lin(T8[s], i28, 1, -3), 28)
+        ptxt = "+".join(("" if v > 0 else "-") + "e" + "".join(str(x) for x in k) for k, v in sorted(PHI[s].items()))
+        meas("M8.F5" + ("p" if s == 1 else "m"), "cayley_form_Phi_s=e0^phi+s*psi_s=" + str(s), sd and qq and rp == 7 and rm3 == 21,
+             [("terms", len(PHI[s])), ("Phi", ptxt), ("star8_Phi=s_Phi", 1 if sd else 0),
+              ("(T-3I)(T+I)=0", 1 if qq else 0), ("rank_T+I", rp), ("rank_T-3I", rm3), ("eigen", "3 on 7, -1 on 21")])
+
+    # ---------------- G: Psi, Psi', kernels, spin(7), g2
+    gg = [im_mul(gam[i], gam[j]) for (i, j) in PAIRS8]
+    psi_m = im_zero(7, 28)
+    psi_p = im_zero(7, 28)
+    stray = 0
+    for p in range(28):
+        col = [gg[p][r][0] for r in range(16)]
+        colp = [gg[p][r][8] for r in range(16)]
+        if col[0] or any(col[8:]):
+            stray += 1
+        if colp[8] or any(colp[:8]):
+            stray += 1
+        for k in range(1, 8):
+            psi_m[k - 1][p] = col[k]
+            psi_p[k - 1][p] = colp[8 + k]
+    pp = im_mul(psi_m, im_T(psi_m))
+    ppp = im_mul(psi_p, im_T(psi_p))
+    four7 = im_lin(im_ident(7), im_ident(7), 4, 0)
+    meas("M8.G1", "Psi(omega)=c(omega)eta_eta=1_in_S+", stray == 0 and pp == four7,
+         [("shape", "7x28 into Im O of S+"), ("real_and_S-_components", stray), ("Psi_PsiT", "4*I7" if pp == four7 else "other"),
+          ("nonzero_entries", sum(1 for r in psi_m for x in r if x))])
+    meas("M8.G2", "Psi'(omega)=c(omega)eta'_eta'=1_in_S-", ppp == four7,
+         [("Psi'_Psi'T", "4*I7" if ppp == four7 else "other")])
+    e0j = all(psi_m[j - 1][PAIRS8.index((0, j))] == 1 and sum(abs(psi_m[k][PAIRS8.index((0, j))]) for k in range(7)) == 1 for j in range(1, 8))
+    psi7 = im_zero(7, 28)
+    for p, (i, j) in enumerate(PAIRS8):
+        if i == 0:
+            continue
+        for k in range(1, 8):
+            ss, key = sort_sign((i, j, k))
+            psi7[k - 1][p] = ss * phi.get(key, 0) if ss else 0
+    so7cols = [p for p, (i, j) in enumerate(PAIRS8) if i > 0]
+    restr = all(psi_m[k][p] == psi7[k][p] for k in range(7) for p in so7cols)
+    meas("M8.G3", "Psi_on_e0j_and_on_so7", e0j and restr,
+         [("Psi(e0j)=e_j", 1 if e0j else 0), ("Psi_on_so7=contraction_with_phi", 1 if restr else 0)])
+    ker_psi = kernel_int(psi_m, 28)
+    rk_psi = rank_int(psi_m, 28)
+    tps = {}
+    for s in (1, -1):
+        tps[s] = (im_lin(T8[s], i28, 1, 1) == im_mul(im_T(psi_m), psi_m), im_lin(T8[s], i28, 1, 1) == im_mul(im_T(psi_p), psi_p))
+    s_match = 1 if tps[1][0] else (-1 if tps[-1][0] else 0)
+    sp_match = 1 if tps[1][1] else (-1 if tps[-1][1] else 0)
+    meas("M8.G4", "T_s+I=Psi^T_Psi", s_match != 0,
+         [("T_+1+I=PsiT_Psi", 1 if tps[1][0] else 0), ("T_-1+I=PsiT_Psi", 1 if tps[-1][0] else 0),
+          ("T_+1+I=Psi'T_Psi'", 1 if tps[1][1] else 0), ("T_-1+I=Psi'T_Psi'", 1 if tps[-1][1] else 0),
+          ("Psi_matches_s", s_match), ("Psi'_matches_s", sp_match)])
+    stab = {}
+    for s in (1, -1):
+        cols = [f_vec(f_deriv(R_of(unit(28, p)), PHI[s], 8), QUADS8) for p in range(28)]
+        stab[s] = [[cols[p][q] for p in range(28)] for q in range(len(QUADS8))]
+    dims = {}
+    for s in (1, -1):
+        dims[s] = (28 - rank_int(stab[s], 28), 28 - rank_int(stab[s] + psi_m, 28), 28 - rank_int(stab[s] + psi_p, 28))
+    dm = dims.get(s_match, (0, 0, 0))
+    meas("M8.G5", "ker_Psi_dimension_and_stabilizer_of_Phi", 28 - rk_psi == 21 and len(ker_psi) == 21 and
+         dm[0] == 21 and dm[1] == 21,
+         [("rank_Psi", rk_psi), ("dim_ker_Psi", 28 - rk_psi), ("dim_stab_Phi_+1", dims[1][0]), ("dim_stab_Phi_-1", dims[-1][0]),
+          ("dim_kerPsi_cap_stab_Phi_+1", dims[1][1]), ("dim_kerPsi_cap_stab_Phi_-1", dims[-1][1]),
+          ("dim_kerPsi'_cap_stab_Phi_+1", dims[1][2]), ("dim_kerPsi'_cap_stab_Phi_-1", dims[-1][2]),
+          ("ker_Psi_equals_stab_Phi_s", s_match)])
+    closed_bad = 0
+    pairs_done = 0
+    rms = [R_of(v) for v in ker_psi]
+    for a in range(21):
+        for b in range(a + 1, 21):
+            cm = im_lin(im_mul(rms[a], rms[b]), im_mul(rms[b], rms[a]), 1, -1)
+            pairs_done += 1
+            if not is_skew(cm) or any(im_vec(psi_m, w_of(cm))):
+                closed_bad += 1
+    br_bad = 0
+    for p in range(28):
+        rp_ = R_of(unit(28, p))
+        for q in range(28):
+            rq = R_of(unit(28, q))
+            lhs = f_vec(f_deriv(rp_, {PAIRS8[q]: 1}, 8), PAIRS8)
+            rhs = w_of(im_lin(im_mul(rp_, rq), im_mul(rq, rp_), 1, -1))
+            if lhs != rhs:
+                br_bad += 1
+    meas("M8.G6", "ker_Psi_closed_under_commutator", closed_bad == 0 and br_bad == 0,
+         [("basis", 21), ("pairs", pairs_done), ("failed", closed_bad), ("bracket", "[R_a,R_b] of C0.5 rotations"),
+          ("derivation_on_2forms_equals_commutator", 1 if br_bad == 0 else 0), ("pairs_checked_for_that", 784)])
+    rk_both = rank_int(psi_m + psi_p, 28)
+    ker_both = kernel_int(psi_m + psi_p, 28)
+    so7_rows = [unit(28, PAIRS8.index((0, j))) for j in range(1, 8)]
+    cols3 = [f_vec(f_deriv(R_of(unit(28, p)), phi, 8), TRIPLES8) for p in range(28)]
+    stab_phi = [[cols3[p][q] for p in range(28)] for q in range(len(TRIPLES8))]
+    d_stabphi = 28 - rank_int(stab_phi, 28)
+    d_psi7 = 28 - rank_int(psi7 + so7_rows, 28)
+    d_all = 28 - rank_int(psi_m + psi_p + stab_phi + psi7 + so7_rows, 28)
+    in_so7 = all(v[PAIRS8.index((0, j))] == 0 for v in ker_both for j in range(1, 8))
+    rms2 = [R_of(v) for v in ker_both]
+    g2_bad = 0
+    for a in range(len(rms2)):
+        for b in range(a + 1, len(rms2)):
+            cm = im_lin(im_mul(rms2[a], rms2[b]), im_mul(rms2[b], rms2[a]), 1, -1)
+            w = w_of(cm)
+            if any(im_vec(psi_m, w)) or any(im_vec(psi_p, w)):
+                g2_bad += 1
+    meas("M8.G7", "ker_Psi_cap_ker_Psi'=g2", 28 - rk_both == 14 and d_stabphi == 14 and d_psi7 == 14 and d_all == 14 and in_so7 and g2_bad == 0,
+         [("dim_ker_Psi_cap_ker_Psi'", 28 - rk_both), ("dim_stab_so8_phi", d_stabphi), ("dim_ker_Psi7_in_so7", d_psi7),
+          ("dim_of_all_three_intersected", d_all), ("lies_in_so7", 1 if in_so7 else 0), ("commutator_pairs", 91), ("closure_failed", g2_bad)])
+
+    # ---------------- H: spin action and equivariance of gamma
+    def cliff(w):
+        m = im_zero(16, 16)
+        for p in range(28):
+            if w[p]:
+                m = im_lin(m, gg[p], 1, w[p])
+        return m
+
+    sum_bad = 0
+    for p in range(28):
+        rm = R_of(unit(28, p))
+        acc = im_zero(16, 16)
+        for a in range(8):
+            for b in range(8):
+                if rm[a][b]:
+                    acc = im_lin(acc, im_mul(gam[a], gam[b]), 1, rm[a][b])
+        if acc != im_lin(gg[p], gg[p], -2, 0):
+            sum_bad += 1
+    meas("M8.H1", "matrix_entry_sum_X_ab_gamma_a_gamma_b=-2c(omega)", sum_bad == 0,
+         [("forms", 28), ("failed", sum_bad), ("X", "R_omega of C0.5, X_ab its row a column b entry"),
+          ("so", "(1/4)sum X_ab gamma_a gamma_b=-(1/2)c(omega); (1/4)sum omega_ab gamma_a gamma_b=+(1/2)c(omega) with omega_ab the form coefficients")])
+
+    def equiv_check(w):
+        cm = cliff(w)
+        rm = R_of(w)
+        lhs = pm_lin(pm_mul(pm_from_int(cm), g), pm_mul(g, pm_from_int(cm)), 1, -1)
+        rhs = gamma_poly(tab, rot_vec(rm, xi), -1)
+        return zero_check(flat(pm_lin(lhs, rhs, 1, -2)), B_XI1)
+
+    tot = [0, 0, 0]
+    for p in range(28):
+        r = equiv_check(unit(28, p))
+        tot = [tot[0] + r[0], tot[1] + r[1], tot[2] + r[2]]
+    meas("M8.H2", "C0.5_[c(omega),gamma(xi)]=2gamma(R_omega xi)_all_28_basis_forms", tot[1] == 0 and tot[2] == 0, cpairs(tot))
+    tot = [0, 0, 0]
+    for v in ker_psi:
+        r = equiv_check(v)
+        tot = [tot[0] + r[0], tot[1] + r[1], tot[2] + r[2]]
+    meas("M8.H3", "spin7_equivariance_[rho(X),gamma(xi)]=gamma(X xi)_integer_form_[c(omega_X),gamma(xi)]=2gamma(X xi)",
+         tot[1] == 0 and tot[2] == 0, cpairs(tot) + [("basis", len(ker_psi)), ("rho", "rho(X)=(1/2)c(omega_X)=(1/4)sum omega_ab gamma_a gamma_b")])
+    ann_bad = 0
+    eta_p_span = []
+    for v in ker_psi:
+        cm = cliff(v)
+        if any(cm[r][0] for r in range(16)):
+            ann_bad += 1
+        eta_p_span.append([cm[r][8] for r in range(16)])
+    meas("M8.H4", "spin7_annihilates_eta", ann_bad == 0,
+         [("basis", len(ker_psi)), ("failed", ann_bad), ("rank_of_spin7_on_eta'", rank_int(eta_p_span, 16))])
+    int_bad = 0
+    for v in ker_psi:
+        cm = cliff(v)
+        rv = R_of(v)
+        for q in range(28):
+            rq = R_of(unit(28, q))
+            u = w_of(im_lin(im_mul(rv, rq), im_mul(rq, rv), 1, -1))
+            emb = [0] + [psi_m[k][q] for k in range(7)] + [0] * 8
+            lhs = im_vec(cm, emb)
+            rhs = [0] + [2 * x for x in im_vec(psi_m, u)] + [0] * 8
+            if lhs != rhs:
+                int_bad += 1
+    meas("M8.H5", "Psi_intertwines_c(omega_X)Psi(omega)=2Psi(X.omega)", int_bad == 0,
+         [("pairs", 21 * 28), ("failed", int_bad)])
+
+    # ---------------- I: the Spin(7) symbol sequence 1, 8, 7
+    def wedge_cols(xv):
+        cols = []
+        for j in range(8):
+            w = [{} for _ in range(28)]
+            for i in range(8):
+                if i < j:
+                    w[PAIRS8.index((i, j))] = p_add(w[PAIRS8.index((i, j))], xv[i])
+                elif i > j:
+                    w[PAIRS8.index((j, i))] = p_sub(w[PAIRS8.index((j, i))], xv[i])
+            cols.append(w)
+        return cols
+
+    def P_poly(xv, pm):
+        cols = wedge_cols(xv)
+        out = pm_zero(7, 8)
+        for j in range(8):
+            for k in range(7):
+                acc = {}
+                for p in range(28):
+                    if pm[k][p] and cols[j][p]:
+                        p_add_into(acc, cols[j][p], pm[k][p])
+                out[k][j] = acc
+        return out
+
+    P = P_poly(xi, psi_m)
+    s1 = [[dict(xi[t])] for t in range(8)]
+    r_comp = zero_check(flat(pm_mul(P, s1)), B_XI2)
+    r_ppt = zero_check(flat(pm_lin(pm_mul(P, pm_T(P)), pm_diag(nsq, 7), 1, -1)), B_XI2)
+    xxt = [[p_mul(xi[i], xi[j]) for j in range(8)] for i in range(8)]
+    r_ptp = zero_check(flat(pm_lin(pm_lin(pm_mul(pm_T(P), P), pm_diag(nsq, 8), 1, -1), xxt, 1, 1)), B_XI2)
+    r_s1 = zero_check(flat(pm_lin(pm_mul(pm_T(s1), s1), [[dict(nsq)]], 1, -1)), B_XI2)
+    seq_ok = holds(r_comp) and holds(r_ppt) and holds(r_ptp) and holds(r_s1)
+    meas("M8.I1", "spin7_symbol_sequence", seq_ok,
+         [("sequence", "Lambda0 -> Lambda1 -> Lambda2_7"), ("dims", "1,8,7"), ("euler", 1 - 8 + 7), ("ranks", "1,7"),
+          ("sigma1", "xi wedge ."), ("sigma2", "P(xi)=Psi(xi wedge .)")])
+    meas("M8.I2", "P(xi)xi=0_composition", holds(r_comp), cpairs(r_comp))
+    meas("M8.I3", "P(xi)P(xi)^T=nsq(xi)I7_rank7", holds(r_ppt), cpairs(r_ppt))
+    meas("M8.I4", "P(xi)^T_P(xi)=nsq(xi)I8-xi_xi^T_exact_at_Lambda1", holds(r_ptp), cpairs(r_ptp))
+    meas("M8.I5", "xi^T_xi=nsq(xi)_rank1", holds(r_s1), cpairs(r_s1))
+    tpi = im_lin(T8[s_match], i28, 1, 1) if s_match else im_lin(T8[1], i28, 1, 1)
+    wc = wedge_cols(xi)
+    ent = []
+    for j in range(8):
+        for q in range(28):
+            lhs = {}
+            for p in range(28):
+                if tpi[q][p] and wc[j][p]:
+                    p_add_into(lhs, wc[j][p], tpi[q][p])
+            rhs = {}
+            for k in range(7):
+                if psi_m[k][q] and P[k][j]:
+                    p_add_into(rhs, P[k][j], psi_m[k][q])
+            ent.append(p_sub(lhs, rhs))
+    r_tp = zero_check(ent, B_XI1)
+    meas("M8.I6", "(T+I)(xi wedge a)=Psi^T_P(xi)a", holds(r_tp), cpairs(r_tp) + [("s", s_match)])
+
+    # ---------------- J: the rolled-up symbol N(xi)
+    def N_poly(xv, pm, sign0):
+        pmat = P_poly(xv, pm)
+        return [[p_scale(xv[j], sign0) for j in range(8)]] + pmat
+
+    N = N_poly(xi, psi_m, -1)
+    r_ntn = zero_check(flat(pm_lin(pm_mul(pm_T(N), N), pm_diag(nsq, 8), 1, -1)), B_XI2)
+    r_nnt = zero_check(flat(pm_lin(pm_mul(N, pm_T(N)), pm_diag(nsq, 8), 1, -1)), B_XI2)
+    meas("M8.J1", "N(xi)=(-iota_xi,P(xi))_N^T_N=nsq(xi)I8", holds(r_ntn), cpairs(r_ntn) + [("rows", "0: -xi^T, 1..7: P(xi)")])
+    meas("M8.J2", "N(xi)N(xi)^T=nsq(xi)I8", holds(r_nnt), cpairs(r_nnt))
+    cx = o_conj(xi)
+    ca = o_conj(av)
+    cands = [("xi*a", o_mul(tab, xi, av)), ("a*xi", o_mul(tab, av, xi)), ("conj(xi)*a", o_mul(tab, cx, av)),
+             ("a*conj(xi)", o_mul(tab, av, cx)), ("xi*conj(a)", o_mul(tab, xi, ca)), ("conj(a)*xi", o_mul(tab, ca, xi)),
+             ("conj(xi)*conj(a)", o_mul(tab, cx, ca)), ("conj(a)*conj(xi)", o_mul(tab, ca, cx))]
+    acol = [[dict(av[t])] for t in range(8)]
+
+    def expr_table(nm):
+        na = [r[0] for r in pm_mul(nm, acol)]
+        found = []
+        for name, ex in cands:
+            for sg in (1, -1):
+                res = zero_check([p_sub(na[t], p_scale(ex[t], sg)) for t in range(8)], B_11)
+                if holds(res):
+                    found.append(("" if sg == 1 else "-") + name)
+        return na, found
+
+    na, found = expr_table(N)
+    meas("M8.J3", "N(xi)a_as_octonion_expression", len(found) == 1,
+         [("candidates_tested", 16), ("holding", ",".join(found) if found else "none"), ("coeffs_per_candidate", 8 * len(B_11)),
+          ("coordinates", "component 0 = Lambda0, components 1..7 = Psi coordinates of Lambda2_7 on e1..e7")])
+    r2 = zero_check([p_sub(na[t], o_mul(tab, cx, av)[t]) for t in range(8)], B_11)
+    r2m = zero_check([p_add(na[t], o_mul(tab, cx, av)[t]) for t in range(8)], B_11)
+    meas("M8.J4", "addendum_R2_form_N(xi)a=conj(xi)a", holds(r2),
+         cpairs(r2) + [("minus_form_N(xi)a=-conj(xi)a_holds", 1 if holds(r2m) else 0),
+                       ("N_used", "Psi from eta in S+, row 0 = -iota_xi (C0.2)")])
+    variants = []
+    for pname, pmat in (("Psi", psi_m), ("Psi'", psi_p)):
+        for sign0 in (-1, 1):
+            nv = N_poly(xi, pmat, sign0)
+            _, fv = expr_table(nv)
+            variants.append(pname + "_row0=" + ("-" if sign0 < 0 else "+") + "iota:" + (",".join(fv) if fv else "none"))
+    meas("M8.J5", "N_variants_octonion_expression", True, [("variants", " ; ".join(variants))])
+
+    # ---------------- K: R1, the raw projection identity, c = 1/4
+    w = [{} for _ in range(28)]
+    for p, (i, j) in enumerate(PAIRS8):
+        w[p] = p_sub(p_mul(xi[i], av[j]), p_mul(xi[j], av[i]))
+    tw = []
+    for q in range(28):
+        acc = {}
+        for p in range(28):
+            if tpi[q][p]:
+                p_add_into(acc, w[p], tpi[q][p])
+        tw.append(acc)
+    nsq_w = {}
+    for p in range(28):
+        p_add_into(nsq_w, p_mul(w[p], w[p]))
+    w_tw = {}
+    for p in range(28):
+        p_add_into(w_tw, p_mul(w[p], tw[p]))
+    nsq_tw = {}
+    for p in range(28):
+        p_add_into(nsq_tw, p_mul(tw[p], tw[p]))
+    psw = []
+    for k in range(7):
+        acc = {}
+        for p in range(28):
+            if psi_m[k][p]:
+                p_add_into(acc, w[p], psi_m[k][p])
+        psw.append(acc)
+    nsq_psw = {}
+    for k in range(7):
+        p_add_into(nsq_psw, p_mul(psw[k], psw[k]))
+    dot = o_dot(xi, av)
+    lagr = p_sub(p_mul(nsq, o_nsq(av)), p_mul(dot, dot))
+    r_l = zero_check([p_sub(nsq_w, lagr)], B_22)
+    r_a = zero_check([p_sub(w_tw, nsq_w)], B_22)
+    r_b = zero_check([p_sub(nsq_tw, p_scale(nsq_w, 4))], B_22)
+    r_c = zero_check([p_sub(nsq_psw, nsq_w)], B_22)
+    meas("M8.K1", "C0.9_nsq(xi^a)=nsq(xi)nsq(a)-<xi,a>^2", holds(r_l), cpairs(r_l))
+    meas("M8.K2", "R1_c=1/4_<xi^a,(T+I)(xi^a)>=nsq(xi^a)", holds(r_a),
+         cpairs(r_a) + [("reading", "nsq(pi7(xi^a))=(1/4)nsq(xi^a), pi7=(T+I)(1/4)"), ("c", "1/4")])
+    meas("M8.K3", "R1_nsq((T+I)(xi^a))=4nsq(xi^a)", holds(r_b), cpairs(r_b))
+    meas("M8.K4", "R1_nsq(Psi(xi^a))=nsq(xi^a)", holds(r_c), cpairs(r_c))
+    r_h = zero_check([p_sub(w_tw, p_scale(nsq_w, 2))], B_22)
+    r_t = zero_check([p_sub(p_scale(w_tw, 3), p_scale(nsq_w, 4))], B_22)
+    ctrl("K8.01", "R1_with_c=1/2_<w,(T+I)w>=2nsq(w)", True, not holds(r_h), cpairs(r_h))
+    ctrl("K8.02", "R1_with_c=1/3_3<w,(T+I)w>=4nsq(w)", True, not holds(r_t), cpairs(r_t))
+    om_v = [p_var(p) for p in range(28)]
+    g_tw = {}
+    g_n = {}
+    for q in range(28):
+        acc = {}
+        for p in range(28):
+            if tpi[q][p]:
+                p_add_into(acc, om_v[p], tpi[q][p])
+        p_add_into(g_tw, p_mul(om_v[q], acc))
+        p_add_into(g_n, p_mul(om_v[q], om_v[q]))
+    r_g = zero_check([p_sub(g_tw, g_n)], basis([(list(range(28)), 2)]))
+    ctrl("K8.03", "R1_on_a_general_2form_<omega,(T+I)omega>=nsq(omega)", True, not holds(r_g), cpairs(r_g) + [("vars", 28)])
+
+    # ---------------- L: R3 and alternativity
+    def alt(lhs_vec, rhs_vec, mon):
+        return zero_check([p_sub(lhs_vec[t], rhs_vec[t]) for t in range(8)], mon)
+
+    nx = o_scalar(nsq, av)
+    r3 = alt(o_mul(tab, cx, o_mul(tab, xi, av)), nx, B_21)
+    r3b = alt(o_mul(tab, xi, o_mul(tab, cx, av)), nx, B_21)
+    r3c = alt(o_mul(tab, o_mul(tab, av, xi), cx), nx, B_21)
+    r3d = alt(o_mul(tab, o_mul(tab, av, cx), xi), nx, B_21)
+    meas("M8.L1", "R3_conj(xi)(xi x)=nsq(xi)x", holds(r3), cpairs(r3) + [("x", "variables 8..15")])
+    meas("M8.L2", "xi(conj(xi)x)=nsq(xi)x", holds(r3b), cpairs(r3b))
+    meas("M8.L3", "(x xi)conj(xi)=nsq(xi)x_and_(x conj(xi))xi=nsq(xi)x", holds(r3c) and holds(r3d),
+         [("first_failed", r3c[1] + r3c[2]), ("second_failed", r3d[1] + r3d[2]), ("coeffs_checked", r3c[0] + r3d[0])])
+    rl = alt(o_mul(tab, xi, o_mul(tab, xi, av)), o_mul(tab, o_mul(tab, xi, xi), av), B_21)
+    meas("M8.L4", "left_alternative_xi(xi x)=(xi xi)x", holds(rl), cpairs(rl))
+    r_bad = alt(o_mul(tab, xi, o_mul(tab, xi, av)), o_scalar(p_scale(nsq, -1), av), B_21)
+    ctrl("K8.04", "R3_with_xi_for_conj(xi)_xi(xi x)=-nsq(xi)x_on_all_of_O", True, not holds(r_bad), cpairs(r_bad))
+    im_xi = [{}] + [p_var(t) for t in range(1, 8)]
+    nim = o_nsq(im_xi)
+    r_im = alt(o_mul(tab, im_xi, o_mul(tab, im_xi, av)), o_scalar(p_scale(nim, -1), av), basis([(list(range(1, 8)), 2), (AV, 1)]))
+    meas("M8.L5", "xi(xi x)=-nsq(xi)x_for_imaginary_xi", holds(r_im), cpairs(r_im) + [("xi0", 0)])
+    e = [obasis(t) for t in range(8)]
+    assoc = o_lin(o_mul(tab, o_mul(tab, e[1], e[2]), e[3]), o_mul(tab, e[1], o_mul(tab, e[2], e[3])), 1, -1)
+    assoc_int = [p_eval(c, {}) if c else 0 for c in assoc]
+    nz_assoc = 0
+    on_line = 0
+    for (i, j, k) in TRIPLES7:
+        a_ = o_lin(o_mul(tab, o_mul(tab, e[i], e[j]), e[k]), o_mul(tab, e[i], o_mul(tab, e[j], e[k])), 1, -1)
+        if any(a_):
+            nz_assoc += 1
+        else:
+            on_line += 1
+    ctrl("K8.05", "associativity_on_(e1,e2,e3)", True, any(assoc_int),
+         [("(e1e2)e3-e1(e2e3)", o_text(assoc_int)), ("triples_with_nonzero_associator", nz_assoc), ("triples_associative", on_line)])
+
+    # ---------------- M: equivariance of the symbols under spin(7)
+    pe_bad = [0, 0, 0]
+    ne_bad = [0, 0, 0]
+    block_bad = 0
+    for v in ker_psi:
+        cm = cliff(v)
+        rv = R_of(v)
+        if any(cm[r][c] for r in range(16) for c in range(16) if (r < 8) != (c < 8)) or any(cm[0][c] for c in range(16)) or any(cm[r][0] for r in range(16)):
+            block_bad += 1
+        c7 = [[cm[r][c] for c in range(1, 8)] for r in range(1, 8)]
+        prx = P_poly(rot_vec(rv, xi), psi_m)
+        lhs = pm_lin(prx, pm_mul(P, pm_from_int(rv)), 2, 2)
+        res = zero_check(flat(pm_lin(lhs, pm_mul(pm_from_int(c7), P), 1, -1)), B_XI1)
+        pe_bad = [pe_bad[0] + res[0], pe_bad[1] + res[1], pe_bad[2] + res[2]]
+        c8 = [[0] * 8] + [[0] + r for r in c7]
+        nrx = N_poly(rot_vec(rv, xi), psi_m, -1)
+        lhs = pm_lin(nrx, pm_mul(N, pm_from_int(rv)), 2, 2)
+        res = zero_check(flat(pm_lin(lhs, pm_mul(pm_from_int(c8), N), 1, -1)), B_XI1)
+        ne_bad = [ne_bad[0] + res[0], ne_bad[1] + res[1], ne_bad[2] + res[2]]
+    meas("M8.M1", "spin7_symbol_equivariance_2P(Xxi)+2P(xi)X=c7(X)P(xi)", holds(pe_bad) and block_bad == 0,
+         cpairs(pe_bad) + [("basis", len(ker_psi)), ("c(omega_X)_preserves_ImO_in_S+", 1 if block_bad == 0 else 0)])
+    meas("M8.M2", "spin7_rolled_symbol_equivariance_2N(Xxi)+2N(xi)X=diag(0,c7(X))N(xi)", holds(ne_bad), cpairs(ne_bad))
+
+    # ---------------- controls
+    gw = gamma_poly(tab, xi, 1)
+    gw2 = pm_mul(gw, gw)
+    rw = zero_check(flat(pm_lin(gw2, pm_diag(nsq, 16), 1, 1)), B_XI2)
+    rwp = zero_check(flat(pm_lin(gw2, pm_diag(nsq, 16), 1, -1)), B_XI2)
+    ctrl("K8.06", "wrong_sign_gamma=[[0,L_xi],[+L_conj(xi),0]]_squares_to_-nsq", True, not holds(rw),
+         cpairs(rw) + [("squares_to_+nsq_instead", 1 if holds(rwp) else 0), ("symmetric", 1 if holds(zero_check(flat(pm_lin(gw, pm_T(gw), 1, -1)), B_XI1)) else 0)])
+    flipped = [(2, 1, 4)] + LINES_FROZEN[1:]
+    tf = build_table(flipped)
+    lmf = L_matrix(tf, xi)
+    lcf = L_matrix(tf, o_conj(xi))
+    rf = zero_check(flat(pm_lin(pm_mul(lmf, lcf), pm_diag(nsq, 8), 1, -1)), B_XI2)
+    rfc = zero_check([p_sub(o_nsq(o_mul(tf, xi, av)), p_mul(nsq, o_nsq(av)))], B_22)
+    ctrl("K8.07", "one_fano_line_reversed_(2,1,4)_L_xi_L_conj(xi)=nsq_I8", True, not holds(rf),
+         cpairs(rf) + [("composition_failed_coeffs", rfc[1] + rfc[2])])
+    pt = {t: t + 1 for t in range(8)}
+    samp_ok = all(p_eval(e2[r][c], pt) == 0 for r in range(16) for c in range(16))
+    g2_at = [[p_eval(g2[r][c], pt) for c in range(16)] for r in range(16)]
+    ctrl("K8.08", "sampled_covector_xi=(1..8)_gamma^2=-204I_(control_only)", False, not samp_ok,
+         [("nsq", sum((t + 1) * (t + 1) for t in range(8))), ("gamma^2_diag", g2_at[0][0]), ("all_entries_match", 1 if samp_ok else 0)])
+    fake = pm_lin(g2, pm_diag(p_add(nsq, p_sub(p_mul(xi[0], xi[0]), xi[0])), 16), 1, 1)
+    fake_at_sample = all(p_eval(fake[r][c], pt) == 0 for r in range(16) for c in range(16))
+    rfk = zero_check(flat(fake), B_XI2)
+    ctrl("K8.09", "planted_identity_gamma^2=-(nsq+xi0^2-xi0)I_passes_the_sample_fails_as_polynomial", True, not holds(rfk),
+         cpairs(rfk) + [("passes_at_sample", 1 if fake_at_sample else 0)])
+    w01 = unit(28, 0)
+    c01 = cliff(w01)
+    eta_hit = any(c01[r][0] for r in range(16))
+    rv = R_of(w01)
+    fails = 0
+    for q in range(28):
+        rq = R_of(unit(28, q))
+        u = w_of(im_lin(im_mul(rv, rq), im_mul(rq, rv), 1, -1))
+        emb = [0] + [psi_m[k][q] for k in range(7)] + [0] * 8
+        lhs = im_vec(c01, emb)
+        rhs = [0] + [2 * x for x in im_vec(psi_m, u)] + [0] * 8
+        if lhs != rhs:
+            fails += 1
+    ctrl("K8.10", "X=e01_outside_spin7_annihilates_eta_and_intertwines_Psi", True, eta_hit and fails > 0,
+         [("c(e01)eta_nonzero", 1 if eta_hit else 0), ("intertwining_failures_of_28", fails)])
+    other = -s_match if s_match else -1
+    ctrl("K8.11", "T_(-s)+I=Psi^T_Psi_for_the_other_Cayley_form", True,
+         im_lin(T8[other], i28, 1, 1) != im_mul(im_T(psi_m), psi_m), [("s_tested", other)])
+    wrong_n = 15
+    ctrl("K8.12", "the_other_15_octonion_candidates_for_N(xi)a", True, len(found) == 1, [("failing_candidates", 16 - len(found)), ("expected_failing", wrong_n)])
+
+
+def compare(pred_path, add_path):
+    return []
+
+
+def main():
+    if len(sys.argv) not in (2, 4):
+        print("usage: measure_8d.py OUTDIR [PRED.hbp ADD.hbp]")
+        return 2
+    outdir = sys.argv[1]
+    with open(__file__, "rb") as fh:
+        self_sha = hashlib.sha256(fh.read()).hexdigest()
+    vi = sys.version_info
+    row("HEAD", [("seat", "opus55-acer"), ("case", "8D Spin(7)"), ("script", "measure_8d.py"), ("script_sha256", self_sha),
+                 ("python", str(vi[0]) + "." + str(vi[1]) + "." + str(vi[2])), ("integer_only", 1), ("float_used", 0),
+                 ("read_before_measuring", "CONV and FORMAT rows of PREDICTION-SPINOR-SYMBOL.hbp only"),
+                 ("method", "integer polynomial identities over the full monomial basis; sampled xi only in controls")])
+    measure()
+    block = "\n".join(ROWS[1:]) + "\n"
+    block_sha = hashlib.sha256(block.encode("utf-8")).hexdigest()
+    row("MEASURED_BLOCK_END", [("rows", len(ROWS) - 1), ("measured_pass", TALLY["pass"]), ("measured_fail", TALLY["fail"]),
+                               ("controls_ok", TALLY["ctrl_ok"]), ("controls_bad", TALLY["ctrl_bad"]),
+                               ("block_sha256", block_sha), ("block", "rows between HEAD and this row")])
+    if len(sys.argv) == 4:
+        compare(sys.argv[2], sys.argv[3])
+    row("END", [("rows", len(ROWS) + 1)])
+    data = ("\n".join(ROWS) + "\n").encode("utf-8")
+    path = os.path.join(outdir, OUT_NAME)
+    with open(path, "wb") as fh:
+        fh.write(data)
+    with open(path + ".sha256", "wb") as fh:
+        fh.write((hashlib.sha256(data).hexdigest() + "  " + OUT_NAME + "\n").encode("utf-8"))
+    print("WROTE|path=" + path + "|rows=" + str(len(ROWS)) + "|sha256=" + hashlib.sha256(data).hexdigest() + "|json=0")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
