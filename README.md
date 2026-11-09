@@ -60,6 +60,7 @@ The work runs in three steps, each with its own commit and receipt:
 | Frozen prediction: hash-phase quantum states (global, local and quadratic hashes) against continuous random states, 1 to 8 qubits | **frozen**, [`predictions/hash-quantum/`](predictions/hash-quantum/), `PREDICTION-HASH.hbp` sha256 `338df23a…` |
 | Measurements past each break | after the freezes |
 | Independent refutation | after the measurements |
+| Transfer 1: a finite subgroup of SU(2) that is a t-design reproduces continuous-SU(2) lattice gauge theory exactly through βᵗ, with an exact first deviation | **proven, with corrections**, [`proofs/transfer/`](proofs/transfer/); second reader: PROVEN_WITH_CORRECTIONS; the 4×4-torus, 3×3-torus and 2I lattice rows of [`predictions/transfer/`](predictions/transfer/) are a frozen test from this commit |
 | Proofs: quaternions give SU(2), Q8, the 16 octonion units, the frame group inside G₂, the ladder's ceiling | **measured and refuted**, [`proofs/quaternion-octonion/`](proofs/quaternion-octonion/): S1, S2, S3 and S6 proven, S4 an analogy made exact, S5 corrected |
 | Proofs: G₂/SU(3) = S⁶, its octonion almost complex structure (not integrable), W(G₂), the G₂ Higgs spectrum, G₂-instantons, the finite-subgroup limit | **measured and refuted**, [`proofs/g2-s6/`](proofs/g2-s6/): C1 to C7 supported, C8 to C10 restated |
 
