@@ -49,9 +49,26 @@ The work runs in three steps, each with its own commit and receipt:
 
 | Step | Status |
 |---|---|
-| Frozen predictions: the SU(2) ladder and the exceptional point sets | next commit |
-| Measurements past each break | after the freeze |
+| Frozen prediction: the SU(2) ladder, 61 groups | **frozen**, [`predictions/su2-ladder/`](predictions/su2-ladder/), `PREDICTION.hbp` sha256 `c2601cf0…`, receipt [`FREEZE.hbp`](predictions/su2-ladder/FREEZE.hbp) |
+| Frozen prediction: the 600-cell, E8 roots and Leech minimal vectors | next commit |
+| Measurements past each break | after the freezes |
 | Independent refutation | after the measurements |
+
+### The frozen SU(2) ladder prediction
+
+The prediction was computed from the closed invariant (Molien) series alone: Klein 1884, and Springer, *Invariant Theory*, LNM 585, 1977. No group element was built. Each value below is a PREDICTION that the measurement can fail.
+
+| Group | Order | Looks exactly like SU(2) up to degree | First break | Moment there, group : SU(2) | 2D gauge free energy, first difference |
+|---|---|---|---|---|---|
+| C_n, every n = 3…30 | n | 1 | degree 2 | 2 : 1 | β² term, 1/8 |
+| C_2 | 2 | 1 | degree 2 | 4 : 1 | β² term, 3/8 |
+| Q8 = Dic_2 | 8 | 3 | degree 4 | 4 : 2 | β⁴ term, 1/192 |
+| Dic_n, every n = 3…30 | 4n | 3 | degree 4 | 3 : 2 | β⁴ term, 1/384 |
+| 2T | 24 | 5 | degree 6 | 6 : 5 | β⁶ term, 1/46,080 |
+| 2O | 48 | 7 | degree 8 | 15 : 14 | β⁸ term, 1/10,321,920 |
+| 2I | 120 | **11** | degree 12 | 133 : 132 | β¹² term, 1/1,961,990,553,600 |
+
+The ceiling the prediction states: of the 61 groups, only 2I reaches degree 11. The cyclic and binary dihedral families stay at 1 and 3 at every size. Dic_30 and 2I have the same 120 elements' worth of size: Dic_30 is predicted to stop at degree 3, 2I at degree 11. The file also holds each group's full invariant series to degree 120, its moments to order 60 and its gauge free energy to β³⁰, so the measurement can be checked well past each break.
 
 ## Companions
 

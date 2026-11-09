@@ -1,0 +1,40 @@
+# Every frozen prediction must reproduce byte for byte from its own script. For each predictions/<name>/ folder, the job copies the
+# predict_*.py script alone into an empty directory, runs it, and requires the output .hbp to equal both the committed .hbp and the
+# sha256 in the committed sidecar. Integer only, json=0.
+name: Frozen predictions replay
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Replay each frozen prediction from its script alone
+        run: |
+          set -euo pipefail
+          n=0
+          for dir in predictions/*/; do
+            script=$(ls "$dir"predict_*.py)
+            hbp=$(ls "$dir"*.hbp)
+            name=$(basename "$hbp")
+            work=$(mktemp -d)
+            cp "$script" "$work"/
+            (cd "$work" && python3 -I -B "$(basename "$script")" > run.out 2>&1)
+            got=$(sha256sum "$work/$name" | cut -d' ' -f1)
+            kept=$(cut -d' ' -f1 "$hbp.sha256")
+            committed=$(sha256sum "$hbp" | cut -d' ' -f1)
+            echo "PREDICTION_REPLAY|folder=$dir|file=$name|replayed=$got|sidecar=$kept|committed=$committed|json=0"
+            if [ "$got" != "$kept" ] || [ "$got" != "$committed" ]; then echo "PREDICTION_REPLAY_FAIL|folder=$dir|json=0"; exit 1; fi
+            n=$((n+1))
+          done
+          echo "PREDICTION_REPLAY_DONE|folders=$n|json=0"
