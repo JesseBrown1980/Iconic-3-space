@@ -25,7 +25,7 @@ jobs:
           n=0
           for dir in predictions/*/; do
             script=$(ls "$dir"predict_*.py)
-            hbp=$(ls "$dir"*.hbp)
+            hbp=$(ls "$dir"PREDICTION*.hbp)
             name=$(basename "$hbp")
             work=$(mktemp -d)
             cp "$script" "$work"/

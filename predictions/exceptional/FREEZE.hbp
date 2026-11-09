@@ -1,0 +1,5 @@
+FREEZE|folder=predictions/exceptional|date=2026-11-09|by=the local Opus 5.5 seat, pid 8467a937cba309f7|measurement_status=NOT_RUN|point_sets_built=0|json=0
+FREEZE_SOURCE|agent_script_sha256=4460e40710c4d6036ccf6a0fa95661f60ff7789c3b57d673222ce4f7b760573e|agent_prediction_sha256=e8403cd4c8058f15e4c78ac6d5b8730901cdeb8bcf30f86a0191c9d74fdac24a|agent_rows=139|json=0
+FREEZE_CHECK|script_sha256=4460e40710c4d6036ccf6a0fa95661f60ff7789c3b57d673222ce4f7b760573e|edits=0|gate=tools/no_float_gate.py_green|replay=byte_identical_in_a_fresh_directory|prediction_sha256=e8403cd4c8058f15e4c78ac6d5b8730901cdeb8bcf30f86a0191c9d74fdac24a|checks=26|failed=0|json=0
+FREEZE_CROSS|with=predictions/su2-ladder|600cell_first_break_k=12|su2_ladder_2I_first_break_degree=12|per_degree_agreement_k1_to_30=30_of_30(S_k*(k+1)=120*m_k)|json=0
+FREEZE_RULE|what_is_frozen=every_row_of_PREDICTION-EXCEPTIONAL.hbp|replay=.github/workflows/predictions.yml|measurements_land_after_this_commit|json=0

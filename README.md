@@ -50,7 +50,7 @@ The work runs in three steps, each with its own commit and receipt:
 | Step | Status |
 |---|---|
 | Frozen prediction: the SU(2) ladder, 61 groups | **frozen**, [`predictions/su2-ladder/`](predictions/su2-ladder/), `PREDICTION.hbp` sha256 `c2601cf0…`, receipt [`FREEZE.hbp`](predictions/su2-ladder/FREEZE.hbp) |
-| Frozen prediction: the 600-cell, E8 roots and Leech minimal vectors | next commit |
+| Frozen prediction: the 600-cell, E8 roots and Leech minimal vectors | **frozen**, [`predictions/exceptional/`](predictions/exceptional/), `PREDICTION-EXCEPTIONAL.hbp` sha256 `e8403cd4…`, receipt [`FREEZE.hbp`](predictions/exceptional/FREEZE.hbp) |
 | Measurements past each break | after the freezes |
 | Independent refutation | after the measurements |
 
@@ -68,7 +68,19 @@ The prediction was computed from the closed invariant (Molien) series alone: Kle
 | 2O | 48 | 7 | degree 8 | 15 : 14 | β⁸ term, 1/10,321,920 |
 | 2I | 120 | **11** | degree 12 | 133 : 132 | β¹² term, 1/1,961,990,553,600 |
 
-The ceiling the prediction states: of the 61 groups, only 2I reaches degree 11. The cyclic and binary dihedral families stay at 1 and 3 at every size. Dic_30 and 2I have the same 120 elements' worth of size: Dic_30 is predicted to stop at degree 3, 2I at degree 11. The file also holds each group's full invariant series to degree 120, its moments to order 60 and its gauge free energy to β³⁰, so the measurement can be checked well past each break.
+The ceiling the prediction states: of the 61 groups, only 2I reaches degree 11. The cyclic and binary dihedral families stay at 1 and 3 at every size. Dic_30 and 2I both have 120 elements: Dic_30 is predicted to stop at degree 3, 2I at degree 11. The file also holds each group's full invariant series to degree 120, its moments to order 60 and its gauge free energy to β³⁰, so the measurement can be checked well past each break.
+
+### The frozen exceptional prediction
+
+Computed from the published distance distributions alone (Conway and Sloane, *Sphere Packings, Lattices and Groups*; Delsarte, Goethals and Seidel 1977), with no vector built. A set is a t-design when its zonal sums S_k vanish for k = 1 to t.
+
+| Point set | Points | Sphere | Looks exactly like the sphere up to degree | First break, S_k | Nonzero S_k through k = 30 |
+|---|---|---|---|---|---|
+| 600-cell = the 120 unit icosians = 2I | 120 | S³ | 11 | S₁₂ = 120/13 | k = 12, 20, 24, 30 |
+| E8 roots | 240 | S⁷ | 7 | S₈ = 720/143 | k = 8, 12, 14, 16, …, 30 (S₁₀ = 0) |
+| Leech lattice shortest vectors | 196,560 | S²³ | 11 | S₁₂ = 17955/3596 | k = 12, 16, 18, …, 30 (S₁₄ = 0) |
+
+The two frozen predictions cross-check. The 600-cell is 2I, so its zonal sums must agree with the SU(2) ladder's invariant counts. They do at every degree from 1 to 30: S_k (k+1) = 120 m_k, where m_k is the number of 2I-invariant polynomials of degree k. The first nonzero term is Klein's icosahedral invariant of degree 12.
 
 ## Companions
 
