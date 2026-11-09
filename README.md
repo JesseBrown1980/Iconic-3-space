@@ -8,6 +8,8 @@ This repository tests that statement with exact finite mathematics. Its question
 
 The name comes from the owner's phrase of the same day about "the 24-dimensional world", read here as the Leech lattice built as 3-space over the icosians. His full words are in [`OBJECTIVE-QUOTES.md`](OBJECTIVE-QUOTES.md).
 
+**Mathematical foundations:** [`Icosian 3-space, projective lifts and finite-to-continuous tests`](docs/ICOSIAN-3-SPACE-FOUNDATIONS-20261109.md) records the 24-dimensional construction, exact representations/design distinctions, concrete falsification gates and primary literature. The transcript retains the owner's original wording, with editorial interpretations separately labeled. The SU(2) prediction freeze at [`predictions/su2-ladder/`](predictions/su2-ladder/) remains pinned to its original commit and receipt.
+
 ## The test
 
 A finite set X of points on a sphere, or of elements of a group such as SU(2), **looks exactly continuous up to degree t** when averaging any polynomial of degree at most t over X gives the same number as averaging it over the whole sphere or group. Such a set is called a t-design. Past degree t, some observable sees the difference. That observable, and its exact value, mark the first place the finite world shows through.
