@@ -1,0 +1,144 @@
+HDR|file=M3-TOWERS.hbp|script=m3_towers.py|script_sha256=fa540342d79050600e4e7992b34f028ff9803849c772e18d6fcf2435fca80e9f|seat=Opus 5.5 pid 8467a937cba309f7|E=0|network=0|float_used=0|integer_only=1|date=2026-11-09|json=0
+CHECK|name=self_lint_integer_only|status=PASS|tag=MEASURED|findings=none|json=0
+DELTA|n=1|zeta_order=2|order=6|expect_6n2=6|n1_is_S3=True|diag_order=1|diag_index=6|diag_equals_grid_sum0_mod_n=1|diag_normal=1|S3_subgroup_bc_order=6|S3_embeds=1|weyl_image=6|all_det1_symbolic=1|explicit_monomial=1|explicit_det1=1|explicit_unitary=1|mult_crosscheck_pairs=36|mult_crosscheck=1|in_NT=1 (monomial unitary det1; g diag(t) g^-1 is a permuted diag)|tag=MEASURED|json=0
+CHECK|name=delta_order_n1|status=PASS|tag=MEASURED|order=6|expect=6|json=0
+CHECK|name=delta_diag_index6_n1|status=PASS|tag=MEASURED|diag_order=1|index=6|json=0
+CHECK|name=delta_diag_grid_n1|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_S3_embeds_n1|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_SU3_explicit_n1|status=PASS|tag=MEASURED|pairs=36|json=0
+CHECK|name=delta_n1_is_S3|status=PASS|tag=MEASURED|order=6|json=0
+DELTA|n=2|zeta_order=4|order=24|expect_6n2=24|n1_is_S3=na|diag_order=4|diag_index=6|diag_equals_grid_sum0_mod_n=1|diag_normal=1|S3_subgroup_bc_order=6|S3_embeds=1|weyl_image=6|all_det1_symbolic=1|explicit_monomial=1|explicit_det1=1|explicit_unitary=1|mult_crosscheck_pairs=576|mult_crosscheck=1|in_NT=1 (monomial unitary det1; g diag(t) g^-1 is a permuted diag)|tag=MEASURED|json=0
+CHECK|name=delta_order_n2|status=PASS|tag=MEASURED|order=24|expect=24|json=0
+CHECK|name=delta_diag_index6_n2|status=PASS|tag=MEASURED|diag_order=4|index=6|json=0
+CHECK|name=delta_diag_grid_n2|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_S3_embeds_n2|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_SU3_explicit_n2|status=PASS|tag=MEASURED|pairs=576|json=0
+DELTA|n=3|zeta_order=6|order=54|expect_6n2=54|n1_is_S3=na|diag_order=9|diag_index=6|diag_equals_grid_sum0_mod_n=1|diag_normal=1|S3_subgroup_bc_order=6|S3_embeds=1|weyl_image=6|all_det1_symbolic=1|explicit_monomial=1|explicit_det1=1|explicit_unitary=1|mult_crosscheck_pairs=2916|mult_crosscheck=1|in_NT=1 (monomial unitary det1; g diag(t) g^-1 is a permuted diag)|tag=MEASURED|json=0
+CHECK|name=delta_order_n3|status=PASS|tag=MEASURED|order=54|expect=54|json=0
+CHECK|name=delta_diag_index6_n3|status=PASS|tag=MEASURED|diag_order=9|index=6|json=0
+CHECK|name=delta_diag_grid_n3|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_S3_embeds_n3|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_SU3_explicit_n3|status=PASS|tag=MEASURED|pairs=2916|json=0
+DELTA|n=4|zeta_order=8|order=96|expect_6n2=96|n1_is_S3=na|diag_order=16|diag_index=6|diag_equals_grid_sum0_mod_n=1|diag_normal=1|S3_subgroup_bc_order=6|S3_embeds=1|weyl_image=6|all_det1_symbolic=1|explicit_monomial=1|explicit_det1=1|explicit_unitary=1|mult_crosscheck_pairs=288|mult_crosscheck=1|in_NT=1 (monomial unitary det1; g diag(t) g^-1 is a permuted diag)|tag=MEASURED|json=0
+CHECK|name=delta_order_n4|status=PASS|tag=MEASURED|order=96|expect=96|json=0
+CHECK|name=delta_diag_index6_n4|status=PASS|tag=MEASURED|diag_order=16|index=6|json=0
+CHECK|name=delta_diag_grid_n4|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_S3_embeds_n4|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_SU3_explicit_n4|status=PASS|tag=MEASURED|pairs=288|json=0
+DELTA|n=5|zeta_order=10|order=150|expect_6n2=150|n1_is_S3=na|diag_order=25|diag_index=6|diag_equals_grid_sum0_mod_n=1|diag_normal=1|S3_subgroup_bc_order=6|S3_embeds=1|weyl_image=6|all_det1_symbolic=1|explicit_monomial=1|explicit_det1=1|explicit_unitary=1|mult_crosscheck_pairs=450|mult_crosscheck=1|in_NT=1 (monomial unitary det1; g diag(t) g^-1 is a permuted diag)|tag=MEASURED|json=0
+CHECK|name=delta_order_n5|status=PASS|tag=MEASURED|order=150|expect=150|json=0
+CHECK|name=delta_diag_index6_n5|status=PASS|tag=MEASURED|diag_order=25|index=6|json=0
+CHECK|name=delta_diag_grid_n5|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_S3_embeds_n5|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_SU3_explicit_n5|status=PASS|tag=MEASURED|pairs=450|json=0
+DELTA|n=6|zeta_order=12|order=216|expect_6n2=216|n1_is_S3=na|diag_order=36|diag_index=6|diag_equals_grid_sum0_mod_n=1|diag_normal=1|S3_subgroup_bc_order=6|S3_embeds=1|weyl_image=6|all_det1_symbolic=1|explicit_monomial=1|explicit_det1=1|explicit_unitary=1|mult_crosscheck_pairs=648|mult_crosscheck=1|in_NT=1 (monomial unitary det1; g diag(t) g^-1 is a permuted diag)|tag=MEASURED|json=0
+CHECK|name=delta_order_n6|status=PASS|tag=MEASURED|order=216|expect=216|json=0
+CHECK|name=delta_diag_index6_n6|status=PASS|tag=MEASURED|diag_order=36|index=6|json=0
+CHECK|name=delta_diag_grid_n6|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_S3_embeds_n6|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_SU3_explicit_n6|status=PASS|tag=MEASURED|pairs=648|json=0
+DELTA|n=7|zeta_order=14|order=294|expect_6n2=294|n1_is_S3=na|diag_order=49|diag_index=6|diag_equals_grid_sum0_mod_n=1|diag_normal=1|S3_subgroup_bc_order=6|S3_embeds=1|weyl_image=6|all_det1_symbolic=1|explicit_monomial=1|explicit_det1=1|explicit_unitary=1|mult_crosscheck_pairs=882|mult_crosscheck=1|in_NT=1 (monomial unitary det1; g diag(t) g^-1 is a permuted diag)|tag=MEASURED|json=0
+CHECK|name=delta_order_n7|status=PASS|tag=MEASURED|order=294|expect=294|json=0
+CHECK|name=delta_diag_index6_n7|status=PASS|tag=MEASURED|diag_order=49|index=6|json=0
+CHECK|name=delta_diag_grid_n7|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_S3_embeds_n7|status=PASS|tag=MEASURED|json=0
+CHECK|name=delta_SU3_explicit_n7|status=PASS|tag=MEASURED|pairs=882|json=0
+DELTA_TOWER|inclusions=1<2:1 1<3:1 1<4:1 1<5:1 1<6:1 1<7:1 2<4:1 2<6:1 3<6:1|all_ok=1|tag=MEASURED|json=0
+CHECK|name=delta_tower_inclusions|status=PASS|tag=MEASURED|count=9|json=0
+CONTROL|name=delta_b_plus_entries_det|expected=FAIL|observed=FAIL|status=PASS|tag=MEASURED|n=3|order=54|det_b_exp=3|json=0
+JORDAN|group=Delta(6n^2)|n=1|order=6|classes=3|abelian_normal_subgroups=2|unions_enumerated=2|max_abelian_normal_order=3|max_count=1|min_index=2|bound=6|diag_among_max=0|other_max=capD1_3cycles2|exhaustive=1|tag=MEASURED|json=0
+CHECK|name=jordan_index_le6_n1|status=PASS|tag=MEASURED|index=2|json=0
+JORDAN|group=Delta(6n^2)|n=2|order=24|classes=5|abelian_normal_subgroups=2|unions_enumerated=2|max_abelian_normal_order=4|max_count=1|min_index=6|bound=6|diag_among_max=1|other_max=none|exhaustive=1|tag=MEASURED|json=0
+CHECK|name=jordan_index_le6_n2|status=PASS|tag=MEASURED|index=6|json=0
+CHECK|name=jordan_max_order_n2_diag_among_max_n2|status=PASS|tag=MEASURED|max_count=1|json=0
+JORDAN|group=Delta(6n^2)|n=3|order=54|classes=10|abelian_normal_subgroups=6|unions_enumerated=20|max_abelian_normal_order=9|max_count=4|min_index=6|bound=6|diag_among_max=1|other_max=capD3_3cycles6 capD3_3cycles6 capD3_3cycles6|exhaustive=1|tag=MEASURED|json=0
+CHECK|name=jordan_index_le6_n3|status=PASS|tag=MEASURED|index=6|json=0
+CHECK|name=jordan_max_order_n2_diag_among_max_n3|status=PASS|tag=MEASURED|max_count=4|json=0
+JORDAN|group=Delta(6n^2)|n=4|order=96|classes=10|abelian_normal_subgroups=3|unions_enumerated=16|max_abelian_normal_order=16|max_count=1|min_index=6|bound=6|diag_among_max=1|other_max=none|exhaustive=1|tag=MEASURED|json=0
+CHECK|name=jordan_index_le6_n4|status=PASS|tag=MEASURED|index=6|json=0
+CHECK|name=jordan_max_order_n2_diag_among_max_n4|status=PASS|tag=MEASURED|max_count=1|json=0
+JORDAN|group=Delta(6n^2)|n=5|order=150|classes=13|abelian_normal_subgroups=2|unions_enumerated=64|max_abelian_normal_order=25|max_count=1|min_index=6|bound=6|diag_among_max=1|other_max=none|exhaustive=1|tag=MEASURED|json=0
+CHECK|name=jordan_index_le6_n5|status=PASS|tag=MEASURED|index=6|json=0
+CHECK|name=jordan_max_order_n2_diag_among_max_n5|status=PASS|tag=MEASURED|max_count=1|json=0
+JORDAN|group=Delta(6n^2)|n=6|order=216|classes=19|abelian_normal_subgroups=6|unions_enumerated=512|max_abelian_normal_order=36|max_count=1|min_index=6|bound=6|diag_among_max=1|other_max=none|exhaustive=1|tag=MEASURED|json=0
+CHECK|name=jordan_index_le6_n6|status=PASS|tag=MEASURED|index=6|json=0
+CHECK|name=jordan_max_order_n2_diag_among_max_n6|status=PASS|tag=MEASURED|max_count=1|json=0
+JORDAN|group=Delta(6n^2)|n=7|order=294|classes=20|abelian_normal_subgroups=2|unions_enumerated=2048|max_abelian_normal_order=49|max_count=1|min_index=6|bound=6|diag_among_max=1|other_max=none|exhaustive=1|tag=MEASURED|json=0
+CHECK|name=jordan_index_le6_n7|status=PASS|tag=MEASURED|index=6|json=0
+CHECK|name=jordan_max_order_n2_diag_among_max_n7|status=PASS|tag=MEASURED|max_count=1|json=0
+CORRECTION|tag=MEASURED|text=First run asserted the largest abelian normal subgroup is unique and equals the diagonal D; measured max_count=4 at n=3 (D plus three order-9 abelian normal subgroups that meet D in the centre Z3 and hold 3-cycle elements), so the uniqueness check failed there. The check now asserts max order n^2 (index 6) with D among the maximal ones; the uniqueness expectation is retracted for n=3.|json=0
+LIMIT|step=1|uses_compactness=0|tag=NAMED|text=Jordan 1878 (J. reine angew. Math. 84): every finite subgroup F of GL(N,C) has an abelian normal subgroup A with [F:A] <= J(N); optimal J(2)=60 and J(3)=360 (Collins 2007, J. Group Theory 10). Anchors measured in this file: 2I attains index 60; Delta(6n^2) has index 6.|json=0
+LIMIT|step=2|uses_compactness=0|tag=NAMED|text=Let F_k be finite subgroups of SU(N) with F_k -> H in the Hausdorff metric on closed subsets (for compact SU(N) this is the Chabauty topology); H is a closed subgroup. Pick A_k abelian normal in F_k, so F_k is a union of m_k <= J(N) cosets g_(k,i) A_k; pass to a subsequence with m_k = m constant.|json=0
+LIMIT|step=3|uses_compactness=1|tag=NAMED|text=COMPACTNESS: SU(N) is compact, so its closed subsets form a compact space in the Hausdorff metric (Blaschke selection theorem) and SU(N) is sequentially compact; pass to a subsequence with A_k -> A and g_(k,i) -> g_i for all i < m.|json=0
+LIMIT|step=4|uses_compactness=0|tag=NAMED|text=A is a closed abelian subgroup: for x, y in A choose x_k, y_k in A_k with x_k -> x, y_k -> y; then x_k y_k^-1 lies in A_k and x_k y_k = y_k x_k, and continuity of multiplication and inversion gives x y^-1 in A and xy = yx.|json=0
+LIMIT|step=5|uses_compactness=0|tag=NAMED|text=Hausdorff limits commute with finite unions and with translation (d(gX, hY) <= d(g,h) + d(X,Y) for a bi-invariant metric), so H = union over i < m of g_i A with every g_i in H and A a subgroup of H.|json=0
+LIMIT|step=6|uses_compactness=0|tag=NAMED|text=A has index <= m in H; its complement is a finite union of closed cosets, so A is open and closed in H and contains the identity component H0; so H0 is abelian. H is a compact Lie group (Cartan closed subgroup theorem), so H0 is a torus of dimension <= rank SU(N) = N-1.|json=0
+LIMIT|step=7|uses_compactness=0|tag=NAMED|text=dim H <= N-1 < N^2-1 = dim SU(N) for N >= 2: every limit of finite subgroups is torus-by-finite (H0 a torus, H mod H0 finite) of dimension <= N-1, and SU(N) lies outside this class.|json=0
+LIMIT|step=8|uses_compactness=1|tag=NAMED|text=COROLLARY, COMPACTNESS again: there is eps_N > 0 with Hausdorff distance d(F, SU(N)) >= eps_N for every finite subgroup F of SU(N); a sequence with d -> 0 would converge to SU(N), against step 7.|json=0
+LIMIT|step=9|uses_compactness=0|tag=NAMED|text=Attainment of dimension N-1: Delta(6n^2) -> N(T) = T semidirect S3 in SU(3) (dim 2) and Dic_m -> N(T) = T u jT in SU(2) (dim 1). Measured ingredients: Delta cap T is the full grid diag(w^j1, w^j2, w^j3) with j1+j2+j3 = 0 mod n (n^2 points, angle spacing 2 pi over n), the Weyl image is all of S3; Dic_m cap T is all 2m-th roots. So the Hausdorff distance is at most the grid spacing and tends to 0.|json=0
+CONSEQUENCE|tag=NAMED|text=Finite gauge groups approach at most a torus-by-finite group of dimension N-1, such as N(T) = T semidirect W; the identity component of any limit is abelian. A finite-group lattice theory with fixed G in SU(N) tracks the SU(N) theory only below a freezing coupling (Petcher-Weingarten 1980 Phys Rev D 22 2465 for finite SU(2) subgroups incl 2I; Bhanot-Rebbi 1981 Phys Rev D 24 3319 for finite SU(3) subgroups).|json=0
+SCOPE|tag=CONJECTURE|text=For the finite-universe Yang-Mills program: finitely many sites with the compact group SU(3) on every link keeps the nonabelian identity component; a tower of finite subgroups such as Delta(6n^2) carries exactly the maximal-torus plus Weyl-group sector N(T), the abelian-projection sector, in the limit.|json=0
+SU2_2I|ring=Z[phi] phi^2=phi+1|coords=quaternion times 2 as (a,b)=a+b phi|order=120|all_norm1=1|closed=1|generated_by_g1_g2=1|g1=(1,1,1,1)|g2=(phi,phi-1,1,0)|element_orders={1: 1, 2: 1, 3: 20, 4: 30, 5: 24, 6: 20, 10: 24}|center_order=2|classes=9|max_abelian_normal_order=2|jordan_index=60|tag=MEASURED|json=0
+CHECK|name=su2_2I_order120_closed|status=PASS|tag=MEASURED|json=0
+CHECK|name=su2_2I_generated_by_two|status=PASS|tag=MEASURED|generated=120|json=0
+CHECK|name=su2_2I_element_orders|status=PASS|tag=MEASURED|measured={1: 1, 2: 1, 3: 20, 4: 30, 5: 24, 6: 20, 10: 24}|json=0
+CHECK|name=su2_2I_jordan_index60|status=PASS|tag=MEASURED|index=60|json=0
+SU2_2T|order=24|closed=1|subset_of_2I=1|element_orders={1: 1, 2: 1, 3: 8, 4: 6, 6: 8}|max_abelian_normal_order=2|jordan_index=12|tag=MEASURED|json=0
+CHECK|name=su2_2T_order24|status=PASS|tag=MEASURED|json=0
+SU2_2O|ring=Z[sqrt2]|order=48|all_norm1=1|closed=1|element_orders={1: 1, 2: 1, 3: 8, 4: 18, 6: 8, 8: 12}|max_abelian_normal_order=2|jordan_index=24|tag=MEASURED|json=0
+CHECK|name=su2_2O_order48|status=PASS|tag=MEASURED|json=0
+ADE|tag=NAMED|text=Finite subgroups of SU(2) up to conjugacy: cyclic Z_n (A), binary dihedral Dic_m of order 4m (D), 2T order 24 (E6), 2O order 48 (E7), 2I order 120 (E8) (Klein 1884 Vorlesungen ueber das Ikosaeder; McKay 1980). Measured orders 24, 48, 120: 2I is the largest exceptional one.|json=0
+CHECK|name=su2_ade_exceptional_max_is_2I|status=PASS|tag=MEASURED|json=0
+SU2_DIC|m=2|order=8|expect_4m=8|det1=1|monomial=1|unitary=1|in_NT=1|T_part=4|T_residues_all=1|jT_part=4|jT_residues_all=1|relations=1|max_abelian_normal_order=4|jordan_index=2|tag=MEASURED|json=0
+CHECK|name=su2_dic_m2|status=PASS|tag=MEASURED|order=8|json=0
+SU2_DIC|m=3|order=12|expect_4m=12|det1=1|monomial=1|unitary=1|in_NT=1|T_part=6|T_residues_all=1|jT_part=6|jT_residues_all=1|relations=1|max_abelian_normal_order=6|jordan_index=2|tag=MEASURED|json=0
+CHECK|name=su2_dic_m3|status=PASS|tag=MEASURED|order=12|json=0
+SU2_DIC|m=4|order=16|expect_4m=16|det1=1|monomial=1|unitary=1|in_NT=1|T_part=8|T_residues_all=1|jT_part=8|jT_residues_all=1|relations=1|max_abelian_normal_order=8|jordan_index=2|tag=MEASURED|json=0
+CHECK|name=su2_dic_m4|status=PASS|tag=MEASURED|order=16|json=0
+SU2_DIC|m=5|order=20|expect_4m=20|det1=1|monomial=1|unitary=1|in_NT=1|T_part=10|T_residues_all=1|jT_part=10|jT_residues_all=1|relations=1|max_abelian_normal_order=10|jordan_index=2|tag=MEASURED|json=0
+CHECK|name=su2_dic_m5|status=PASS|tag=MEASURED|order=20|json=0
+SU2_DIC|m=6|order=24|expect_4m=24|det1=1|monomial=1|unitary=1|in_NT=1|T_part=12|T_residues_all=1|jT_part=12|jT_residues_all=1|relations=1|max_abelian_normal_order=12|jordan_index=2|tag=MEASURED|json=0
+CHECK|name=su2_dic_m6|status=PASS|tag=MEASURED|order=24|json=0
+SU2_DIC|m=7|order=28|expect_4m=28|det1=1|monomial=1|unitary=1|in_NT=1|T_part=14|T_residues_all=1|jT_part=14|jT_residues_all=1|relations=1|max_abelian_normal_order=14|jordan_index=2|tag=MEASURED|json=0
+CHECK|name=su2_dic_m7|status=PASS|tag=MEASURED|order=28|json=0
+SU2_DIC|m=8|order=32|expect_4m=32|det1=1|monomial=1|unitary=1|in_NT=1|T_part=16|T_residues_all=1|jT_part=16|jT_residues_all=1|relations=1|max_abelian_normal_order=16|jordan_index=2|tag=MEASURED|json=0
+CHECK|name=su2_dic_m8|status=PASS|tag=MEASURED|order=32|json=0
+SU2_DIC_TOWER|inclusions=2<4:1 2<6:1 2<8:1 3<6:1 4<8:1|all_ok=1|dense_in_NT=union over m = 2^k is dense in N(T) = T u jT: each coset holds all 2m-th roots (measured), spacing 2 pi over 2m -> 0|tag=MEASURED+NAMED|json=0
+CHECK|name=su2_dic_tower|status=PASS|tag=MEASURED|json=0
+CONTROL|name=icosian_norm_bad_generator|expected=FAIL|observed=FAIL|status=PASS|tag=MEASURED|norm=(4, -1)|json=0
+CONTROL|name=icosian_closure_with_hole|expected=FAIL|observed=FAIL|status=PASS|tag=MEASURED|order=119|json=0
+OCT_TABLE|name=Harvey-Lawson-Bryant|rule=e_a e_b = e_c for (a,b,c) in 123 145 167 246 275 374 365 and cyclic; e_b e_a = -e_c; e_a e_a = -1; e_0 = 1|complete=1|alternative=1|nonassociative=1|composition_polarised=1|tag=MEASURED|json=0
+CHECK|name=oct_table_is_octonions|status=PASS|tag=MEASURED|json=0
+PHI|definition=phi(a,b,c)=<a,bc>|form=+e123 +e145 +e167 +e246 -e257 -e347 -e356|terms=7|alternating=1|tag=MEASURED|json=0
+PSI|definition=psi=*phi, orientation e1234567|form=-e1247 -e1256 -e1346 +e1357 +e2345 +e2367 +e4567|terms=7|tag=MEASURED|json=0
+CHECK|name=phi_alternating_7_terms|status=PASS|tag=MEASURED|json=0
+PHI_METRIC|formula=(x contract phi)^(y contract phi)^phi = g(x,y) e1234567|diag=6 6 6 6 6 6 6|offdiag_zero=1|equals_6_delta=1|orientation_positive=1|tag=MEASURED|json=0
+CHECK|name=phi_metric_6delta_positive_orientation|status=PASS|tag=MEASURED|json=0
+T_EIGEN|operator=T(beta)=*(phi^beta) on Lambda2 R7|dim=21|eigenvalues=2 and -1|symmetric=1|trace=0|minpoly_T2_T1_zero=1|dim_eig_plus2=7|dim_eig_minus1=14|tag=MEASURED|json=0
+CHECK|name=T_eigen_split_7_14|status=PASS|tag=MEASURED|symmetric=1|trace=0|minpoly_T2_T1_zero=1|dim_eig_plus2=7|dim_eig_minus1=14|json=0
+LAMBDA2_7|basis=v contract phi, v=1..7|eig_2=1|rank=7|beta_wedge_psi_over_star_v=3 3 3 3 3 3 3|note=(v contract phi)^psi = k *e^v with k measured; Bryant 2005 gives 3|tag=MEASURED|json=0
+CHECK|name=lambda2_7_is_v_contract_phi|status=PASS|tag=MEASURED|json=0
+DER_O|unknowns=64|equations=512|dim=14|exact=1|kills_1_preserves_ImO=1|antisymmetric=1|as_2forms_in_eig_minus1=1|rank_as_2forms=14|beta_wedge_psi_zero=1|psi_nonzero_on_Lambda2_7=1|tag=MEASURED|json=0
+CHECK|name=der_O_equals_Lambda2_14|status=PASS|tag=MEASURED|json=0
+STAB_PHI|unknowns=49|equations=35|dim=14|exact=1|antisymmetric=1|rank_stab_plus_der=14|equals_der_O=1|tag=MEASURED|json=0
+CHECK|name=stab_phi_equals_der_O_dim14|status=PASS|tag=MEASURED|json=0
+COASSOC|A=e123|phi_on_A=1|associator_zero_on_A=1|C=e4567|phi_on_C_zero=1|orient_from_A=1|psi_on_C=1|orientations_agree=1|starC_sq_1=1|SD_in_L14=0|SD_in_L7=0|ASD_in_L14=3|ASD_in_L7=0|half_in_Lambda2_14=ASD|half_wedge_psi_zero=1|tag=MEASURED|json=0
+CHECK|name=coassoc_4567|status=PASS|tag=MEASURED|half=ASD|json=0
+COASSOC|A=e145|phi_on_A=1|associator_zero_on_A=1|C=e2367|phi_on_C_zero=1|orient_from_A=1|psi_on_C=1|orientations_agree=1|starC_sq_1=1|SD_in_L14=0|SD_in_L7=0|ASD_in_L14=3|ASD_in_L7=0|half_in_Lambda2_14=ASD|half_wedge_psi_zero=1|tag=MEASURED|json=0
+CHECK|name=coassoc_2367|status=PASS|tag=MEASURED|half=ASD|json=0
+COASSOC|A=e167|phi_on_A=1|associator_zero_on_A=1|C=e2345|phi_on_C_zero=1|orient_from_A=1|psi_on_C=1|orientations_agree=1|starC_sq_1=1|SD_in_L14=0|SD_in_L7=0|ASD_in_L14=3|ASD_in_L7=0|half_in_Lambda2_14=ASD|half_wedge_psi_zero=1|tag=MEASURED|json=0
+CHECK|name=coassoc_2345|status=PASS|tag=MEASURED|half=ASD|json=0
+COASSOC|A=e246|phi_on_A=1|associator_zero_on_A=1|C=e1357|phi_on_C_zero=1|orient_from_A=1|psi_on_C=1|orientations_agree=1|starC_sq_1=1|SD_in_L14=0|SD_in_L7=0|ASD_in_L14=3|ASD_in_L7=0|half_in_Lambda2_14=ASD|half_wedge_psi_zero=1|tag=MEASURED|json=0
+CHECK|name=coassoc_1357|status=PASS|tag=MEASURED|half=ASD|json=0
+COASSOC|A=e257|phi_on_A=-1|associator_zero_on_A=1|C=e1346|phi_on_C_zero=1|orient_from_A=-1|psi_on_C=-1|orientations_agree=1|starC_sq_1=1|SD_in_L14=0|SD_in_L7=0|ASD_in_L14=3|ASD_in_L7=0|half_in_Lambda2_14=ASD|half_wedge_psi_zero=1|tag=MEASURED|json=0
+CHECK|name=coassoc_1346|status=PASS|tag=MEASURED|half=ASD|json=0
+COASSOC|A=e347|phi_on_A=-1|associator_zero_on_A=1|C=e1256|phi_on_C_zero=1|orient_from_A=-1|psi_on_C=-1|orientations_agree=1|starC_sq_1=1|SD_in_L14=0|SD_in_L7=0|ASD_in_L14=3|ASD_in_L7=0|half_in_Lambda2_14=ASD|half_wedge_psi_zero=1|tag=MEASURED|json=0
+CHECK|name=coassoc_1256|status=PASS|tag=MEASURED|half=ASD|json=0
+COASSOC|A=e356|phi_on_A=-1|associator_zero_on_A=1|C=e1247|phi_on_C_zero=1|orient_from_A=-1|psi_on_C=-1|orientations_agree=1|starC_sq_1=1|SD_in_L14=0|SD_in_L7=0|ASD_in_L14=3|ASD_in_L7=0|half_in_Lambda2_14=ASD|half_wedge_psi_zero=1|tag=MEASURED|json=0
+CHECK|name=coassoc_1247|status=PASS|tag=MEASURED|half=ASD|json=0
+CHECK|name=coassoc_same_chirality_all7|status=PASS|tag=MEASURED|chirality=ASD|json=0
+G2_INSTANTON|tag=MEASURED+NAMED|chirality=ASD|orientation=C oriented by psi on C = vol_A complement orientation (measured equal)|text=On R7 = A x C (A associative, C coassociative) a connection pulled back from C, invariant under translations of A, has curvature F in Lambda2 C tensor g at every point. If F is anti-self-dual on C (measured: Lambda2_- C lies in Lambda2_14 and has F^psi = 0), then pi_7(F) = 0, the G2-instanton equation (Donaldson-Thomas 1998, Gauge theory in higher dimensions). Example: the BPST instanton (Belavin-Polyakov-Schwarz-Tyupkin 1975) pulled back to R3 x R4 is a G2-instanton with energy density constant along R3.|json=0
+CONTROL|name=phi_one_sign_flipped_eigen_split|expected=FAIL|observed=FAIL|status=PASS|tag=MEASURED|flipped=e123|symmetric=1|trace=0|minpoly_T2_T1_zero=0|dim_eig_plus2=4|dim_eig_minus1=8|json=0
+CONTROL_PHI_METRIC|flipped=e123|diag=-6 -6 -6 6 6 6 6|offdiag_zero=1|positive=4|negative=3|reading=nondegenerate indefinite B_phi: split-G2 type form (two open GL7 orbits, Bryant 1987); signature measured from the diagonal|tag=MEASURED+NAMED|json=0
+CONTROL|name=der_O_in_eig_minus1_of_flipped_T|expected=FAIL|observed=FAIL|status=PASS|tag=MEASURED|json=0
+SUMMARY|checks=81|controls=5|passed=86|failed=0|failed_names=none|verdict=ALL_PASS|json=0

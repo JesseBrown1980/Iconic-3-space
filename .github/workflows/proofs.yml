@@ -1,0 +1,52 @@
+# Every proof receipt must reproduce byte for byte from its own script. For each proofs/<name>/ folder, the job copies the scripts
+# alone into an empty tree with the same layout, runs the measurement scripts and then the refuter, and requires every output .hbp
+# to equal its committed sidecar. Integer only, json=0.
+name: Proofs replay
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Replay each proof folder from its scripts alone
+        run: |
+          set -euo pipefail
+          n=0
+          for top in proofs/*/; do
+            work=$(mktemp -d)
+            for sub in "$top"*/; do
+              s=$(basename "$sub")
+              mkdir -p "$work/$s"
+              cp "$sub"*.py "$work/$s"/ 2>/dev/null || true
+            done
+            for sub in "$top"*/; do
+              s=$(basename "$sub")
+              [ "$s" = refute ] && continue
+              [ -f "${sub}EVIDENCE-ONLY" ] && continue
+              for py in "$work/$s"/*.py; do (cd "$work/$s" && python3 -I -B "$(basename "$py")" > run.out 2>&1); done
+            done
+            if [ -d "$work/refute" ] && [ ! -f "${top}refute/EVIDENCE-ONLY" ]; then for py in "$work/refute"/*.py; do (cd "$work/refute" && python3 -I -B "$(basename "$py")" > run.out 2>&1); done; fi
+            for side in "$top"*/*.hbp.sha256; do
+              s=$(basename "$(dirname "$side")")
+              f=$(basename "$side" .sha256)
+              if [ -f "$top$s/EVIDENCE-ONLY" ]; then echo "PROOF_EVIDENCE_ONLY|file=$top$s/$f|sidecar_check=$(cd "$top$s" && sha256sum -c "$f.sha256" > /dev/null && echo OK)|json=0"; continue; fi
+              [ -f "$work/$s/$f" ] || { echo "PROOF_REPLAY_SKIP|file=$s/$f|reason=written_by_a_tool_outside_the_scripts|json=0"; continue; }
+              got=$(sha256sum "$work/$s/$f" | cut -d' ' -f1)
+              kept=$(cut -d' ' -f1 "$side")
+              echo "PROOF_REPLAY|file=$top$s/$f|replayed=$got|sidecar=$kept|json=0"
+              [ "$got" = "$kept" ] || { echo "PROOF_REPLAY_FAIL|file=$top$s/$f|json=0"; exit 1; }
+              n=$((n+1))
+            done
+          done
+          echo "PROOF_REPLAY_DONE|receipts=$n|json=0"

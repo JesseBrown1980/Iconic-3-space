@@ -1,0 +1,143 @@
+CHECK|name=self_gate_no_float_no_truediv_imports_ok|status=PASS|findings=0|detail=none|claim=MEASURED|json=0
+CONTROL|name=ctl_self_gate_catches_truediv_floatlit_fractions|expected=FAIL|got=FAIL|ok=1|caught=5|json=0
+META|script=m2_roots.py|python=3,12,3|e=0|float_used=0|int_only=1|flags=-I -B|out=M2-ROOTS.hbp|json=0
+G2_ROOTS|n=12|short=1,-1,0;1,0,-1;0,1,-1;-1,1,0;-1,0,1;0,-1,1|long=2,-1,-1;-1,2,-1;-1,-1,2;-2,1,1;1,-2,1;1,1,-2|claim=MEASURED|json=0
+CHECK|name=roots_distinct_12|status=PASS|n=12|claim=MEASURED|json=0
+CHECK|name=short_norm2_x6|status=PASS|claim=MEASURED|json=0
+CHECK|name=long_norm6_x6|status=PASS|claim=MEASURED|json=0
+CHECK|name=crystallographic_length_ratio_3|status=PASS|long_sq=6|short_sq=2|claim=MEASURED|json=0
+CHECK|name=roots_in_plane_x_plus_y_plus_z_0|status=PASS|claim=MEASURED|json=0
+CHECK|name=reflection_coefficient_exact_integer_all_pairs|status=PASS|pairs=144|claim=MEASURED|json=0
+CHECK|name=closed_under_all_12_reflections|status=PASS|claim=MEASURED|json=0
+CHECK|name=cartan_integers_in_range_and_3_occurs|status=PASS|values=-3,-2,-1,0,1,2,3|claim=MEASURED|json=0
+CHECK|name=short_roots_are_all_norm2_plane_lattice_vectors|status=PASS|claim=MEASURED|json=0
+CHECK|name=long_roots_are_all_norm6_plane_lattice_vectors|status=PASS|claim=MEASURED|json=0
+CHECK|name=cartan_matrix_G2_simple_a1short_a2long|status=PASS|A=2,-1;-3,2|claim=MEASURED|json=0
+CHECK|name=root_coords_in_simple_basis_exact|status=PASS|claim=MEASURED|json=0
+CHECK|name=every_root_has_same_sign_simple_coeffs|status=PASS|claim=MEASURED|json=0
+CHECK|name=positive_roots_G2|status=PASS|pos=0,1;1,0;1,1;2,1;3,1;3,2|claim=MEASURED|json=0
+CHECK|name=highest_root_3a1_2a2_is_long|status=PASS|highest=-1,-1,2|claim=MEASURED|json=0
+CHECK|name=exactly_one_orthogonal_integer_lift_per_root|status=PASS|claim=MEASURED|json=0
+CHECK|name=lift_equals_reflection_on_plane_det_minus1|status=PASS|claim=MEASURED|json=0
+CHECK|name=short_lifts_fix_111_long_lifts_negate_111|status=PASS|claim=MEASURED|json=0
+LIFT|convention=M agrees with s_a on x+y+z plane; M(1,1,1) is eps(1,1,1); the R3 reflection of a long root has entries in thirds so its integer lift has eps -1|s_short_example=0,1,0;1,0,0;0,0,1|s_long_example=-1,0,0;0,0,-1;0,-1,0|claim=MEASURED|json=0
+CONTROL|name=ctl_R3_reflection_of_long_root_is_integral|expected=FAIL|got=FAIL|ok=1|integral_count=0|json=0
+CHECK|name=W_G2_order_12|status=PASS|order=12|claim=MEASURED|json=0
+CHECK|name=W_element_orders_match_D6|status=PASS|orders=1,1;2,7;3,2;6,2|claim=MEASURED|json=0
+CHECK|name=W_center_is_I_and_minus_I|status=PASS|size=2|claim=MEASURED|json=0
+CHECK|name=minus_I_in_W_G2|status=PASS|claim=MEASURED|json=0
+CHECK|name=W_nonabelian|status=PASS|claim=MEASURED|json=0
+CHECK|name=dihedral_relation_s_r_s_is_r_inverse|status=PASS|r=0,0,-1;-1,0,0;0,-1,0|s=0,1,0;1,0,0;0,0,1|claim=MEASURED|json=0
+CHECK|name=minus_I_is_r_cubed|status=PASS|claim=MEASURED|json=0
+CHECK|name=W_acts_faithfully_on_plane|status=PASS|claim=MEASURED|json=0
+CHECK|name=W_has_6_plane_reflections_6_rotations|status=PASS|claim=MEASURED|json=0
+CHECK|name=all_W_elements_are_signed_permutations|status=PASS|claim=MEASURED|json=0
+CHECK|name=W_is_all_plus_minus_permutation_matrices|status=PASS|claim=MEASURED|json=0
+W_G2|order=12|iso=D6 dihedral of order 12 (also S3 x Z2)|order_hist=1,1;2,7;3,2;6,2|minus_I_plane=-1,0;0,-1|claim=MEASURED|json=0
+NAMED|statement=W(G2) is dihedral of order 12; G2 roots in x+y+z plane coordinates|ref=Humphreys GTM9 1972 sec 12.1; Bourbaki Lie Ch VI Plate IX|claim=NAMED|json=0
+CHECK|name=long_roots_cartan_matrix_A2|status=PASS|A=2,-1;-1,2|claim=MEASURED|json=0
+CHECK|name=long_roots_closed_root_system_no_3|status=PASS|values=-2,-1,1,2|claim=MEASURED|json=0
+CHECK|name=long_roots_closed_under_addition_su3_subalgebra|status=PASS|pairs=12|claim=MEASURED|json=0
+CHECK|name=short_roots_not_closed_short_plus_short_is_long|status=PASS|pairs=12|claim=MEASURED|json=0
+CHECK|name=W_A2_long_subgroup_order_6|status=PASS|order=6|claim=MEASURED|json=0
+CHECK|name=W_A2_acts_by_signed_permutations_of_axes|status=PASS|claim=MEASURED|json=0
+CHECK|name=axis_permutation_map_is_isomorphism_onto_S3|status=PASS|claim=MEASURED|json=0
+CHECK|name=W_A2_is_sign_of_sigma_times_P_sigma|status=PASS|claim=MEASURED|json=0
+CHECK|name=minus_I_not_in_W_A2|status=PASS|claim=MEASURED|json=0
+CHECK|name=W_A2_normal_in_W_G2|status=PASS|claim=MEASURED|json=0
+CHECK|name=index_2|status=PASS|claim=MEASURED|json=0
+CHECK|name=W_G2_is_W_A2_times_plus_minus_I|status=PASS|claim=MEASURED|json=0
+CHECK|name=short_root_subgroup_is_plain_S3_order_6|status=PASS|claim=MEASURED|json=0
+CHECK|name=short_roots_two_W_A2_orbits_of_size_3|status=PASS|claim=MEASURED|json=0
+CHECK|name=fundamental_weights_unique_and_short_roots|status=PASS|omega1=1,0,-1|omega2=0,1,-1|claim=MEASURED|json=0
+CHECK|name=orbit_of_omega1_differs_from_orbit_of_omega2|status=PASS|claim=MEASURED|json=0
+CHECK|name=orbit_3bar_is_minus_orbit_3|status=PASS|claim=MEASURED|json=0
+CHECK|name=weights_of_3_sum_to_zero|status=PASS|claim=MEASURED|json=0
+CHECK|name=short_roots_are_minuscule_su3_weights|status=PASS|claim=MEASURED|json=0
+CHECK|name=weight_differences_inside_3_are_su3_roots|status=PASS|claim=MEASURED|json=0
+CHECK|name=3_is_omega1_omega1_minus_b1_omega1_minus_b1_minus_b2|status=PASS|chain=1,0,-1;-1,1,0;0,-1,1|claim=MEASURED|json=0
+CHECK|name=omega1_plus_omega2_is_highest_su3_root_adjoint|status=PASS|claim=MEASURED|json=0
+CHECK|name=no_W_A2_element_exchanges_3_and_3bar|status=PASS|claim=MEASURED|json=0
+CHECK|name=minus_I_exchanges_3_and_3bar|status=PASS|claim=MEASURED|json=0
+A2_IN_G2|su3_roots=2,-1,-1;-1,2,-1;-1,-1,2;-2,1,1;1,-2,1;1,1,-2|weights_3=-1,1,0;0,-1,1;1,0,-1|weights_3bar=-1,0,1;0,1,-1;1,-1,0|decomposition=g2 is su3 plus 3 plus 3bar: 14 is 8 plus 3 plus 3|claim=MEASURED|json=0
+NAMED|statement=long roots of G2 form the A2 subsystem of su(3) inside g2|ref=Borel and de Siebenthal 1949 Comment Math Helv 23|claim=NAMED|json=0
+CHECK|name=octonion_table_complete_no_conflict|status=PASS|claim=MEASURED|json=0
+CHECK|name=fano_each_pair_of_units_on_exactly_one_line|status=PASS|claim=MEASURED|json=0
+CHECK|name=associator_alternating_so_algebra_alternative|status=PASS|claim=MEASURED|json=0
+CHECK|name=algebra_not_associative|status=PASS|nonzero_basis_associators=168|claim=MEASURED|json=0
+CHECK|name=norm_multiplicative_300_integer_pairs|status=PASS|claim=MEASURED|json=0
+OCTONIONS|table=e_i e_j is e_k for (i,j,k) cyclic in lines 124 235 346 457 561 672 713; e_i e_i is -1; e0 is 1|claim=MEASURED|json=0
+NAMED|statement=8-dim alternative composition algebra with positive norm is the octonions|ref=Hurwitz 1898; Baez Bull AMS 39 (2002) sec 2|claim=NAMED|json=0
+CHECK|name=der_O_linear_system_kernel_dim_14|status=PASS|equations=512|unknowns=64|dim=14|claim=MEASURED|json=0
+CHECK|name=der_O_kernel_vectors_kill_1_and_preserve_ImO|status=PASS|claim=MEASURED|json=0
+CHECK|name=der_O_kernel_vectors_antisymmetric_so_inside_so7|status=PASS|claim=MEASURED|json=0
+CHECK|name=der_O_kernel_vectors_pass_direct_derivation_test|status=PASS|claim=MEASURED|json=0
+CHECK|name=nice_basis_14_are_derivations|status=PASS|basis=R24-R37;R37-R56;R35-R41;R41-R67;R46-R52;R52-R71;R12-R57;R57-R63;R23-R61;R61-R74;R15-R34;R34-R72;R13-R26;R26-R45|claim=MEASURED|json=0
+CHECK|name=nice_basis_rank_14_and_spans_der_O|status=PASS|claim=MEASURED|json=0
+CHECK|name=g2_closed_under_bracket|status=PASS|claim=MEASURED|json=0
+CHECK|name=g2_perfect|status=PASS|claim=MEASURED|json=0
+CHECK|name=g2_irreducible_on_R7_commutant_dim_1|status=PASS|dim=1|claim=MEASURED|json=0
+NAMED|statement=der(O) is the compact exceptional Lie algebra g2 of dimension 14|ref=E Cartan 1914; Schafer Nonassociative Algebras 1966 ch III; Baez 2002 sec 4.1|claim=NAMED|json=0
+HIGGS_GRAM|v=e7|M_diag=1,1,0,1,0,1,1,1,0,1,0,1,0,0|rank=6|kernel_dim=8|m_dim=6|claim=MEASURED|json=0
+CHECK|name=gram_rank_6_is_dim_S6|status=PASS|rank=6|claim=MEASURED|json=0
+CHECK|name=gram_kernel_dim_8_is_stabilizer|status=PASS|dim=8|claim=MEASURED|json=0
+CHECK|name=complement_m_dim_6|status=PASS|claim=MEASURED|json=0
+CHECK|name=h_plus_m_is_all_g2|status=PASS|claim=MEASURED|json=0
+CHECK|name=kernel_elements_fix_e7|status=PASS|claim=MEASURED|json=0
+CHECK|name=stabilizer_closed_and_perfect_dim8_compact_so_su3|status=PASS|claim=MEASURED|json=0
+CHECK|name=M_proportional_to_minus_trace_form_on_m|status=PASS|ratio_num=1|ratio_den=3|claim=MEASURED|json=0
+CHECK|name=ratio_is_1_over_3|status=PASS|ratio=1 over 3|claim=MEASURED|json=0
+CHECK|name=M_positive_definite_on_m|status=PASS|claim=MEASURED|json=0
+CHECK|name=same_rank_kernel_ratio_in_solver_basis|status=PASS|ratio_solver_basis=1,3|claim=MEASURED|json=0
+CHECK|name=pencil_det_3M_plus_xK_is_x8_x_minus_1_6_detK_15_points|status=PASS|spectrum=0 x8 and one third x6 relative to minus trace form|claim=MEASURED|json=0
+CHECK|name=casimir_on_R7_is_2|status=PASS|detB=35831808|claim=MEASURED|json=0
+CHECK|name=mass_sum_rule_6_times_ratio_is_casimir_2|status=PASS|claim=MEASURED|json=0
+HIGGS_MASS|unbroken=su3 dim 8 massless|broken=6 vector bosons on m|mass_sq_ratio=1 over 3|rule=M equals one third of minus tr on m: -tr(XY) is 3 (Xv).(Yv)|units=m_W squared is g squared times norm(v) squared over 3 for -tr-orthonormal generators|claim=MEASURED|json=0
+NAMED|statement=Higgs vector mass matrix is g^2 (T_a v).(T_b v)|ref=Weinberg QFT vol II 1996 sec 21.1|claim=NAMED|json=0
+NAMED|statement=G2 acts transitively on S6 with stabilizer SU(3)|ref=Montgomery and Samelson Ann Math 44 1943; Borel 1949; Baez 2002 sec 4.1; Bryant Ann Math 126 1987|claim=NAMED|json=0
+CHECK|name=stabilizer_preserves_tangent_space|status=PASS|claim=MEASURED|json=0
+CHECK|name=J_is_left_mult_by_e7_maps_T_to_T|status=PASS|claim=MEASURED|json=0
+CHECK|name=J_squared_minus_1_and_orthogonal|status=PASS|claim=MEASURED|json=0
+CHECK|name=J_is_R13_plus_R26_plus_R45|status=PASS|claim=MEASURED|json=0
+CHECK|name=J_commutes_with_su3_on_T|status=PASS|claim=MEASURED|json=0
+CHECK|name=su3_commutant_on_T_is_span_I_J_so_T_irreducible_complex_type|status=PASS|dim=2|claim=MEASURED|json=0
+COMPLEX_STRUCTURE|J=L_e7 on T_e7 S6|commutant=R[J] isomorphic to C|consequence=invariant J with J^2 -1 in R[J] is plus or minus J: unique up to sign|claim=MEASURED|json=0
+NAMED|statement=the G2-invariant almost complex structure on S6 from octonions is not integrable|ref=Kirchhoff 1947 CR Acad Sci 225; Ehresmann and Libermann 1951 CR Acad Sci 232|claim=NAMED|json=0
+CONTROL|name=ctl_wrong_complex_structure_commutes_with_su3|expected=FAIL|got=FAIL|ok=1|json=0
+CHECK|name=cartan_t1_t2_are_R13_minus_R26_and_R26_minus_R45|status=PASS|claim=MEASURED|json=0
+CHECK|name=t1_t2_commute_and_fix_e7|status=PASS|claim=MEASURED|json=0
+CHECK|name=cartan_centralizer_dim_2_rank_2|status=PASS|claim=MEASURED|json=0
+CHECK|name=root_space_decomposition_fills_g2_14|status=PASS|total=14|claim=MEASURED|json=0
+CHECK|name=six_root_pairs_each_real_dim_2|status=PASS|pairs=0,1;1,-2;1,-1;1,0;1,1;2,-1|claim=MEASURED|json=0
+CHECK|name=algebra_roots_equal_PHI_of_part1_roots|status=PASS|PHI=(x-y;y-z;z-x) maps short to short and long to long: times sqrt3 and a 30 degree turn|claim=MEASURED|json=0
+CHECK|name=long_root_spaces_lie_in_stabilizer_su3|status=PASS|claim=MEASURED|json=0
+CHECK|name=short_root_spaces_are_broken_m|status=PASS|claim=MEASURED|json=0
+CHECK|name=short_root_spaces_trace_orthogonal_to_su3_so_equal_m|status=PASS|claim=MEASURED|json=0
+CHECK|name=t_acts_on_each_J_line_by_weight_times_J|status=PASS|weights=1,0;-1,1;0,-1|claim=MEASURED|json=0
+CHECK|name=tangent_weights_with_J_form_one_W_A2_orbit|status=PASS|matches=3bar|claim=MEASURED|json=0
+CHECK|name=PHI_conjugates_long_W_A2_to_plain_permutations|status=PASS|claim=MEASURED|json=0
+ALGEBRA_ROOTS|cartan=t1 R13-R26 and t2 R26-R45|roots_on_t=0,1;1,-2;1,-1;1,0;1,1;2,-1|long_in_su3=1,-2;1,1;2,-1|short_broken=0,1;1,-1;1,0|tangent_weights=1,0;-1,1;0,-1|tangent_is=3bar|claim=MEASURED|json=0
+CHECK|name=fano_collineations_168|status=PASS|n=168|claim=MEASURED|json=0
+CHECK|name=signed_permutation_automorphisms_1344|status=PASS|n=1344|per_collineation=8,168|claim=MEASURED|json=0
+CHECK|name=automorphisms_sending_e7_to_minus_e7_exist_and_form_a_coset|status=PASS|to_minus=96|to_plus=96|claim=MEASURED|json=0
+CHECK|name=full_64_product_check_on_all_signed_perm_automorphisms|status=PASS|checked=1344|claim=MEASURED|json=0
+CHECK|name=all_signed_perm_automorphisms_det_plus1_in_SO7|status=PASS|claim=MEASURED|json=0
+CHECK|name=diagonal_automorphisms_sending_e7_to_minus_e7|status=PASS|n=4|claim=MEASURED|json=0
+CHECK|name=phi_full_algebra_automorphism_all_64_products|status=PASS|signs=1,1,-1,1,-1,-1,-1|claim=MEASURED|json=0
+CHECK|name=phi_sends_e7_to_minus_e7|status=PASS|claim=MEASURED|json=0
+CHECK|name=phi_is_involution_det_plus1|status=PASS|claim=MEASURED|json=0
+CHECK|name=phi_fixes_a_quaternion_subalgebra_pointwise|status=PASS|fixed=e1,e2,e4|claim=MEASURED|json=0
+CHECK|name=antipodal_minus_1_on_ImO_det_minus_1|status=PASS|claim=MEASURED|json=0
+CONTROL|name=ctl_antipodal_minus_1_on_ImO_is_automorphism|expected=FAIL|got=FAIL|ok=1|json=0
+CHECK|name=Ad_phi_preserves_der_O|status=PASS|claim=MEASURED|json=0
+CHECK|name=Ad_phi_preserves_stabilizer_su3|status=PASS|claim=MEASURED|json=0
+CHECK|name=phi_preserves_tangent_space|status=PASS|claim=MEASURED|json=0
+CHECK|name=phi_J_phi_inverse_is_minus_J_antiholomorphic_on_T|status=PASS|claim=MEASURED|json=0
+CHECK|name=Ad_phi_is_minus_1_on_cartan_t|status=PASS|claim=MEASURED|json=0
+CHECK|name=minus_1_on_t_not_a_permutation_so_not_in_W_su3|status=PASS|claim=MEASURED|json=0
+ANTIPODAL|phi=diag on e1..e7 signs 1,1,-1,1,-1,-1,-1|phi_e7=minus e7|weyl_element=minus I in W(G2), outside W(A2)|meaning=phi normalizes SU(3), acts as minus 1 on its Cartan, sends J to minus J: 3 to 3bar (tangent 3bar with J)|claim=MEASURED|json=0
+CONTROL|name=ctl_long_root_moved_off_plane|expected=FAIL|got=FAIL|ok=1|plane=0|integral=0|closed=0|json=0
+CONTROL|name=ctl_long_root_perturbed_in_plane|expected=FAIL|got=FAIL|ok=1|plane=1|integral=0|closed=0|json=0
+CONTROL|name=ctl_perturbed_T0_is_derivation|expected=FAIL|got=FAIL|ok=1|json=0
+CONTROL|name=ctl_perturbed_T0_keeps_degenerate_third_masses|expected=FAIL|got=FAIL|ok=1|rank=6|kernel=8|prop=0|ratio=5,14|json=0
+VERDICT|checks=116|controls=8|fails=0|failed=none|verdict=ALL_PASS|e=0|json=0

@@ -1,0 +1,8 @@
+AUDIT_CONTROL_STATIC|expected=FAIL|observed=FAIL|flagged=4|status=PASS|json=0
+AUDIT_STATIC|job=m1|script_sha256=c18e13295cfafbf935f213e4ad3e4d595e4917f57f18206a7ca5440bf9f957a5|truediv_ops=0|floordiv_ops=0|other_findings=0|slash_chars_total=0|detail=none|status=PASS|json=0
+AUDIT_STATIC|job=m2|script_sha256=d7577144c6fca1505c62625f9590ff9a60658f911e9678b8c5441409fbb691fe|truediv_ops=0|floordiv_ops=0|other_findings=0|slash_chars_total=7|detail=none|status=PASS|json=0
+AUDIT_STATIC|job=m3|script_sha256=fa540342d79050600e4e7992b34f028ff9803849c772e18d6fcf2435fca80e9f|truediv_ops=0|floordiv_ops=15|other_findings=0|slash_chars_total=37|detail=none|status=PASS|json=0
+AUDIT_RUNTIME_FLOAT|job=m1|exit=0|float_or_complex_events=0|module_globals_bad=0|first=none|status=PASS|json=0
+AUDIT_RUNTIME_FLOAT|job=m2|exit=0|float_or_complex_events=0|module_globals_bad=0|first=none|status=PASS|json=0
+AUDIT_RUNTIME_FLOAT|job=m3|exit=0|float_or_complex_events=0|module_globals_bad=0|first=none|status=PASS|json=0
+AUDIT_CONTROL_RUNTIME|expected=FAIL|observed=FAIL|events=2|status=PASS|json=0
