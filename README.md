@@ -10,6 +10,35 @@ The name comes from the owner's phrase of the same day about "the 24-dimensional
 
 **Mathematical foundations:** [`Icosian 3-space, projective lifts and finite-to-continuous tests`](docs/ICOSIAN-3-SPACE-FOUNDATIONS-20261109.md) records the 24-dimensional construction, exact representations/design distinctions, concrete falsification gates and primary literature. The transcript retains the owner's original wording, with editorial interpretations separately labeled. The SU(2) prediction freeze at [`predictions/su2-ladder/`](predictions/su2-ladder/) remains pinned to its original commit and receipt.
 
+## Literature-priority review: Transfer 1 and the finite-to-continuous boundary (November 9, 2026)
+
+**Priority assessment, not a declaration of mathematical novelty.** A second-reviewer search compared [Transfer 1, Iconic PR #7](https://github.com/JesseBrown1980/Iconic-3-space/pull/7) at audited head \`fb9990e5\` with older finite-subgroup lattice gauge theory, character expansions, quantum-simulation digitization, and the spherical-design literature. Search cutoff: **2026-11-09**. A frozen local scope and an independent search were reported, but this README does not claim to have verified the separate local scope lock. **PRIORITY UNVERIFIED** remains the publication-level tag; "APPARENTLY NEW" below means *no equivalent theorem located in the examined sources*, not proved worldwide priority.
+
+| Candidate | Provisional priority | Comparison with earlier mathematics |
+|---|---|---|
+| **B1: a subgroup that is a spherical t-design matches SU(2)'s strong-coupling coefficients through βᵗ** | **PARTIALLY PRIOR** as a lattice-wide formulation; **PRIOR** for the degree-exactness mechanism. | A t-design integrates every polynomial of degree ≤t exactly, and character/strong-coupling expansions are established. Ji–Lamm–Zhu (2023) already match discrete and continuous gauge character expansions. The particular finite-lattice formulation and its hypotheses may still be a useful refinement. |
+| **B2: the first mismatch coefficient** | **APPARENTLY NEW as the exact conditional formula; underlying mechanism PRIOR.** | The examined sources did not state the same universal per-plaquette first coefficient with the exact stated hypotheses. Standard moments, connected expansions, and link integrations could nonetheless imply it; a further theorem-level prior-art check is needed. |
+| **B3: H1, H2′ and failure controls** | **APPARENTLY NEW as this exact formulation and collection of counterexamples; broader combinatorial mechanism PRIOR; optimality UNRESOLVED.** | Classical expansions already depend on link-sharing and saturation. Transfer 1 specifies four-distinct-link **H1**, a sufficient private-link **H2′**, the pillow failure, the L=1 counterexample, and the 2×2 torus that satisfies H2′ but not stronger H2. No claim that H2′ is necessary or optimal. |
+| **Binary-polyhedral design ladder: Dicₙ strength 3, 2T strength 5, 2O strength 7, 2I strength 11** | **PRIOR.** | These design strengths and the exceptional unit-quaternion groups belong to established invariant/design theory; they are controls for the measurement, not new group theory. |
+
+For the exact [Transfer 1 hypotheses and corrections](proofs/transfer/TRANSFER-THEOREM.md), H1 gives coefficient agreement through order \`β^t\`; H1 plus H2′ gives the proposed first discrepancy
+
+\`\`\`text
+log Z_G(β) − log Z_SU(2)(β)
+  = N_p · ι_G · β^(t+1) / (2^(t+1) · (t+1)!) + O(β^(t+2)).
+\`\`\`
+
+Here \`ι_G\` is the first moment mismatch; for Dic₃, \`t=3\` and \`ι_G=1\`, yielding \`N_p/384\`, or **1/64 for six plaquettes**. The exact-enumeration check of that example confirms the internal arithmetic **but cannot establish historical originality**. The theorem is about a fixed finite lattice's **strong-coupling Taylor coefficients**, not a uniform weak-coupling/continuum approximation, confinement theorem, or Clay mass-gap proof. The separate [second-review CI verdict](https://github.com/JesseBrown1980/Iconic-3-space/pull/7#pullrequestreview-5829822712) concerns the replay/evidence gates, not literature priority.
+
+**Closest primary sources and boundaries:**
+
+- [Petcher & Weingarten (1980), Phys. Rev. D 22, 2465](https://doi.org/10.1103/PhysRevD.22.2465) and [Rebbi (1980), Phys. Rev. D 21, 3350](https://doi.org/10.1103/PhysRevD.21.3350) — finite non-Abelian SU(2)-subgroup lattice models and their phase structure/observables are long-established.
+- [Ji, Lamm & Zhu (2023), *Gluon digitization via character expansion for quantum computers*, Phys. Rev. D 107, 114503](https://doi.org/10.1103/PhysRevD.107.114503) — matching continuous and discrete character expansions; closest known modern antecedent for B1.
+- [Hartung et al. (2022), *Digitising SU(2) gauge fields and the freezing transition*](https://link.springer.com/article/10.1140/epjc/s10052-022-10192-5) — the limitations of finite-subgroup approximations outside appropriate coupling ranges.
+- [Hirao, Nozaki & Tasaka (2026), *Spherical designs for finite quaternionic unit groups and their applications to modular forms*, Algebraic Combinatorics 9, 1157–1178](https://doi.org/10.5802/alco.505) — establishes design-theoretic literature for 2T, 2O, and 2I.
+
+**Review gate:** compare B2 and B3 to older character/linked-cluster expansions at theorem-and-hypothesis level; preserve competing citations; seek an outside referee. This review keeps **new**, **correct**, and **important** separate. Reproducible measurements establish none of these automatically.
+
 ## The frame
 
 The owner's frame (OPERATOR-CANON): "we're in a matrix, so the hashes matter too. Like quantum entanglement as a hash." Here that frame is part of the method. A result lives in a receipt pinned by its hash, and a receipt counts only when its script reproduces that hash byte for byte. Every prediction is frozen by its hash before anything is measured, so the record of what was expected can be checked against what was found. The quantum lane will test entanglement as a hash directly. A random enough set of operations, a 2-design, scrambles a system so that each small piece looks completely random on its own, while the information stays whole in the correlations between the pieces: the decoupling theorem. Its prediction will be frozen before it is run.
