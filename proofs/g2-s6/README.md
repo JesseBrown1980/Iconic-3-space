@@ -29,3 +29,13 @@ In `m2/m2_roots.py`, the two powers x^dh and (x − p)^dm were rewritten with an
 The refutation folder is pinned by a folder row in [`../../tools/FLOAT-EVIDENCE.txt`](../../tools/FLOAT-EVIDENCE.txt), because its runtime float detector names floats in order to find them.
 
 These are classical results: Cartan, Ehresmann–Libermann, Koszul–Frölicher, Gray, Bryant, Harvey–Lawson. This folder holds exact, reproducible certificates of them, with each claim's scope stated. Whether S⁶ carries any integrable complex structure at all, the Hopf problem, is open.
+
+**Beside the sentence above, November 9, 2026, from a verified literature map.** In the refereed literature the Hopf problem is open. One existence claim is under active, unrefereed scrutiny:
+
+- **The construction.** L. Alpöge, working with Claude, "A compact complex threefold fibred by tori over the projective line, and the six-sphere" (alpo.ge/s6.pdf, August 2026), builds a compact complex threefold fibred by 2-tori over P¹. It is simply connected with the integral homology of S⁶, hence diffeomorphic to S⁶, with algebraic dimension 1.
+- **The second account.** P. Engel, "Complex structures on S⁶" ([arXiv:2609.38442](https://arxiv.org/abs/2609.38442), September 2026), recasts the construction as a self-contained account.
+- **Expert view.** R. Bryant, quoted in *Scientific American* on September 24, 2026: "There seems to be an emerging consensus that the construction is plausible."
+- **Formalization.** A Lean 4 formalization is public (github.com/plby/HopfProblem). It has not been built here (NOT MEASURED).
+- **The published theorem it contradicts.** Campana–Demailly–Peternell, *Compositio Math.* 156 (2020), Cor. 2.3, says a complex S⁶ has algebraic dimension 0. The manuscript's §10 names the step of that proof it says fails, at a non-normal fibre.
+
+The results this folder measures hold however the claim resolves. The G₂-invariant J is the unique invariant almost complex structure, and it is not integrable. No complex structure is orthogonal to the round metric (LeBrun 1987).
