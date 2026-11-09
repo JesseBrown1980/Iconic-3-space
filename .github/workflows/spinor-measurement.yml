@@ -25,7 +25,7 @@ jobs:
           P="$GITHUB_WORKSPACE/predictions/spinor-symbol"
           M="$GITHUB_WORKSPACE/measurements/spinor-symbol"
           T=$(mktemp -d)
-          mkdir -p "$T/4d/frozen" "$T/7d" "$T/8d"
+          mkdir -p "$T/4d/frozen" "$T/7d/out" "$T/8d/out"
           cp "$M/4d/measure_4d.py" "$T/4d/"
           cp "$P/PREDICTION-SPINOR-SYMBOL.hbp" "$P/ADDENDUM-SPINOR-SYMBOL.hbp" "$T/4d/frozen/"
           cp "$M/7d/measure_7d.py" "$T/7d/"
