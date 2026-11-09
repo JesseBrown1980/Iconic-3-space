@@ -1,0 +1,160 @@
+HEAD|schema=predict-g2-frame-v1|date=2026-11-09|author=the local Opus 5.5 seat, pid 8467a937cba309f7 (prediction agent)|kind=PREDICTION_before_any_measurement|measurement_status=NOT_RUN|group_elements_built=0|group_elements_built_reads=elements of the frame group H and of G2 built by this script|octonion_table_built=0|weyl_group_matrices_built=12|points_built=14|script=predict_g2_frame.py|script_sha256=940af54f9b6042aac365d4c680f5d89bc99e6918b9c3e0bec3b405fc3d10aed4|run=python3 -I -B predict_g2_frame.py|float_used=0|sources=NAMED: Weyl integration and character formulas (Bourbaki Lie ch. IX; Brocker and tom Dieck ch. VI); Brauer-Klimyk rule (Humphreys 1972 ex. 24.9); sphere moments of the uniform measure (Folland 2001, How to integrate a polynomial over a sphere); Cohen and Wales 1983, Finite subgroups of G2(C), Comm. Algebra 11; Griess 1995, Basic conjugacy theorems for G2, Invent. Math. 121; OEIS A059710|json=0
+FORMAT|rational=num:den reduced, den positive|vector=(x,y) means x a1 + y a2 in the simple-root basis|laurent=dict from exponent pairs (x,y) to integer coefficients; e^(x,y) is a torus character|tensor=written (x)|claim_tags=MEASURED computed by this script; NAMED stated and coherent, not run here; CONJECTURE|prediction_tag=status PREDICTION marks a statement about H to be tested later against H|json=0
+ORBIT|points=+-e_1..+-e_7 in R^7, each coordinate 0 or +-1, one nonzero per point|count=14|measure=uniform on the 14 points|compare=uniform measure on S^6|claim=MEASURED|json=0
+ORBIT_MOMENT|a=0|b=0|degree=0|E_orbit_X1a_X2b=1:1|E_sphere_Y1a_Y2b=1:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=1|degree=1|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=2|degree=2|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=1:7|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=3|degree=3|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=4|degree=4|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=1:21|diff_orbit_minus_sphere=2:21|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=5|degree=5|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=6|degree=6|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=5:231|diff_orbit_minus_sphere=4:33|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=7|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=0|b=8|degree=8|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=5:429|diff_orbit_minus_sphere=394:3003|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=0|degree=1|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=1|degree=2|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=2|degree=3|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=3|degree=4|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=4|degree=5|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=5|degree=6|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=6|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=1|b=7|degree=8|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=2|b=0|degree=2|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=1:7|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=2|b=1|degree=3|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=2|b=2|degree=4|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=1:63|diff_orbit_minus_sphere=-1:63|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=2|b=3|degree=5|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=2|b=4|degree=6|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=1:231|diff_orbit_minus_sphere=-1:231|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=2|b=5|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=2|b=6|degree=8|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=5:3003|diff_orbit_minus_sphere=-5:3003|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=3|b=0|degree=3|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=3|b=1|degree=4|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=3|b=2|degree=5|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=3|b=3|degree=6|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=3|b=4|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=3|b=5|degree=8|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=4|b=0|degree=4|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=1:21|diff_orbit_minus_sphere=2:21|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=4|b=1|degree=5|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=4|b=2|degree=6|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=1:231|diff_orbit_minus_sphere=-1:231|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=4|b=3|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=4|b=4|degree=8|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=1:1001|diff_orbit_minus_sphere=-1:1001|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=5|b=0|degree=5|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=5|b=1|degree=6|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=5|b=2|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=5|b=3|degree=8|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=6|b=0|degree=6|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=5:231|diff_orbit_minus_sphere=4:33|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=6|b=1|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=6|b=2|degree=8|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=5:3003|diff_orbit_minus_sphere=-5:3003|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=7|b=0|degree=7|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=7|b=1|degree=8|E_orbit_X1a_X2b=0:1|E_sphere_Y1a_Y2b=0:1|diff_orbit_minus_sphere=0:1|agree=1|claim=MEASURED|sphere_formula=NAMED|json=0
+ORBIT_MOMENT|a=8|b=0|degree=8|E_orbit_X1a_X2b=1:7|E_sphere_Y1a_Y2b=5:429|diff_orbit_minus_sphere=394:3003|agree=0|claim=MEASURED|sphere_formula=NAMED|json=0
+DESIGN|degree=0|monomials_in_7_coordinates=1|disagree=0|failing_patterns=none|claim=MEASURED|json=0
+DESIGN|degree=1|monomials_in_7_coordinates=7|disagree=0|failing_patterns=none|claim=MEASURED|json=0
+DESIGN|degree=2|monomials_in_7_coordinates=28|disagree=0|failing_patterns=none|claim=MEASURED|json=0
+DESIGN|degree=3|monomials_in_7_coordinates=84|disagree=0|failing_patterns=none|claim=MEASURED|json=0
+DESIGN|degree=4|monomials_in_7_coordinates=210|disagree=28|failing_patterns=2.2#21,4#7|claim=MEASURED|json=0
+DESIGN|degree=5|monomials_in_7_coordinates=462|disagree=0|failing_patterns=none|claim=MEASURED|json=0
+DESIGN|degree=6|monomials_in_7_coordinates=924|disagree=84|failing_patterns=2.2.2#35,4.2#42,6#7|claim=MEASURED|json=0
+DESIGN|degree=7|monomials_in_7_coordinates=1716|disagree=0|failing_patterns=none|claim=MEASURED|json=0
+DESIGN|degree=8|monomials_in_7_coordinates=3003|disagree=210|failing_patterns=2.2.2.2#35,4.2.2#105,4.4#21,6.2#42,8#7|claim=MEASURED|json=0
+DESIGN_DEGREE|t=3|first_failing_degree=4|monomials_read=6435|task_expected=3|match=1|reads=every moment of degree up to t agrees with S^6 and one of degree t+1 does not|claim=MEASURED|json=0
+FIRST_DIFF|moment=E[X_1^4] minus E[Y_1^4]|orbit=1:7|sphere=1:21|diff=2:21|task_expected=2:21|match=1|forced=0|claim=MEASURED|json=0
+FIRST_DIFF|moment=E[X_1^2 X_2^2] minus E[Y_1^2 Y_2^2]|orbit=0:1|sphere=1:63|diff=-1:63|claim=MEASURED|json=0
+NEXT_DIFF|a=6|b=0|orbit=1:7|sphere=5:231|diff=4:33|claim=MEASURED|json=0
+NEXT_DIFF|a=4|b=2|orbit=0:1|sphere=1:231|diff=-1:231|claim=MEASURED|json=0
+NEXT_DIFF|a=8|b=0|orbit=1:7|sphere=5:429|diff=394:3003|claim=MEASURED|json=0
+NEXT_DIFF|a=6|b=2|orbit=0:1|sphere=5:3003|diff=-5:3003|claim=MEASURED|json=0
+NEXT_DIFF|a=4|b=4|orbit=0:1|sphere=1:1001|diff=-1:1001|claim=MEASURED|json=0
+QUARTIC|form=sum_i x_i^4|ratio_to_q_squared_at_e1=1:1|at_e1_plus_e2=1:2|at_all_ones=1:7|ratio_constant_on_S6=0|orbit_mean=1:1|sphere_mean=1:3|reading=a G2-fixed quartic is constant on S^6 since G2 is transitive on S^6 (NAMED); this ratio is not, so sum_i x_i^4 is not G2-fixed; H permutes the axes up to sign, so it is H-fixed (NAMED)|claim=MEASURED values; NAMED reading|json=0
+BASIS|lattice=weight lattice of G2, equal to its root lattice (checked)|basis=a1 short simple root, a2 long simple root|gram=2,-3;-3,6|positive_short=(1,0);(1,1);(2,1)|positive_long=(0,1);(3,1);(3,2)|rho=(5,3)|w1=(2,1)|w2=(3,2)|weights_7=0 and the 6 short roots|weights_14=0 twice and the 12 roots|W_order=12|W_generated_from=reflections in the 6 positive roots, closed under products|delta_conj_delta_terms=73|delta_conj_delta_CT=12|claim=MEASURED|json=0
+G2_MOMENT|rep=7|n=0|CT=12|W=12|E_G2_chi7_pow_n=1:1|route2_trivial_multiplicity=1|route2_dominant_weights=1|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=1|CT=0|W=12|E_G2_chi7_pow_n=0:1|route2_trivial_multiplicity=0|route2_dominant_weights=1|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=2|CT=12|W=12|E_G2_chi7_pow_n=1:1|route2_trivial_multiplicity=1|route2_dominant_weights=4|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=3|CT=12|W=12|E_G2_chi7_pow_n=1:1|route2_trivial_multiplicity=1|route2_dominant_weights=6|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=4|CT=48|W=12|E_G2_chi7_pow_n=4:1|route2_trivial_multiplicity=4|route2_dominant_weights=9|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=5|CT=120|W=12|E_G2_chi7_pow_n=10:1|route2_trivial_multiplicity=10|route2_dominant_weights=12|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=6|CT=420|W=12|E_G2_chi7_pow_n=35:1|route2_trivial_multiplicity=35|route2_dominant_weights=16|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=7|CT=1440|W=12|E_G2_chi7_pow_n=120:1|route2_trivial_multiplicity=120|route2_dominant_weights=20|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=7|n=8|CT=5460|W=12|E_G2_chi7_pow_n=455:1|route2_trivial_multiplicity=455|route2_dominant_weights=25|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=0|CT=12|W=12|E_G2_chi14_pow_n=1:1|route2_trivial_multiplicity=1|route2_dominant_weights=1|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=1|CT=0|W=12|E_G2_chi14_pow_n=0:1|route2_trivial_multiplicity=0|route2_dominant_weights=1|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=2|CT=12|W=12|E_G2_chi14_pow_n=1:1|route2_trivial_multiplicity=1|route2_dominant_weights=5|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=3|CT=12|W=12|E_G2_chi14_pow_n=1:1|route2_trivial_multiplicity=1|route2_dominant_weights=11|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=4|CT=60|W=12|E_G2_chi14_pow_n=5:1|route2_trivial_multiplicity=5|route2_dominant_weights=18|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=5|CT=192|W=12|E_G2_chi14_pow_n=16:1|route2_trivial_multiplicity=16|route2_dominant_weights=26|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=6|CT=960|W=12|E_G2_chi14_pow_n=80:1|route2_trivial_multiplicity=80|route2_dominant_weights=36|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=7|CT=5232|W=12|E_G2_chi14_pow_n=436:1|route2_trivial_multiplicity=436|route2_dominant_weights=47|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_MOMENT|rep=14|n=8|CT=33432|W=12|E_G2_chi14_pow_n=2786:1|route2_trivial_multiplicity=2786|route2_dominant_weights=60|routes_agree=1|claim=MEASURED|route1=Weyl integration (NAMED formula)|route2=Brauer-Klimyk tensoring (NAMED rule)|json=0
+G2_FIXED|space=Sym^0 of 7|dim_space=1|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^1 of 7|dim_space=7|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^2 of 7|dim_space=28|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^3 of 7|dim_space=84|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^4 of 7|dim_space=210|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^5 of 7|dim_space=462|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^6 of 7|dim_space=924|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^7 of 7|dim_space=1716|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Sym^8 of 7|dim_space=3003|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^0 of 7|dim_space=1|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^1 of 7|dim_space=7|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^2 of 7|dim_space=21|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^3 of 7|dim_space=35|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^4 of 7|dim_space=35|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^5 of 7|dim_space=21|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^6 of 7|dim_space=7|CT=0|dim_G2_fixed=0:1|claim=MEASURED|json=0
+G2_FIXED|space=Wedge^7 of 7|dim_space=1|CT=12|dim_G2_fixed=1:1|claim=MEASURED|json=0
+COMPARE|what=E_G2[chi_7^n], n 0..6, against the values stated in the task|computed=1,0,1,1,4,10,35|stated=1,0,1,1,4,10,35|match=1|forced=0|claim=MEASURED|json=0
+COMPARE|what=E_G2[chi_7^n], n 0..8, against OEIS A059710|computed=1,0,1,1,4,10,35,120,455|listed=1,0,1,1,4,10,35,120,455|match=1|forced=0|source_status=OPENED: oeis.org A059710 read by the prediction agent through a web fetch on 2026-11-09; title read there: dimension of space of invariants of n-th tensor power of the 7-dimensional irreducible representation of G_2; terms typed into this script as data|claim=MEASURED comparison; NAMED source|json=0
+COMPARE|what=E_G2[chi_14^n], n 0..8|computed=1,0,1,1,5,16,80,436,2786|stated=none|claim=MEASURED|json=0
+FRAME_STRUCTURE|id=F0|object=H, the subgroup of G2 that permutes the 14 points +-e_1..+-e_7 and keeps the octonion product|order=1344|order_is_8_times_168=1|N=H meet the diagonal sign changes, predicted of order 8, isomorphic to 2^3; it acts on axis k by a character p_k, and p_1..p_7 are the 7 distinct nontrivial characters of N|H_mod_N=predicted GL(3,2) of order 168, acting on the 7 axes as on the points of the Fano plane whose lines are the octonion triples|orbit_of_e_1=predicted all 14 points, so the stabiliser of e_1 has order 96|stabiliser_check=1|status=PREDICTION|claim=NAMED|json=0
+FRAME_EXTENSION|id=F1|named=H is the non-split extension 2^3.GL(3,2)|sources=Cohen and Wales 1983, Finite subgroups of G2(C), Comm. Algebra 11; Griess 1995, Basic conjugacy theorems for G2, Invent. Math. 121|source_status=UNVERIFIED: not opened by this agent|prediction=no subgroup of H of order 168 meets the sign-change kernel N trivially, so N has no complement in H|test=count the subgroups K of H of order 168 with K meet N trivial; predicted count 0|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.0|n=0|E_G2=1:1|relation=EQUAL|E_H_predicted=1:1|reason=normalisation|test=the mean over the 1344 elements of H of chi_7(h)^n|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.1|n=1|E_G2=0:1|relation=EQUAL|E_H_predicted=0:1|reason=every p_k is nontrivial, so N fixes no nonzero vector of 7 and neither does H|test=the mean over the 1344 elements of H of chi_7(h)^n|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.2|n=2|E_G2=1:1|relation=EQUAL|E_H_predicted=1:1|reason=7 restricted to N is p_1 + ... + p_7 with the p_k distinct, and H permutes the 7 axes transitively, so the commutant of H on 7 is the scalars (Clifford); 7 is real, so the mean of chi_7^2 is the inner product of chi_7 with itself, which is 1|test=the mean over the 1344 elements of H of chi_7(h)^n|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.3|n=3|E_G2=1:1|relation=EQUAL|E_H_predicted=1:1|reason=the N-fixed tensors in 7 (x) 7 (x) 7 are spanned by e_i (x) e_j (x) e_k with p_i p_j p_k trivial, which holds exactly when i j k are distinct points of one Fano line: 7 lines times 6 orders gives 42 lines of tensors; H permutes them transitively, as GL(3,2) is 2-transitive on points and i j fix k, so they form a transitive monomial representation and the H-fixed space has dimension at most 1; the G2-fixed 3-form lies in it, so it is exactly the G2 value 1|test=the mean over the 1344 elements of H of chi_7(h)^n|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.4|n=4|E_G2=4:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=5|E_H_exact=NOT_PREDICTED|reason=an extra invariant in Sym^4 of the 7 gives an extra invariant in 7 (x)4: Sym^4 of 7 has G2-fixed dimension 1:1 (G2_FIXED row, q^2 only); sum_i x_i^4 is H-fixed and not a multiple of q^2 (QUARTIC row), so the H-fixed symmetric tensors S have dimension at least 2; inside 7 (x)4 the G2-fixed space U meets S in the G2-fixed symmetric tensors, so the H-fixed space holds U + S, of dimension at least 4 + 2 - 1|test=the mean over H of chi_7(h)^4, predicted at least 5|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.5|n=5|E_G2=10:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=10|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.6|n=6|E_G2=35:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=36|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed; for even n, sum_i x_i^4 times q to the power (n-4) over 2 is H-fixed and not a multiple of q to the power n over 2, and Sym^n of 7 has G2-fixed dimension 1:1 (G2_FIXED row), so the count of F2.4 adds 1|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.7|n=7|E_G2=120:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=120|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI7|id=F2.8|n=8|E_G2=455:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=456|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed; for even n, sum_i x_i^4 times q to the power (n-4) over 2 is H-fixed and not a multiple of q to the power n over 2, and Sym^n of 7 has G2-fixed dimension 1:1 (G2_FIXED row), so the count of F2.4 adds 1|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.0|n=0|E_G2=1:1|relation=EQUAL|E_H_predicted=1:1|reason=normalisation|test=the mean over H of chi_14(h)^n|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.1|n=1|E_G2=0:1|relation=EQUAL|E_H_predicted=0:1|reason=14 sits in Wedge^2 of 7; e_i wedge e_j carries the N-character p_i p_j, which is p_k for the third point k of their line and so nontrivial; Wedge^2 of 7 has no N-fixed vector, hence 14 has no H-fixed vector|test=the mean over H of chi_14(h)^n|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.2|n=2|E_G2=1:1|relation=EQUAL|E_H_predicted=1:1|reason=Wedge^2 of 7 is 7 + 14 for G2 (NAMED; REFUTE.hbp lambda2_split_7_14 measured it) and restricts to N as 3 (p_1 + ... + p_7), so 14 restricts as 2 (p_1 + ... + p_7); the p_k part M_k of Wedge^2 is spanned by the 3 wedges over the 3 lines through k; the inertia group I_k (order 192, over the point stabiliser S_4) permutes those 3 lines 2-transitively through S_4 onto GL(2,2), so M_k is monomial with 2 double cosets and its self inner product is at most 2; M_k is (7)_k + (14)_k with (7)_k of dimension 1, which forces (14)_k irreducible for I_k; by Clifford 14 is induced from it and irreducible for H, and real, so the mean of chi_14^2 is 1|test=the mean over H of chi_14(h)^n|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14_N2_PREDICTABLE|answer=YES|value=1:1|rests_on=F0 structure (N of order 8 with characters p_1..p_7, H mod N GL(3,2) on the Fano points) and Wedge^2 of 7 equal to 7 + 14|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.3|n=3|E_G2=1:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=1|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.4|n=4|E_G2=5:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=5|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.5|n=5|E_G2=16:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=16|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.6|n=6|E_G2=80:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=80|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.7|n=7|E_G2=436:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=436|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+FRAME_CHI14|id=F3.8|n=8|E_G2=2786:1|relation=GREATER_OR_EQUAL|E_H_lower_bound=2786|E_H_exact=CANNOT_PREDICT|reason=G2-fixed tensors are H-fixed|status=PREDICTION|claim=NAMED|json=0
+PLANTED|plant=short_root_2_1_planted_as_2_2|positive_short=(1,0);(1,1);(2,2)|positive_long=(0,1);(3,1);(3,2)|suite_checks=19|checks_broken=16|broken=g2_root_count_12_short_norm_2_long_norm_6;g2_root_axioms_cartan_integers_and_reflection_closure;g2_rho_half_sum_integral_and_equals_w1_plus_w2;g2_weyl_denominator_identity;g2_delta_conj_delta_equals_root_product_and_CT_equals_W;g2_weight_multisets_7_and_14_W_invariant;g2_weyl_character_formula_7_highest_weight_w1;g2_weyl_character_formula_14_highest_weight_w2;g2_weyl_dimension_formula_7_and_14;g2_route1_moments_integral;g2_route1_normalisation_n0_is_1_n1_is_0;g2_E_chi7_squared_is_1_irreducible_real;g2_E_chi14_squared_is_1_irreducible_real;g2_routes_agree_chi7_n_le_6;g2_routes_agree_chi14_n_le_6;g2_brauer_klimyk_multiplicities_nonnegative|claim=MEASURED|json=0
+PLANTED|plant=long_root_3_2_planted_as_3_3|positive_short=(1,0);(1,1);(2,1)|positive_long=(0,1);(3,1);(3,3)|suite_checks=19|checks_broken=16|broken=g2_root_count_12_short_norm_2_long_norm_6;g2_root_axioms_cartan_integers_and_reflection_closure;g2_rho_half_sum_integral_and_equals_w1_plus_w2;g2_weyl_denominator_identity;g2_delta_conj_delta_equals_root_product_and_CT_equals_W;g2_weight_multisets_7_and_14_W_invariant;g2_weyl_character_formula_7_highest_weight_w1;g2_weyl_character_formula_14_highest_weight_w2;g2_weyl_dimension_formula_7_and_14;g2_route1_moments_integral;g2_route1_normalisation_n0_is_1_n1_is_0;g2_E_chi7_squared_is_1_irreducible_real;g2_E_chi14_squared_is_1_irreducible_real;g2_routes_agree_chi7_n_le_6;g2_routes_agree_chi14_n_le_6;g2_brauer_klimyk_multiplicities_nonnegative|claim=MEASURED|json=0
+SELF_CHECK|name=orbit_14_distinct_unit_points_antipodal|status=PASS|points=14|distinct=14|unit=1|antipodal=1|claim=MEASURED|json=0
+SELF_CHECK|name=sphere_and_orbit_E_q_power_0_is_1|status=PASS|orbit=1:1|sphere=1:1|q=sum of squares|claim=MEASURED|json=0
+SELF_CHECK|name=sphere_and_orbit_E_q_power_1_is_1|status=PASS|orbit=1:1|sphere=1:1|q=sum of squares|claim=MEASURED|json=0
+SELF_CHECK|name=sphere_and_orbit_E_q_power_2_is_1|status=PASS|orbit=1:1|sphere=1:1|q=sum of squares|claim=MEASURED|json=0
+SELF_CHECK|name=sphere_and_orbit_E_q_power_3_is_1|status=PASS|orbit=1:1|sphere=1:1|q=sum of squares|claim=MEASURED|json=0
+SELF_CHECK|name=sphere_and_orbit_E_q_power_4_is_1|status=PASS|orbit=1:1|sphere=1:1|q=sum of squares|claim=MEASURED|json=0
+SELF_CHECK|name=orbit_design_degree_read_over_all_monomials|status=PASS|monomials_read=6435|expected_monomials=6435|t=3|claim=MEASURED|json=0
+SELF_CHECK|name=quartic_not_constant_on_S6|status=PASS|ratios=1:1,1:2,1:7|claim=MEASURED|json=0
+SELF_CHECK|name=g2_root_count_12_short_norm_2_long_norm_6|status=PASS|distinct_roots=12|short_norms=2,2,2|long_norms=6,6,6|claim=MEASURED|json=0
+SELF_CHECK|name=g2_root_axioms_cartan_integers_and_reflection_closure|status=PASS|pairs_read=144|cartan_nonintegral=0|reflection_leaves_root_set=0|claim=MEASURED|json=0
+SELF_CHECK|name=g2_weyl_group_order_12_from_root_reflections|status=PASS|reflections_used=6|reflections_nonintegral=0|finite_under_cap=1|order=12|det_plus=6|det_minus=6|preserve_gram=1|claim=MEASURED|json=0
+SELF_CHECK|name=g2_weight_lattice_equals_root_lattice|status=PASS|pairing_matrix=2,-3;-1,2|pairing_det=1|w1=(2,1)|w2=(3,2)|det_w1_w2=1|claim=MEASURED|json=0
+SELF_CHECK|name=g2_rho_half_sum_integral_and_equals_w1_plus_w2|status=PASS|sum_positive_roots=(10,6)|rho_half_sum=(5,3)|rho_w1_plus_w2=(5,3)|claim=MEASURED|json=0
+SELF_CHECK|name=g2_weyl_denominator_identity|status=PASS|delta_terms=12|alternating_sum_terms=12|claim=MEASURED|json=0
+SELF_CHECK|name=g2_delta_conj_delta_equals_root_product_and_CT_equals_W|status=PASS|root_product_terms=73|CT=12|W=12|claim=MEASURED|json=0
+SELF_CHECK|name=g2_weight_multisets_7_and_14_W_invariant|status=PASS|group_elements_read=12|failures=0|claim=MEASURED|json=0
+SELF_CHECK|name=g2_weyl_character_formula_7_highest_weight_w1|status=PASS|highest_weight=(2,1)|claim=MEASURED|json=0
+SELF_CHECK|name=g2_weyl_character_formula_14_highest_weight_w2|status=PASS|highest_weight=(3,2)|claim=MEASURED|json=0
+SELF_CHECK|name=g2_weyl_dimension_formula_7_and_14|status=PASS|dim_w1=7:1|dim_w2=14:1|weights_7=7|weights_14=14|claim=MEASURED|json=0
+SELF_CHECK|name=g2_route1_moments_integral|status=PASS|n_read=9|claim=MEASURED|json=0
+SELF_CHECK|name=g2_route1_normalisation_n0_is_1_n1_is_0|status=PASS|E7_0=1:1|E7_1=0:1|E14_0=1:1|E14_1=0:1|claim=MEASURED|json=0
+SELF_CHECK|name=g2_E_chi7_squared_is_1_irreducible_real|status=PASS|E7_2=1:1|claim=MEASURED|json=0
+SELF_CHECK|name=g2_E_chi14_squared_is_1_irreducible_real|status=PASS|E14_2=1:1|claim=MEASURED|json=0
+SELF_CHECK|name=g2_routes_agree_chi7_n_le_6|status=PASS|route1=1:1,0:1,1:1,1:1,4:1,10:1,35:1|route2=1,0,1,1,4,10,35|claim=MEASURED|json=0
+SELF_CHECK|name=g2_routes_agree_chi14_n_le_6|status=PASS|route1=1:1,0:1,1:1,1:1,5:1,16:1,80:1|route2=1,0,1,1,5,16,80|claim=MEASURED|json=0
+SELF_CHECK|name=g2_brauer_klimyk_multiplicities_nonnegative|status=PASS|negative_7=0|negative_14=0|claim=MEASURED|json=0
+SELF_CHECK|name=g2_sym2_plus_wedge2_equals_chi7_squared|status=PASS|terms=19|claim=MEASURED|json=0
+SELF_CHECK|name=g2_fixed_polynomials_on_7_are_powers_of_q_up_to_degree_8|status=PASS|sym_dims=1:1,0:1,1:1,0:1,1:1,0:1,1:1,0:1,1:1|reads=matches the NAMED fact that G2-fixed polynomials on R^7 are polynomials in q|claim=MEASURED|json=0
+SELF_CHECK|name=g2_fixed_wedge3_is_1_the_3_form|status=PASS|wedge_dims=1:1,0:1,0:1,1:1,1:1,0:1,0:1,1:1|claim=MEASURED|json=0
+SELF_CHECK|name=planted_short_root_2_1_planted_as_2_2_breaks_a_check|status=PASS|checks_broken=16|claim=MEASURED|json=0
+SELF_CHECK|name=planted_long_root_3_2_planted_as_3_3_breaks_a_check|status=PASS|checks_broken=16|claim=MEASURED|json=0
+END|rows=160|checks=31|checks_failed=0|compare_mismatches=0|exit=0|measurement_status=NOT_RUN|group_elements_built=0|json=0

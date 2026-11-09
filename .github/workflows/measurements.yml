@@ -1,0 +1,49 @@
+# Every measurement receipt must reproduce byte for byte. The measurement scripts read the frozen predictions at the
+# paths they were run with, and those paths are written into their receipts, so this job rebuilds that layout on the
+# runner: the checkout is linked at /mnt/c/tmp/opus55/iconic-3-space/repo and each script runs from its original
+# folder under /mnt/c/tmp/opus55/illusion-20261109/measure/. Integer only, json=0.
+name: Measurements replay
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Rebuild the original path layout
+        run: |
+          set -euo pipefail
+          sudo mkdir -p /mnt/c/tmp/opus55/iconic-3-space /mnt/c/tmp/opus55/illusion-20261109/measure
+          sudo ln -s "$GITHUB_WORKSPACE" /mnt/c/tmp/opus55/iconic-3-space/repo
+          sudo chown -R "$(id -u):$(id -g)" /mnt/c/tmp/opus55
+          for s in su2-ladder exceptional bridges; do
+            mkdir -p "/mnt/c/tmp/opus55/illusion-20261109/measure/$s"
+            cp measurements/$s/*.py "/mnt/c/tmp/opus55/illusion-20261109/measure/$s/"
+          done
+          cp measurements/exceptional/MEASURE-EXCEPTIONAL.precompare.hbp measurements/exceptional/MEASURE-EXCEPTIONAL.precompare.hbp.sha256 /mnt/c/tmp/opus55/illusion-20261109/measure/exceptional/
+      - name: Replay the three measurements and compare with the committed sidecars
+        run: |
+          set -euo pipefail
+          n=0
+          for pair in su2-ladder:MEASURE-LADDER.hbp exceptional:MEASURE-EXCEPTIONAL.hbp bridges:MEASURE-BRIDGES.hbp; do
+            s=${pair%%:*}; f=${pair##*:}
+            d=/mnt/c/tmp/opus55/illusion-20261109/measure/$s
+            (cd "$d" && python3 -I -B "$(ls *.py)" > run.out 2>&1) || { echo "MEASURE_REPLAY_FAIL|folder=$s|stage=run|json=0"; tail -20 "$d/run.out"; exit 1; }
+            got=$(sha256sum "$d/$f" | cut -d' ' -f1)
+            kept=$(cut -d' ' -f1 "measurements/$s/$f.sha256")
+            echo "MEASURE_REPLAY|file=measurements/$s/$f|replayed=$got|sidecar=$kept|json=0"
+            [ "$got" = "$kept" ] || { echo "MEASURE_REPLAY_FAIL|folder=$s|stage=compare|json=0"; exit 1; }
+            n=$((n+1))
+          done
+          (cd measurements/refute && for side in *.sha256; do [ "$side" = refute_measure.phase1.py.sha256 ] && continue; sha256sum -c "$side"; done)
+          echo "MEASURE_REPLAY_DONE|replayed=$n|json=0"
